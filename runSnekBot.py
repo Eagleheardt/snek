@@ -634,7 +634,7 @@ bDay.start()
 
 if __name__ == "__main__":
 	if slack_client.rtm_connect(with_team_state=False):
-		print("Snek Bot connected and running!")
+		stdOut("Snek Bot connected and running!")
 		# Read bot's user ID by calling Web API method `auth.test`
 		snekBotID = slack_client.api_call("auth.test")["user_id"]
 	while True:
@@ -649,4 +649,4 @@ if __name__ == "__main__":
 		time.sleep(RTM_READ_DELAY)
 	else:
                 pass
-		print("Connection failed. Exception traceback printed above.")
+		stdOut("Connection failed. Exception traceback printed above.")
