@@ -18,16 +18,16 @@ from cryptography.fernet import Fernet
 Snek's birthday is October 25, 2018
 """
 
-conn = sqlite3.connect('./data/snekBot.db')
+conn = sqlite3.connect('snekbot/data/snekBot.db')
 serverCursor = conn.cursor()
 
-keyFile = open('./data/snek_token.key', 'rb')
+keyFile = open('snekbot/data/snek_token.key', 'rb')
 key = keyFile.read() # The key will be type bytes
 keyFile.close()
 
 f = Fernet(key)
 
-encryptedTokenFile = open('./data/snek_token.encrypted', 'rb')
+encryptedTokenFile = open('snekbot/data/snek_token.encrypted', 'rb')
 encryptedToken = encryptedTokenFile.read()
 
 decryptedToken = f.decrypt(encryptedToken)
