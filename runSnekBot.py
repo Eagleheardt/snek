@@ -592,6 +592,10 @@ def testJOBPast():
     PAST PAST
     """
 
+    inChannelResponse('GDJEY6HJN',gif)
+    inChannelResponse('GDJEY6HJN',res)
+    return
+
 def testJOBFuture():
     gif = """
     http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
