@@ -19,7 +19,7 @@ Snek's birthday is October 25, 2018
 conn = sqlite3.connect('snekBot.db')
 serverCursor = conn.cursor()
 
-SLACK_BOT_TOKEN = 'encode the token'
+SLACK_BOT_TOKEN = 'encode'
 
 # instantiate Slack client
 slack_client = SlackClient(SLACK_BOT_TOKEN)
