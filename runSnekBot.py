@@ -7,19 +7,32 @@ import re
 import sys
 import schedule
 import random
+import cryptography
 
 from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 from slackclient import SlackClient
+from cryptography.fernet import Fernet
 
 """
 Snek's birthday is October 25, 2018
 """
 
-conn = sqlite3.connect('snekBot.db')
+conn = sqlite3.connect('./data/snekBot.db')
 serverCursor = conn.cursor()
 
-SLACK_BOT_TOKEN = 'encode'
+keyFile = open('./data/snek_token.key', 'rb')
+key = keyFile.read() # The key will be type bytes
+keyFile.close()
+
+f = Fernet(key)
+
+encryptedTokenFile = open('./data/snek_token.encrypted', 'rb')
+encryptedToken = encryptedTokenFile.read()
+
+decryptedToken = f.decrypt(encryptedToken)
+
+SLACK_BOT_TOKEN = decryptedToken.decode()
 
 # instantiate Slack client
 slack_client = SlackClient(SLACK_BOT_TOKEN)
@@ -621,7 +634,7 @@ bDay.start()
 
 if __name__ == "__main__":
 	if slack_client.rtm_connect(with_team_state=False):
-		stdOut("Snek Bot connected and running!")
+		print("Snek Bot connected and running!")
 		# Read bot's user ID by calling Web API method `auth.test`
 		snekBotID = slack_client.api_call("auth.test")["user_id"]
 	while True:
@@ -636,4 +649,4 @@ if __name__ == "__main__":
 		time.sleep(RTM_READ_DELAY)
 	else:
                 pass
-		stdOut("Connection failed. Exception traceback printed above.")
+		print("Connection failed. Exception traceback printed above.")
