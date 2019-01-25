@@ -418,7 +418,7 @@ def handle_command(command, channel,aUser,tStamp):
 		aLink = imSorry(conn)
                 sryMsg = "I'm sorry for the unstable environment. Let me send you something to brighten your mood!"
                 inChannelResponse(channel,sryMsg)
-                directResponse(aUse,aLink)
+                directResponse(aUser,aLink)
 		return
 	if command.startswith("!test"):
 		return
@@ -441,14 +441,6 @@ def handle_command(command, channel,aUser,tStamp):
 ####
 # testing channel GDJEY6HJN
 ###
-
-def mosTest():
-    res="""
-    http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
-    This is a test.
-    """
-    inChannelResponse('GDJEY6HJN',res)
-    return
 
 def mos3():
         # Jan 25 2019
@@ -611,13 +603,13 @@ bDay = BackgroundScheduler()
 # checkDate(bDay,datetime(2019,1,24,18,15,30),testJOBFuture)
 
 checkDate(bDay,datetime(2019,1,25,18,35,30),mos3)
-checkDate(bDay,datetime(2019,1,24,18,15,30),mos6)
-checkDate(bDay,datetime(2019,1,25,18,35,30),mos9)
-checkDate(bDay,datetime(2019,1,24,18,15,30),year1)
-checkDate(bDay,datetime(2019,1,25,18,35,30),year2)
-checkDate(bDay,datetime(2019,1,24,18,15,30),year3)
-checkDate(bDay,datetime(2019,1,25,18,35,30),year4)
-checkDate(bDay,datetime(2019,1,24,18,15,30),year5)
+checkDate(bDay,datetime(2019,4,25,18,15,30),mos6)
+checkDate(bDay,datetime(2019,7,25,18,35,30),mos9)
+checkDate(bDay,datetime(2029,10,25,18,15,30),year1)
+checkDate(bDay,datetime(2020,10,25,18,15,30),year2)
+checkDate(bDay,datetime(2021,10,25,18,15,30),year3)
+checkDate(bDay,datetime(2022,10,25,18,15,30),year4)
+checkDate(bDay,datetime(2023,10,25,18,15,30),year5)
 
 bDay.start()
 
