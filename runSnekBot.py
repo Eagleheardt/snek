@@ -18,7 +18,7 @@ from cryptography.fernet import Fernet
 Snek's birthday is October 25, 2018
 """
 
-conn = sqlite3.connect('./data/snekBot.db')
+conn = sqlite3.connect('./data/snekbot.db')
 serverCursor = conn.cursor()
 
 keyFile = open('./data/snek_token.key', 'rb')
