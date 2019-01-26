@@ -8,6 +8,7 @@ __pycache__/
 
 # token-key files
 *.key
+*.db
 
 # Distribution / packaging
 .Python
