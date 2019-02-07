@@ -365,7 +365,7 @@ def handle_command(command, channel,aUser,tStamp):
 		threadedResponse(channel,response,tStamp)
 		addPet(aUser, "help")
 		return
-	if command.startswith("!pet",0,4):
+	if command.startswith("!pet",0,4) and command.endswith("!pet"):
 		addPet(aUser, "pet")
 		threadedResponse(channel,"You pet Snek. Snek is happy.",tStamp)
 		return
