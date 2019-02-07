@@ -365,31 +365,31 @@ def handle_command(command, channel,aUser,tStamp):
 		threadedResponse(channel,response,tStamp)
 		addPet(aUser, "help")
 		return
-	if command.startswith("!pet",0,4) and command.endswith("!pet"):
+	if command.startswith("!pet") and command.endswith("!pet"):
 		addPet(aUser, "pet")
 		threadedResponse(channel,"You pet Snek. Snek is happy.",tStamp)
 		return
-	if command.startswith("!tread",0,6):
+	if command.startswith("!tread") and command.endswith("!tread"):
 		addPet(aUser, "tread")
 		threadedResponse(channel,"No tread on Snek. Snek is friend.",tStamp)
 		return
-	if command.startswith("!provoke",0,8):
+	if command.startswith("!provoke") and command.endswith("!provoke"):
 		addPet(aUser, "provoke")
 		threadedResponse(channel,"Feed Snek. No provoke.",tStamp)
 		return
-	if command.startswith("!poke",0,5):
+	if command.startswith("!poke") and command.endswith("!poke"):
 		addPet(aUser, "poke")
 		threadedResponse(channel,"You poke Snek. Why poke Snek?",tStamp)
 		return
-	if command.startswith("!hug",0,4):
+	if command.startswith("!hug") and command.endswith("!hug"):
 		addPet(aUser, "hug")
 		threadedResponse(channel,"You hug Snek. Snek is love. Snek is life.",tStamp)
 		return
-	if command.startswith("!step",0,5):
+	if command.startswith("!step") and command.endswith("!step"):
 		addPet(aUser, "step")
 		threadedResponse(channel,"Watch for Snek. Snek helps!",tStamp)
 		return
-	if command.startswith("!boop",0,5):
+	if command.startswith("!boop") and command.endswith("!boop"):
 		addPet(aUser, "boop")
 		threadedResponse(channel,"Boop Snek snoot. Doot doot.",tStamp)	
 		return
@@ -405,7 +405,7 @@ def handle_command(command, channel,aUser,tStamp):
                     inChannelResponse('CC568PC3X',gif)
                     inChannelResponse('CC568PC3X',info)
 		return
-	if command.startswith("!snekpets"):
+	if command.startswith("!snekpets") and command.endswith("!snekpets"):
 		addPet(aUser, "snekpets")
 		directResponse(aUser,getPets())
 		return
@@ -427,7 +427,7 @@ def handle_command(command, channel,aUser,tStamp):
 		response = historicalReport(date1,date2)
 		directResponse(aUser,response)
 		return
-        if command.startswith("f5 :dumpster_fire:"):
+        if command.startswith("f5 :dumpster_fire:") and command.endswith("f5 :dumpster_fire:"):
 		aLink = imSorry(conn)
                 sryMsg = "I'm sorry for the unstable environment. Let me send you something to brighten your mood!"
                 inChannelResponse(channel,sryMsg)
