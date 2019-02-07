@@ -385,7 +385,7 @@ def handle_command(command, channel,aUser,tStamp):
 		addPet(aUser, "hug")
 		threadedResponse(channel,"You hug Snek. Snek is love. Snek is life.",tStamp)
 		return
-	if command.startswith("!step"):
+	if command.startswith("!step",end=3):
 		addPet(aUser, "step")
 		threadedResponse(channel,"Watch for Snek. Snek helps!",tStamp)
 		return
@@ -457,9 +457,7 @@ def handle_command(command, channel,aUser,tStamp):
 
 def mos3():
         # Jan 25 2019
-        gif = """
-        http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
-        """
+        gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
         res = """
         Hey everyone!
         I'm 3 months old, today!
@@ -473,9 +471,7 @@ def mos3():
 
 def mos6():
         # Apr 25 2019
-        gif = """
-        http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
-        """
+        gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
         res = """
         Hey everyone!
         I'm 6 months old, today!
@@ -489,9 +485,7 @@ def mos6():
 
 def mos9():
         # Jul 25 2019
-        gif = """
-        http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
-        """
+        gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
         res = """
         Hey everyone!
         I'm 9 months old, today!
@@ -505,9 +499,7 @@ def mos9():
 
 def year1():
         # Oct 25 2019
-        gif = """
-        http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
-        """
+        gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
         res = """
         Hey everyone!
         I'm a year old, today!
@@ -521,9 +513,7 @@ def year1():
 
 def year2():
         # Oct 25 2019
-        gif = """
-        http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
-        """
+        gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
         res = """
         Hey everyone!
         I'm two years old, today!
@@ -537,9 +527,7 @@ def year2():
 
 def year3():
         # Oct 25 2019
-        gif = """
-        http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
-        """
+        gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
         res = """
         Hey everyone!
         I'm three years old, today!
@@ -553,9 +541,7 @@ def year3():
 
 def year4():
         # Oct 25 2019
-        gif = """
-        http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
-        """
+        gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
         res = """
         Hey everyone!
         I'm four years old, today!
@@ -569,9 +555,7 @@ def year4():
 
 def year5():
         # Oct 25 2019
-        gif = """
-        http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
-        """
+        gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
         res = """
         Hey everyone!
         I'm five years old, today!
@@ -585,9 +569,7 @@ def year5():
 
 
 def testJOBPast():
-    gif = """
-    http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
-    """
+    gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
     res = """
     PAST PAST
     """
@@ -597,9 +579,7 @@ def testJOBPast():
     return
 
 def testJOBFuture():
-    gif = """
-    http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif
-    """
+    gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
     res = """
     Current Current Current Current Current
     """
