@@ -455,14 +455,6 @@ def handle_command(command, channel,aUser,tStamp):
 # testing channel GDJEY6HJN
 ###
 
-CELEBRATE_GIF = "http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"
-CELEBRATE_MESSAGE = """
-        Hey everyone!
-        I'm {0}, today!
-        With your help, I've recorded a LOT different incidents with the VM environments!
-        Please keep up the good work!
-        """
-
 def mos3():
         # Jan 25 2019
         gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
@@ -591,8 +583,6 @@ def testJOBFuture():
     res = """
     Current Current Current Current Current
     """
-
-	inChannelResponse('GDJEY6HJN', CELEBRATE_MESSAGE.format("3 months"))
 
     inChannelResponse('GDJEY6HJN',gif)
     inChannelResponse('GDJEY6HJN',res)
