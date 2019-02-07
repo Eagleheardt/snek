@@ -345,7 +345,7 @@ def handle_command(command, channel,aUser,tStamp):
 	command = command.lower()
 	response = None
 		# This is where you start to implement more commands!
-	if command.startswith("!help"):
+	if command.startswith("!help",0,5):
 		response = """I'm Snek! Here's how I can help!
 				
 				If you just report VM issues, I will eat and store them!
@@ -365,31 +365,31 @@ def handle_command(command, channel,aUser,tStamp):
 		threadedResponse(channel,response,tStamp)
 		addPet(aUser, "help")
 		return
-	if command.startswith("!pet"):
+	if command.startswith("!pet",0,4):
 		addPet(aUser, "pet")
 		threadedResponse(channel,"You pet Snek. Snek is happy.",tStamp)
 		return
-	if command.startswith("!tread"):
+	if command.startswith("!tread",0,6):
 		addPet(aUser, "tread")
 		threadedResponse(channel,"No tread on Snek. Snek is friend.",tStamp)
 		return
-	if command.startswith("!provoke"):
+	if command.startswith("!provoke",0,8):
 		addPet(aUser, "provoke")
 		threadedResponse(channel,"Feed Snek. No provoke.",tStamp)
 		return
-	if command.startswith("!poke"):
+	if command.startswith("!poke",0,5):
 		addPet(aUser, "poke")
 		threadedResponse(channel,"You poke Snek. Why poke Snek?",tStamp)
 		return
-	if command.startswith("!hug"):
+	if command.startswith("!hug",0,4):
 		addPet(aUser, "hug")
 		threadedResponse(channel,"You hug Snek. Snek is love. Snek is life.",tStamp)
 		return
-	if command.startswith("!step",end=3):
+	if command.startswith("!step",0,5):
 		addPet(aUser, "step")
 		threadedResponse(channel,"Watch for Snek. Snek helps!",tStamp)
 		return
-	if command.startswith("!boop"):
+	if command.startswith("!boop",0,5):
 		addPet(aUser, "boop")
 		threadedResponse(channel,"Boop Snek snoot. Doot doot.",tStamp)	
 		return
