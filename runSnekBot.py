@@ -345,7 +345,7 @@ def handle_command(command, channel,aUser,tStamp):
 	command = command.lower()
 	response = None
 		# This is where you start to implement more commands!
-	if command.startswith("!help",0,5):
+	if command == "!help":
 		response = """I'm Snek! Here's how I can help!
 				
 				If you just report VM issues, I will eat and store them!
@@ -365,31 +365,31 @@ def handle_command(command, channel,aUser,tStamp):
 		threadedResponse(channel,response,tStamp)
 		addPet(aUser, "help")
 		return
-	if command.startswith("!pet") and command.endswith("!pet"):
+	if command == "!pet":
 		addPet(aUser, "pet")
 		threadedResponse(channel,"You pet Snek. Snek is happy.",tStamp)
 		return
-	if command.startswith("!tread") and command.endswith("!tread"):
+	if command == "!tread":
 		addPet(aUser, "tread")
 		threadedResponse(channel,"No tread on Snek. Snek is friend.",tStamp)
 		return
-	if command.startswith("!provoke") and command.endswith("!provoke"):
+	if command == "!provoke":
 		addPet(aUser, "provoke")
 		threadedResponse(channel,"Feed Snek. No provoke.",tStamp)
 		return
-	if command.startswith("!poke") and command.endswith("!poke"):
+	if command == "!poke":
 		addPet(aUser, "poke")
 		threadedResponse(channel,"You poke Snek. Why poke Snek?",tStamp)
 		return
-	if command.startswith("!hug") and command.endswith("!hug"):
+	if command == "!hug":
 		addPet(aUser, "hug")
 		threadedResponse(channel,"You hug Snek. Snek is love. Snek is life.",tStamp)
 		return
-	if command.startswith("!step") and command.endswith("!step"):
+	if command == "!step":
 		addPet(aUser, "step")
 		threadedResponse(channel,"Watch for Snek. Snek helps!",tStamp)
 		return
-	if command.startswith("!boop") and command.endswith("!boop"):
+	if command == "!boop":
 		addPet(aUser, "boop")
 		threadedResponse(channel,"Boop Snek snoot. Doot doot.",tStamp)	
 		return
@@ -405,7 +405,7 @@ def handle_command(command, channel,aUser,tStamp):
                     inChannelResponse('CC568PC3X',gif)
                     inChannelResponse('CC568PC3X',info)
 		return
-	if command.startswith("!snekpets") and command.endswith("!snekpets"):
+	if command == "!snekpets":
 		addPet(aUser, "snekpets")
 		directResponse(aUser,getPets())
 		return
@@ -427,7 +427,7 @@ def handle_command(command, channel,aUser,tStamp):
 		response = historicalReport(date1,date2)
 		directResponse(aUser,response)
 		return
-        if command.startswith("f5 :dumpster_fire:") and command.endswith("f5 :dumpster_fire:"):
+        if command == "f5 :dumpster_fire:":
 		aLink = imSorry(conn)
                 sryMsg = "I'm sorry for the unstable environment. Let me send you something to brighten your mood!"
                 inChannelResponse(channel,sryMsg)
