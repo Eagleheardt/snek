@@ -465,6 +465,18 @@ def handle_command(command, channel,aUser,tStamp):
 			inChannelResponse(channel,"https://www.youtube.com/watch?v=ZcJjMnHoIBI")
 		return
 
+	if command == "!favoritemovie":
+		if aUser == "UC176R92M":
+			inChannelResponse(channel,"I definitely love this one!")
+			inChannelResponse(channel,"https://www.rottentomatoes.com/m/monty_pythons_life_of_brian")
+		return
+
+	if command == "!brightside":
+		if aUser == "UC176R92M":
+			inChannelResponse(channel,"Friendly reminder!")
+			inChannelResponse(channel,"https://www.youtube.com/watch?v=SJUhlRoBL8M")
+		return
+
 	if command == "!howmany":
 		allStat = getReports('2018-01-01', '9999-12-04')
 		if aUser == "UC176R92M":
