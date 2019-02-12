@@ -286,6 +286,8 @@ def celebrate(aNum):
 
     Everyone, please keep your heads up!
     I'm listening to your problems, and they are being recorded!
+	:rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: 
+	As long as you keep reporting issues, we will fight for a more stable environment!
     """.format(aNum))
     return gif, info
 
@@ -330,13 +332,19 @@ def directResponse(someUser,text):
 	return
 
 def parseVM(vmMsg):
-	vm,stat,rest = vmMsg.split(':',2)
+	vm,stat,rest = vmMsg.split(':',2) # 'rest' is ignored
 	vm = vm[2:].strip()
 	return vm,stat
 
 def parseDateRange(someDates):
 	date1, date2 = someDates.split(',')
 	return date1, date2
+
+############################################################################
+############################################################################
+##############  Evaluate the commands    ###################################
+############################################################################
+############################################################################
 
 def handle_command(command, channel,aUser,tStamp):
 	"""
@@ -365,34 +373,42 @@ def handle_command(command, channel,aUser,tStamp):
 		threadedResponse(channel,response,tStamp)
 		addPet(aUser, "help")
 		return
+
 	if command == "!pet":
 		addPet(aUser, "pet")
 		threadedResponse(channel,"You pet Snek. Snek is happy.",tStamp)
 		return
+
 	if command == "!tread":
 		addPet(aUser, "tread")
 		threadedResponse(channel,"No tread on Snek. Snek is friend.",tStamp)
 		return
+
 	if command == "!provoke":
 		addPet(aUser, "provoke")
 		threadedResponse(channel,"Feed Snek. No provoke.",tStamp)
 		return
+
 	if command == "!poke":
 		addPet(aUser, "poke")
 		threadedResponse(channel,"You poke Snek. Why poke Snek?",tStamp)
 		return
+
 	if command == "!hug":
 		addPet(aUser, "hug")
 		threadedResponse(channel,"You hug Snek. Snek is love. Snek is life.",tStamp)
 		return
+
 	if command == "!step":
 		addPet(aUser, "step")
 		threadedResponse(channel,"Watch for Snek. Snek helps!",tStamp)
 		return
+
 	if command == "!boop":
 		addPet(aUser, "boop")
 		threadedResponse(channel,"Boop Snek snoot. Doot doot.",tStamp)	
 		return
+
 	if command.startswith("vm"):
 		vm, stat = parseVM(command)
 		insertStatus(vm, stat)
@@ -404,49 +420,97 @@ def handle_command(command, channel,aUser,tStamp):
 			gif, info = celebrate(allStat)
 			inChannelResponse('CC568PC3X',gif)
 			inChannelResponse('CC568PC3X',info)
-		if (allStat % 1851) == 0:
-			gif, info = celebrate(allStat)
-			inChannelResponse('GDJEY6HJN',gif)
-			inChannelResponse('GDJEY6HJN',info)
 		return
+
 	if command == "!snekpets":
 		addPet(aUser, "snekpets")
 		directResponse(aUser,getPets())
 		return
+
 	if command.startswith("!report"):
 		theDate = command[8:]
 		response = EODReport(theDate)
 		directResponse(aUser,response)
 		return
+
 	if command.startswith("!range"):
 		theDates = command[7:]
 		date1,date2 = parseDateRange(theDates)
 		response = historicalReport(date1,date2)
 		directResponse(aUser,response)
 		return
-	if command.startswith("!history"):
+
+	if command == "!heysnek":
+		if aUser == "UC176R92M":
+			inChannelResponse(channel,"""Hey there! Please forgive the spam! Snek tries to help!
+			
+			There are a lot of problems right now; I get fed a LOT.
+			But, I'm listening, I'm here so that you can feed me your problems and forget about them!
+
+			""")
 		return
-		theDates = command[9:]
-		date1,date2 = parseDateRange(theDates)
-		response = historicalReport(date1,date2)
-		directResponse(aUser,response)
+
+	if command == "!introduce":
+		if aUser == "UC176R92M":
+			inChannelResponse(channel,"""I'm Snek! I eat your problems and brighten your day!
+			
+			There are a lot of problems right now; I get fed a LOT.
+			But, I'm listening, I'm here so that you can feed me your problems and forget about them!
+			On occasion, you can get frustrated and declare "F5 :dumpster_fire:" and I'll send you a song to cheer you up.
+
+			You can also !pet me, !hug me, and !boop me!
+
+			Watch out, though, don't !step or !tread on Snek!
+			""")
 		return
-        if command == "f5 :dumpster_fire:":
+
+	if command == "!favoritesong":
+		if aUser == "UC176R92M":
+			inChannelResponse(channel,"Oh, this is definitely my favorite song!")
+			inChannelResponse(channel,"https://www.youtube.com/watch?v=ZcJjMnHoIBI")
+		return
+
+	if command == "!favoritesong":
+		if aUser == "UC176R92M":
+			inChannelResponse(channel,"Oh, this is definitely my favorite song!")
+			inChannelResponse(channel,"https://www.youtube.com/watch?v=ZcJjMnHoIBI")
+		return
+
+	if command == "f5 :dumpster_fire:":
 		aLink = imSorry(conn)
                 sryMsg = "I'm sorry for the unstable environment. Let me send you something to brighten your mood!"
                 inChannelResponse(channel,sryMsg)
                 directResponse(aUser,aLink)
 		return
-	if command.startswith("!test"):
-		return
-		response = (("""Text:{0}
-				Channel:{1}
-				TS:{2}
-				User:{3}
-				""").format(command,channel,tStamp,aUser))
-		inChannelResponse(channel,response)
-		return
 	return
+
+############################################################################
+############################################################################
+##############   End command evaluation     ################################
+############################################################################
+############################################################################
+
+	# Example commands
+
+	# if command == "!history":
+	# 	return
+	# 	theDates = command[9:]
+	# 	date1,date2 = parseDateRange(theDates)
+	# 	response = historicalReport(date1,date2)
+	# 	directResponse(aUser,response)
+	# 	return
+    
+	# if command.startswith("!test"):
+	# 	return
+	# 	response = (("""Text:{0}
+	# 			Channel:{1}
+	# 			TS:{2}
+	# 			User:{3}
+	# 			""").format(command,channel,tStamp,aUser))
+	# 	inChannelResponse(channel,response)
+	# 	return
+		
+	
 	# Sends the response back to the channel
 	
 ############################################################################
