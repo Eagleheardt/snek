@@ -404,7 +404,7 @@ def handle_command(command, channel,aUser,tStamp):
 			gif, info = celebrate(allStat)
 			inChannelResponse('CC568PC3X',gif)
 			inChannelResponse('CC568PC3X',info)
-		if allStat == 1845:
+		if allStat (allStat % 1850) == 0:
 			gif, info = celebrate(allStat)
 			inChannelResponse('GDJEY6HJN',gif)
 			inChannelResponse('GDJEY6HJN',info)
