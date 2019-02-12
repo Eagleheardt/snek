@@ -442,12 +442,7 @@ def handle_command(command, channel,aUser,tStamp):
 
 	if command == "!heysnek":
 		if aUser == "UC176R92M":
-			inChannelResponse(channel,"""Hey there! Please forgive the spam! Snek tries to help!
-			
-			There are a lot of problems right now; I get fed a LOT.
-			But, I'm listening, I'm here so that you can feed me your problems and forget about them!
-
-			""")
+			inChannelResponse(channel,"""Hey there! Please forgive the spam! Snek tries to help!""")
 		return
 
 	if command == "!introduce":
@@ -470,10 +465,12 @@ def handle_command(command, channel,aUser,tStamp):
 			inChannelResponse(channel,"https://www.youtube.com/watch?v=ZcJjMnHoIBI")
 		return
 
-	if command == "!favoritesong":
+	if command == "!howmany":
+		allStat = getReports('2018-01-01', '9999-12-04')
 		if aUser == "UC176R92M":
-			inChannelResponse(channel,"Oh, this is definitely my favorite song!")
-			inChannelResponse(channel,"https://www.youtube.com/watch?v=ZcJjMnHoIBI")
+			inChannelResponse(channel,"So far I've eaten {0} problems.".format(allStat))
+			return
+		directResponse(aUser,"So far I've eaten {0} problems.".format(allStat))
 		return
 
 	if command == "f5 :dumpster_fire:":
