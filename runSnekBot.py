@@ -80,10 +80,10 @@ def convertStatus (stat):
 	statDict = {
 		"face_vomiting":"Auto reconnect",
 		"fire":"Window Closes",
-		"skull_and_crossbones":"Restart IE",
 		"loading":"Loading",
+		"skull_and_crossbones":"Restart IE",
 		"angry_skeletor":"Restart IE",
-                "dumpster_fire":"Restart IE"
+        "dumpster_fire":"Restart IE"
 	}
 	if stat not in statDict:
 		return "Non-Specific Error"
