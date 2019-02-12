@@ -80,10 +80,10 @@ def convertStatus (stat):
 	statDict = {
 		"face_vomiting":"Auto reconnect",
 		"fire":"Window Closes",
-		"skull_and_crossbones":"Restart IE",
 		"loading":"Loading",
+		"skull_and_crossbones":"Restart IE",
 		"angry_skeletor":"Restart IE",
-                "dumpster_fire":"Restart IE"
+        "dumpster_fire":"Restart IE"
 	}
 	if stat not in statDict:
 		return "Non-Specific Error"
@@ -398,12 +398,16 @@ def handle_command(command, channel,aUser,tStamp):
 		insertStatus(vm, stat)
 		insertHistory(vm, stat)
 		inChannelResponse(channel,"You have fed Snek.")
-                stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
-                allStat = getReports('2018-01-01', '9999-12-04')
-                if (allStat % 1000) == 0:
-                    gif, info = celebrate(allStat)
-                    inChannelResponse('CC568PC3X',gif)
-                    inChannelResponse('CC568PC3X',info)
+		stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
+		allStat = getReports('2018-01-01', '9999-12-04')
+		if (allStat % 1000) == 0:
+			gif, info = celebrate(allStat)
+			inChannelResponse('CC568PC3X',gif)
+			inChannelResponse('CC568PC3X',info)
+		if (allStat % 1851) == 0:
+			gif, info = celebrate(allStat)
+			inChannelResponse('GDJEY6HJN',gif)
+			inChannelResponse('GDJEY6HJN',info)
 		return
 	if command == "!snekpets":
 		addPet(aUser, "snekpets")
