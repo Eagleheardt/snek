@@ -493,6 +493,11 @@ def handle_command(command, channel,aUser,tStamp):
 			return
 		directResponse(aUser,"So far I've eaten {0} problems.".format(allStat))
 		return
+	
+	if command == "!farewell":
+		if aUser == "UC176R92M":
+			inChannelResponse(channel,"Good bye eveyone! Glad that I could introduce myself and you could all meet me!")
+		return
 ############################################################################
 ######################  End Showoff commands   #############################
 ############################################################################
@@ -505,7 +510,9 @@ def handle_command(command, channel,aUser,tStamp):
 ############################################################################
 ############################################################################
 
-	# Example commands
+	####################
+	# Example commands #
+	####################
 
 	# if command == "!history":
 	# 	return
@@ -524,9 +531,12 @@ def handle_command(command, channel,aUser,tStamp):
 	# 			""").format(command,channel,tStamp,aUser))
 	# 	inChannelResponse(channel,response)
 	# 	return
-		
-	
-	# Sends the response back to the channel
+
+	# ADMIN command
+	# if command == "!farewell":
+	# 	if aUser == "UC176R92M":
+	# 		inChannelResponse(channel,"Good bye eveyone! Glad that I could introduce myself and you could all meet me!")
+	# 	return
 	
 ############################################################################
 ############################################################################
@@ -534,9 +544,9 @@ def handle_command(command, channel,aUser,tStamp):
 ############################################################################
 ############################################################################
 
-####
-# testing channel GDJEY6HJN
-###
+#############################
+# testing channel GDJEY6HJN #
+#############################
 
 def mos3():
         # Jan 25 2019
