@@ -440,6 +440,15 @@ def handle_command(command, channel,aUser,tStamp):
 		directResponse(aUser,response)
 		return
 
+	if command == "f5 :dumpster_fire:":
+		aLink = imSorry(conn)
+                sryMsg = "I'm sorry for the unstable environment. Let me send you something to brighten your mood!"
+                inChannelResponse(channel,sryMsg)
+                directResponse(aUser,aLink)
+		return
+############################################################################
+#########################   Showoff commands   #############################
+############################################################################
 	if command == "!heysnek":
 		if aUser == "UC176R92M":
 			inChannelResponse(channel,"""Hey there! Please forgive the spam! Snek tries to help!""")
@@ -450,7 +459,7 @@ def handle_command(command, channel,aUser,tStamp):
 			inChannelResponse(channel,"""I'm Snek! I eat your problems and brighten your day!
 			
 			There are a lot of problems right now; I get fed a LOT.
-			But, I'm listening, I'm here so that you can feed me your problems and forget about them!
+			I'm listening. I'm here so that you can feed me your problems and forget about them!
 			On occasion, you can get frustrated and declare "F5 :dumpster_fire:" and I'll send you a song to cheer you up.
 
 			You can also !pet me, !hug me, and !boop me!
@@ -484,13 +493,10 @@ def handle_command(command, channel,aUser,tStamp):
 			return
 		directResponse(aUser,"So far I've eaten {0} problems.".format(allStat))
 		return
-
-	if command == "f5 :dumpster_fire:":
-		aLink = imSorry(conn)
-                sryMsg = "I'm sorry for the unstable environment. Let me send you something to brighten your mood!"
-                inChannelResponse(channel,sryMsg)
-                directResponse(aUser,aLink)
-		return
+############################################################################
+######################  End Showoff commands   #############################
+############################################################################
+	
 	return
 
 ############################################################################
