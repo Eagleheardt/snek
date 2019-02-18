@@ -333,8 +333,10 @@ def directResponse(someUser,text):
 
 def parseVM(vmMsg):
 	vm,stat,rest = vmMsg.split(':',2) # 'rest' is ignored
+	if stat.replace(" ","") == "":
+		return vm, False
 	vm = vm[2:].strip()
-	return vm,stat
+	return vm, stat
 
 def parseDateRange(someDates):
 	date1, date2 = someDates.split(',')
