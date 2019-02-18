@@ -411,7 +411,7 @@ def handle_command(command, channel,aUser,tStamp):
 
 	if command.startswith("vm"):
 		vm, stat = parseVM(command)
-		if stat == "":
+		if stat == None:
 			inChannelResponse(channel,"I need a bit more.")
 			return
 		insertStatus(vm, stat)
