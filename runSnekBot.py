@@ -332,9 +332,10 @@ def directResponse(someUser,text):
 	return
 
 def parseVM(vmMsg):
-	vm,stat,rest = vmMsg.split(':',2) # 'rest' is ignored
-	if stat.replace(" ","") == "":
-		return vm, False
+	try:
+		vm,stat,rest = vmMsg.split(':',2) # 'rest' is ignored
+	except:
+		return False, False
 	vm = vm[2:].strip()
 	return vm, stat
 
@@ -414,7 +415,7 @@ def handle_command(command, channel,aUser,tStamp):
 	if command.startswith("vm"):
 		vm, stat = parseVM(command)
 		if not stat:
-			inChannelResponse(channel,"I need a bit more.")
+			inChannelResponse(channel,"I can't eat that!")
 			return
 		insertStatus(vm, stat)
 		insertHistory(vm, stat)
@@ -730,4 +731,4 @@ if __name__ == "__main__":
 		time.sleep(RTM_READ_DELAY)
 	else:
                 pass
-		stdOut("Connection failed. Exception traceback printed above.")
+		stdOut("Connection failed. Exception traceback stdOuted above.")
