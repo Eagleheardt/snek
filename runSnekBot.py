@@ -350,10 +350,11 @@ def parseDateRange(someDates):
 ############################################################################
 
 def handle_command(command, channel,aUser,tStamp):
-	# Executes bot command if the command is known
 	command = command.lower()
 	response = None
-		# This is where you start to implement more commands!
+		
+	# This is where you start to implement more commands!
+
 	if command == "!help":
 		response = """I'm Snek! Here's how I can help!
 				
