@@ -36,8 +36,13 @@ from cryptography.fernet import Fernet
 # █░░░░░░░░░▀▀▀▀▀▀░░░░░░░░░░░░░░░░░░░░░█
 # █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-conn = sqlite3.connect('snekbot/data/snekbot.db')
-serverCursor = conn.cursor()
+
+conn = sqlite3.connect('snekbot/data/snekbot.db') # Connect to the database
+serverCursor = conn.cursor() # establish cursor to enact on the DB
+
+#######################################
+#####   Begin token decryption   ######
+#######################################
 
 keyFile = open('snekbot/data/snek_token.key', 'rb')
 key = keyFile.read()
@@ -50,17 +55,20 @@ encryptedToken = encryptedTokenFile.read()
 
 decryptedToken = f.decrypt(encryptedToken)
 
-SLACK_BOT_TOKEN = decryptedToken.decode()
+#######################################
+#####   End token decryption   ########
+#######################################
 
-# instantiate Slack client
-slack_client = SlackClient(SLACK_BOT_TOKEN)
-# starterbot's user ID in Slack: value is assigned after the bot starts up
-snekBotID = None
+SLACK_BOT_TOKEN = decryptedToken.decode() # set slack token
+
+slack_client = SlackClient(SLACK_BOT_TOKEN) # instantiate Slack client
+
+snekBotID = None # Snek's user ID in Slack: value is assigned after the bot starts up
 
 # constants
 RTM_READ_DELAY = 0.5 # 0.5 second delay in reading events
 
-def stdOut(s):
+def stdOut(s): # pipes data to coodinating backup file
     curDate = datetime.today().strftime('%Y-%m-%d')
     curTime = datetime.now().strftime('%H:%M:%S')
     logFile = open((("/home/ubuntu/logs/{0}.log").format(curDate)),"a")
@@ -68,7 +76,7 @@ def stdOut(s):
     logFile.close()
     return
 
-def logIt():
+def logIt(): # writes simple string to file
     curDate = datetime.today().strftime('%Y-%m-%d')
     curTime = datetime.now().strftime('%H:%M:%S')
     logFile = open((("/home/ubuntu/logs/{0}.log").format(curDate)),"a")
@@ -76,25 +84,25 @@ def logIt():
     logFile.close()
     return
 
-schedule.every(15).minutes.do(logIt)
+schedule.every(15).minutes.do(logIt) # calls logIt every 15 minutes
 
-def checkInt(s):
+def checkInt(s): # validates input as integer; returns 999 if it isn't
 	try: 
 		return int(s)
 	except ValueError:
 		return 999
 
-def SQLInsert(aConn,sqlCmd):
+def SQLInsert(aConn,sqlCmd): # TODO: abstract out insertions to use this method
 	return
 
-def SQLReturn(aConn,sqlCmd):
+def SQLReturn(aConn,sqlCmd): # fetches data from the database
 	reportCur = aConn.cursor()
 	reportCur.execute(sqlCmd)
 	SQLResults = reportCur.fetchall()
 	reportCur.close()
 	return SQLResults
 
-def convertStatus (stat):
+def convertStatus (stat): # converts the emoji to a human-readable status
 	statDict = {
 		"face_vomiting":"Auto reconnect",
 		"fire":"Window Closes",
@@ -194,7 +202,7 @@ def EODReportRange (date1, date2): # Gets a range summary of the VM number and s
 		newStr += "\n"
 	return newStr
 
-def addPet(aUser,aStat):
+def addPet(aUser,aStat):  #adds a 'pet' to the database
 	newCur = conn.cursor()
 	newCur.execute(("""
 		INSERT INTO 
@@ -206,7 +214,7 @@ def addPet(aUser,aStat):
 	conn.commit()
 	return
 
-def getReports (date1, date2):
+def getReports (date1, date2): # get reports on a date range
 	cmd = (("""
 		SELECT 
 			SUM(AMT)
@@ -263,7 +271,7 @@ def historicalReport (date1, date2): # Gets a range summary of the VM number and
 	newStr += ("\nTotal reports: {0}").format(getReports(date1, date2))
 	return newStr
 
-def getPets():
+def getPets(): # returns the amount of love Snek gets
 	cmd = """
 		SELECT 
 			aStatus, COUNT(*) as Amount
@@ -287,7 +295,7 @@ def getPets():
 		newStr += "\n"
 	return newStr
 
-def imSorry(aConn):
+def imSorry(aConn): # an appology for the environment in which we live
         sqlCmd = "SELECT Link FROM Sorry;"
         results = SQLReturn(aConn,sqlCmd)
         allLinks = []
@@ -295,7 +303,7 @@ def imSorry(aConn):
                 allLinks.append(aLink)
         return (random.choice(allLinks))
 
-def celebrate(aNum):
+def celebrate(aNum): # returns a gif and an inspirational message
     gif = """
     https://media1.giphy.com/media/jKYU63SjCLCKkTmtml/giphy-downsized.gif?cid=6104955e5c06a4d74e61555a51acae3e
     """
@@ -309,7 +317,7 @@ def celebrate(aNum):
     """.format(aNum))
     return gif, info
 
-def parseSlackInput(aText):
+def parseSlackInput(aText): # breaks apart a message
 	if aText and len(aText) > 0:
 		item = aText[0]
 		if 'text' in item:
@@ -321,7 +329,7 @@ def parseSlackInput(aText):
 		else:
 			return [None,None,None,None]
 
-def inChannelResponse(channel,response):
+def inChannelResponse(channel,response): # respond in channel
 	slack_client.api_call(
 		"chat.postMessage",
 		channel=channel,
@@ -330,7 +338,7 @@ def inChannelResponse(channel,response):
 		)
 	return
 
-def threadedResponse(channel,response,stamp):
+def threadedResponse(channel,response,stamp): # respond in a thread
 	slack_client.api_call(
 		"chat.postMessage",
 		channel=channel,
@@ -340,7 +348,7 @@ def threadedResponse(channel,response,stamp):
 		)
 	return
 
-def directResponse(someUser,text):
+def directResponse(someUser,text): # respond directly
 	slack_client.api_call(
 		"chat.postMessage",
 		channel=someUser,
@@ -349,7 +357,7 @@ def directResponse(someUser,text):
 		)
 	return
 
-def parseVM(vmMsg):
+def parseVM(vmMsg): # breaks up a message starting with "VM"
 	try:
 		vm,stat,rest = vmMsg.split(':',2) # 'rest' is ignored
 	except:
@@ -357,7 +365,7 @@ def parseVM(vmMsg):
 	vm = vm[2:].strip()
 	return vm, stat
 
-def parseDateRange(someDates):
+def parseDateRange(someDates): # breaks apart dates
 	date1, date2 = someDates.split(',')
 	return date1, date2
 
@@ -373,7 +381,7 @@ def handle_command(command, channel,aUser,tStamp):
 		
 	# This is where you start to implement more commands!
 
-	if command == "!help":
+	if command == "!help": # !help can be the only thing they type
 		response = """I'm Snek! Here's how I can help!
 				
 				If you just report VM issues, I will eat and store them!
@@ -434,7 +442,7 @@ def handle_command(command, channel,aUser,tStamp):
 		directResponse(aUser,getPets())
 		return
 
-	if command.startswith("!report"):
+	if command.startswith("!report"): # if the message starts with the string "!report" this goes off
 		theDate = command[8:]
 		response = EODReport(theDate)
 		directResponse(aUser,response)
@@ -462,16 +470,16 @@ def handle_command(command, channel,aUser,tStamp):
 	if command.startswith("vm"):
 		vm, stat = parseVM(command)
 		if not stat:
-			if len(command) > 10:
+			if len(command) > 10: # if the message is longer than 10 characters, it probably wasn't meant to be viewed
 				return
-			inChannelResponse(channel,"I can't eat that!")
+			inChannelResponse(channel,"I can't eat that!") # goes off to remind folks that you need the emoji status
 			return
 		insertStatus(vm, stat)
 		insertHistory(vm, stat)
 		inChannelResponse(channel,"You have fed Snek.")
 		stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
 		allStat = getReports('2018-01-01', '9999-12-04')
-		if (allStat % 1000) == 0:
+		if (allStat % 1000) == 0: # shoots off every 1k issues logged
 			gif, info = celebrate(allStat)
 			inChannelResponse('CC568PC3X',gif)
 			inChannelResponse('CC568PC3X',info)
