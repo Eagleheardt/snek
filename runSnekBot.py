@@ -411,24 +411,6 @@ def handle_command(command, channel,aUser,tStamp):
 		threadedResponse(channel,"Boop Snek snoot. Doot doot.",tStamp)	
 		return
 
-	if command.startswith("vm"):
-		vm, stat = parseVM(command)
-		if not stat:
-			if len(command) > 10:
-				return
-			inChannelResponse(channel,"I can't eat that!")
-			return
-		insertStatus(vm, stat)
-		insertHistory(vm, stat)
-		inChannelResponse(channel,"You have fed Snek.")
-		stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
-		allStat = getReports('2018-01-01', '9999-12-04')
-		if (allStat % 1000) == 0:
-			gif, info = celebrate(allStat)
-			inChannelResponse('CC568PC3X',gif)
-			inChannelResponse('CC568PC3X',info)
-		return
-
 	if command == "!snekpets":
 		addPet(aUser, "snekpets")
 		directResponse(aUser,getPets())
@@ -457,6 +439,24 @@ def handle_command(command, channel,aUser,tStamp):
                 sryMsg = "I'm sorry for the unstable environment. Let me send you something to brighten your mood!"
                 inChannelResponse(channel,sryMsg)
                 directResponse(aUser,aLink)
+		return
+
+	if command.startswith("vm"):
+		vm, stat = parseVM(command)
+		if not stat:
+			if len(command) > 10:
+				return
+			inChannelResponse(channel,"I can't eat that!")
+			return
+		insertStatus(vm, stat)
+		insertHistory(vm, stat)
+		inChannelResponse(channel,"You have fed Snek.")
+		stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
+		allStat = getReports('2018-01-01', '9999-12-04')
+		if (allStat % 1000) == 0:
+			gif, info = celebrate(allStat)
+			inChannelResponse('CC568PC3X',gif)
+			inChannelResponse('CC568PC3X',info)
 		return
 	
 	return # ends handle_command method
