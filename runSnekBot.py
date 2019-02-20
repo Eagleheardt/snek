@@ -16,27 +16,6 @@ from cryptography.fernet import Fernet
 
 # Snek's birthday is October 25, 2018
 
-# █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-# █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
-# █░░░░░░░░░░░░░░▄░░░░░░░░░░░░░░░░░░░░░█
-# █░░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░░░░░█
-# █░░░░░░░░░░░▄▄░▄▀░░░░░░░░░░░░░░░░░░░░█
-# █░░░░░░░░▄██████▄░░░░░▄▄▄▄▄▄███▀█░░░░█
-# █░░░░░░▄█░███████░██▀▀▀░▄▄█▀█▄███░░░░█
-# █░░░░█▀▀▀░█████▀▀▄█▀▄▄▀▀▄▄███████░░░░█
-# █░░░░█▀▄▄▄▄███░▄▄█▀▀▄▄███████▀▀▄▄░░░░█
-# █░░░░█░░░░▀▀▀▀▀▀▄▄███████▀▀▄▄████░░░░█
-# █░░░░█░░░░░░░░░█████▀▀▀▄▄███████▀░░░░█
-# █░░░░█░░░░░░░░░█▀▀░▄▄███████▀█▄▄█░░░░█
-# █░░░░█░░░░░░░░░▄▄███████▀█▄██████░░░░█
-# █░░░░█░░░░░░░░░████▀▀▄▄███████▀▀░░░░░█
-# █░░░░█░░░░░░░░░▀▀▄▄███████▀▀░░░░░░░░░█
-# █░░░░█░░░░░░░░░███████▀▀░░░░░░░░░░░░░█
-# █░░░░░▀▄▄▄░░░░░███▀▀░░░░░░░░░░░░░░░░░█
-# █░░░░░░░░░▀▀▀▀▀▀░░░░░░░░░░░░░░░░░░░░░█
-# █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
-
-
 conn = sqlite3.connect('snekbot/data/snekbot.db') # Connect to the database
 serverCursor = conn.cursor() # establish cursor to enact on the DB
 
@@ -477,7 +456,7 @@ def handle_command(command, channel,aUser,tStamp):
 		insertStatus(vm, stat)
 		insertHistory(vm, stat)
 		inChannelResponse(channel,"You have fed Snek.")
-		stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
+		print(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
 		allStat = getReports('2018-01-01', '9999-12-04')
 		if (allStat % 1000) == 0: # shoots off every 1k issues logged
 			gif, info = celebrate(allStat)
@@ -691,7 +670,7 @@ bDay.start()
 
 if __name__ == "__main__":
 	if slack_client.rtm_connect(with_team_state=False):
-		stdOut("Snek Bot connected and running!")
+		print("Snek Bot connected and running!")
 		# Read bot's user ID by calling Web API method `auth.test`
 		snekBotID = slack_client.api_call("auth.test")["user_id"]
 	while True:
@@ -706,4 +685,4 @@ if __name__ == "__main__":
 		time.sleep(RTM_READ_DELAY)
 	else:
                 pass
-		stdOut("Connection failed. Exception traceback stdOuted above.")
+		print("Connection failed. Exception traceback stdOuted above.")
