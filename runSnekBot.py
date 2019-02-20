@@ -286,6 +286,8 @@ def celebrate(aNum):
 
     Everyone, please keep your heads up!
     I'm listening to your problems, and they are being recorded!
+	:rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: 
+	As long as you keep reporting issues, we will fight for a more stable environment!
     """.format(aNum))
     return gif, info
 
@@ -330,21 +332,29 @@ def directResponse(someUser,text):
 	return
 
 def parseVM(vmMsg):
-	vm,stat,rest = vmMsg.split(':',2)
+	try:
+		vm,stat,rest = vmMsg.split(':',2) # 'rest' is ignored
+	except:
+		return False, False
 	vm = vm[2:].strip()
-	return vm,stat
+	return vm, stat
 
 def parseDateRange(someDates):
 	date1, date2 = someDates.split(',')
 	return date1, date2
 
+############################################################################
+############################################################################
+##############  Evaluate the commands    ###################################
+############################################################################
+############################################################################
+
 def handle_command(command, channel,aUser,tStamp):
-	"""
-		Executes bot command if the command is known
-	"""
 	command = command.lower()
 	response = None
-		# This is where you start to implement more commands!
+		
+	# This is where you start to implement more commands!
+
 	if command == "!help":
 		response = """I'm Snek! Here's how I can help!
 				
@@ -365,36 +375,49 @@ def handle_command(command, channel,aUser,tStamp):
 		threadedResponse(channel,response,tStamp)
 		addPet(aUser, "help")
 		return
+
 	if command == "!pet":
 		addPet(aUser, "pet")
 		threadedResponse(channel,"You pet Snek. Snek is happy.",tStamp)
 		return
+
 	if command == "!tread":
 		addPet(aUser, "tread")
 		threadedResponse(channel,"No tread on Snek. Snek is friend.",tStamp)
 		return
+
 	if command == "!provoke":
 		addPet(aUser, "provoke")
 		threadedResponse(channel,"Feed Snek. No provoke.",tStamp)
 		return
+
 	if command == "!poke":
 		addPet(aUser, "poke")
 		threadedResponse(channel,"You poke Snek. Why poke Snek?",tStamp)
 		return
+
 	if command == "!hug":
 		addPet(aUser, "hug")
 		threadedResponse(channel,"You hug Snek. Snek is love. Snek is life.",tStamp)
 		return
+
 	if command == "!step":
 		addPet(aUser, "step")
 		threadedResponse(channel,"Watch for Snek. Snek helps!",tStamp)
 		return
+
 	if command == "!boop":
 		addPet(aUser, "boop")
 		threadedResponse(channel,"Boop Snek snoot. Doot doot.",tStamp)	
 		return
+
 	if command.startswith("vm"):
 		vm, stat = parseVM(command)
+		if not stat:
+			if len(command) > 10:
+				return
+			inChannelResponse(channel,"I can't eat that!")
+			return
 		insertStatus(vm, stat)
 		insertHistory(vm, stat)
 		inChannelResponse(channel,"You have fed Snek.")
@@ -404,50 +427,71 @@ def handle_command(command, channel,aUser,tStamp):
 			gif, info = celebrate(allStat)
 			inChannelResponse('CC568PC3X',gif)
 			inChannelResponse('CC568PC3X',info)
-		if (allStat % 1851) == 0:
-			gif, info = celebrate(allStat)
-			inChannelResponse('GDJEY6HJN',gif)
-			inChannelResponse('GDJEY6HJN',info)
 		return
+
 	if command == "!snekpets":
 		addPet(aUser, "snekpets")
 		directResponse(aUser,getPets())
 		return
+
 	if command.startswith("!report"):
 		theDate = command[8:]
 		response = EODReport(theDate)
 		directResponse(aUser,response)
 		return
+
 	if command.startswith("!range"):
 		theDates = command[7:]
 		date1,date2 = parseDateRange(theDates)
 		response = historicalReport(date1,date2)
 		directResponse(aUser,response)
 		return
-	if command.startswith("!history"):
+
+	if command == "!howmany":
+		allStat = getReports('2018-01-01', '9999-12-31')
+		directResponse(aUser,"So far I've eaten {0} problems.".format(allStat))
 		return
-		theDates = command[9:]
-		date1,date2 = parseDateRange(theDates)
-		response = historicalReport(date1,date2)
-		directResponse(aUser,response)
-		return
-        if command == "f5 :dumpster_fire:":
+
+	if command == "f5 :dumpster_fire:":
 		aLink = imSorry(conn)
                 sryMsg = "I'm sorry for the unstable environment. Let me send you something to brighten your mood!"
                 inChannelResponse(channel,sryMsg)
                 directResponse(aUser,aLink)
 		return
-	if command.startswith("!test"):
-		return
-		response = (("""Text:{0}
-				Channel:{1}
-				TS:{2}
-				User:{3}
-				""").format(command,channel,tStamp,aUser))
-		inChannelResponse(channel,response)
-		return
-	return
-	# Sends the response back to the channel
+	
+	return # ends handle_command method
+
+############################################################################
+############################################################################
+##############   End command evaluation     ################################
+############################################################################
+############################################################################
+
+	####################
+	# Example commands #
+	####################
+
+	# if command == "!history":
+	# 	theDates = command[9:]
+	# 	date1,date2 = parseDateRange(theDates)
+	# 	response = historicalReport(date1,date2)
+	# 	directResponse(aUser,response)
+	# 	return
+    
+	# if command.startswith("!test"):
+	# 	response = (("""Text:{0}
+	# 			Channel:{1}
+	# 			TS:{2}
+	# 			User:{3}
+	# 			""").format(command,channel,tStamp,aUser))
+	# 	inChannelResponse(channel,response)
+	# 	return
+
+	# ADMIN command
+	# if command == "!farewell":
+	# 	if aUser == "UC176R92M":
+	# 		inChannelResponse(channel,"Good bye eveyone! Glad that I could introduce myself and you could all meet me!")
+	# 	return
 	
 ############################################################################
 ############################################################################
@@ -455,9 +499,9 @@ def handle_command(command, channel,aUser,tStamp):
 ############################################################################
 ############################################################################
 
-####
-# testing channel GDJEY6HJN
-###
+#############################
+# testing channel GDJEY6HJN #
+#############################
 
 def mos3():
         # Jan 25 2019
@@ -636,4 +680,4 @@ if __name__ == "__main__":
 		time.sleep(RTM_READ_DELAY)
 	else:
                 pass
-		stdOut("Connection failed. Exception traceback printed above.")
+		stdOut("Connection failed. Exception traceback stdOuted above.")
