@@ -178,7 +178,7 @@ def EODReportRange (date1, date2): # Gets a range summary of the VM number and s
 
 def addPet(aUser,aStat):
 	newCur = conn.cursor()
-	events = newCur.execute(("""
+	newCur.execute(("""
 		INSERT INTO 
 			SnekStats (User, aStatus)
 		VALUES
