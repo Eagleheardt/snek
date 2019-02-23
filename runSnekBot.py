@@ -456,7 +456,7 @@ def handle_command(command, channel,aUser,tStamp):
 		insertStatus(vm, stat)
 		insertHistory(vm, stat)
 		inChannelResponse(channel,"You have fed Snek.")
-		print(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
+		stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
 		allStat = getReports('2018-01-01', '9999-12-04')
 		if (allStat % 1000) == 0: # shoots off every 1k issues logged
 			gif, info = celebrate(allStat)
@@ -670,19 +670,30 @@ bDay.start()
 
 if __name__ == "__main__":
 	if slack_client.rtm_connect(with_team_state=False):
-		print("Snek Bot connected and running!")
+		stdOut("Snek Bot connected and running!")
 		# Read bot's user ID by calling Web API method `auth.test`
 		snekBotID = slack_client.api_call("auth.test")["user_id"]
-	while True:
-		try:
-                    command, channel,usr,stp = parseSlackInput(slack_client.rtm_read())
-                    if command:
-                        handle_command(command, channel,usr,stp)
-                    schedule.run_pending()
-		except:
-                    pass
+		while True:
+			try:
+				command, channel,usr,stp = parseSlackInput(slack_client.rtm_read())
+				schedule.run_pending()
+				if command:
+					handle_command(command, channel,usr,stp)
+			except:
+				pass
                 
 		time.sleep(RTM_READ_DELAY)
 	else:
-                pass
-		print("Connection failed. Exception traceback stdOuted above.")
+		pass
+		stdOut("Connection failed. Exception traceback above.")
+
+
+""" 
+
+he used to have too much hair
+then slept for 6 weeks with no care
+with a thousand yard stare
+that just wasn't fair
+this is why he's grand poo bear 
+
+"""
