@@ -338,7 +338,7 @@ def directResponse(someUser,text): # respond directly
 
 def parseVM(vmMsg): # breaks up a message starting with "VM"
 	try:
-		vm,stat,rest = vmMsg.split(':',2) # 'rest' is ignored
+		vm, stat, rest = vmMsg.split(':',2) # 'rest' is ignored
 	except:
 		return False, False
 	vm = vm[2:].strip()
@@ -348,11 +348,11 @@ def parseDateRange(someDates): # breaks apart dates
 	date1, date2 = someDates.split(',')
 	return date1, date2
 
-############################################################################
-############################################################################
-##############  Evaluate the commands    ###################################
-############################################################################
-############################################################################
+#######################################################
+#######################################################
+##############  Evaluate the commands    ##############
+#######################################################
+#######################################################
 
 def handle_command(command, channel,aUser,tStamp):
 	command = command.lower()
@@ -457,7 +457,7 @@ def handle_command(command, channel,aUser,tStamp):
 		insertHistory(vm, stat)
 		inChannelResponse(channel,"You have fed Snek.")
 		stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
-		allStat = getReports('2018-01-01', '9999-12-04')
+		allStat = getReports('2018-01-01', '9999-12-31')
 		if (allStat % 1000) == 0: # shoots off every 1k issues logged
 			gif, info = celebrate(allStat)
 			inChannelResponse('CC568PC3X',gif)
@@ -466,11 +466,11 @@ def handle_command(command, channel,aUser,tStamp):
 	
 	return # ends handle_command method
 
-############################################################################
-############################################################################
-##############   End command evaluation     ################################
-############################################################################
-############################################################################
+########################################################
+########################################################
+##############   End command evaluation   ##############
+########################################################
+########################################################
 
 	####################
 	# Example commands #
@@ -495,14 +495,14 @@ def handle_command(command, channel,aUser,tStamp):
 	# ADMIN command
 	# if command == "!farewell":
 	# 	if aUser == "UC176R92M":
-	# 		inChannelResponse(channel,"Good bye eveyone! Glad that I could introduce myself and you could all meet me!")
+	# 		inChannelResponse(channel,"Good bye eveyone!")
 	# 	return
 	
-############################################################################
-############################################################################
-##############   Start of scheduled events       ###########################
-############################################################################
-############################################################################
+###########################################################
+###########################################################
+##############   Start of scheduled events   ##############
+###########################################################
+###########################################################
 
 #############################
 # testing channel GDJEY6HJN #
@@ -662,11 +662,11 @@ checkDate(bDay,datetime(2023,10,25,18,15,30),year5)
 
 bDay.start()
 
-############################################################################
-############################################################################
-##############     End of scheduled events       ###########################
-############################################################################
-############################################################################
+#########################################################
+#########################################################
+##############   End of scheduled events   ##############
+#########################################################
+#########################################################
 
 if __name__ == "__main__":
 	if slack_client.rtm_connect(with_team_state=False):
@@ -686,14 +686,3 @@ if __name__ == "__main__":
 	else:
 		pass
 		stdOut("Connection failed. Exception traceback above.")
-
-
-""" 
-
-he used to have too much hair
-then slept for 6 weeks with no care
-with a thousand yard stare
-that just wasn't fair
-this is why he's grand poo bear 
-
-"""
