@@ -338,15 +338,16 @@ def directResponse(someUser,text): # respond directly
 
 def parseVM(vmMsg): # breaks up a message starting with "VM"
 	try:
-		vm, stat, rest = vmMsg.split(':',2) # 'rest' is ignored
-	except:
-		return False, False
+		vm, stat, rest = vmMsg.split(':',2) # breaks string into 3 parts on a colon
+		del rest # 'rest' is deleted
+	except: # if there aren't at least 3 parts
+		return False, False # returns double false
 	vm = vm[2:].strip()
-	return vm, stat
+	return vm, stat # returns the VM number and status
 
 def parseDateRange(someDates): # breaks apart dates
 	date1, date2 = someDates.split(',')
-	return date1, date2
+	return date1.strip(), date2.strip()
 
 #######################################################
 #######################################################
