@@ -19,9 +19,9 @@ from cryptography.fernet import Fernet
 conn = sqlite3.connect('snekbot/data/snekbot.db') # Connect to the database
 serverCursor = conn.cursor() # establish cursor to enact on the DB
 
-#######################################
-#####   Begin token decryption   ######
-#######################################
+######################################
+#####   Begin token decryption   #####
+######################################
 
 keyFile = open('snekbot/data/snek_token.key', 'rb')
 key = keyFile.read()
@@ -34,9 +34,9 @@ encryptedToken = encryptedTokenFile.read()
 
 decryptedToken = f.decrypt(encryptedToken)
 
-#######################################
-#####   End token decryption   ########
-#######################################
+####################################
+#####   End token decryption   #####
+####################################
 
 SLACK_BOT_TOKEN = decryptedToken.decode() # set slack token
 
@@ -682,8 +682,8 @@ if __name__ == "__main__":
 					handle_command(command, channel,usr,stp)
 			except:
 				pass
-                
-		time.sleep(RTM_READ_DELAY)
+
+			time.sleep(RTM_READ_DELAY)
 	else:
 		pass
 		stdOut("Connection failed. Exception traceback above.")

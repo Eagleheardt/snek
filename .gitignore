@@ -66,6 +66,7 @@ instance/
 .webassets-cache
 
 /.vscode
+.user
 
 # Scrapy stuff:
 .scrapy
