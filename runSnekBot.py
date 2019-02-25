@@ -16,6 +16,22 @@ from cryptography.fernet import Fernet
 
 # Snek's birthday is October 25, 2018
 
+#################
+#   TODO LIST   #
+#################
+
+# Monthly formatted report: 
+# Person who reported the most - number of reports (Snek's favorite person of the month)
+# Most errant server - server number - number of issues
+# Overall highest reporter - number of reports
+# overall most errant server - number of reports
+# Daily highest number of issues.
+# Highest issues on a day in that month
+# Daily average overall
+# daily average on the month
+
+############################################################################
+
 conn = sqlite3.connect('snekbot/data/snekbot.db') # Connect to the database
 serverCursor = conn.cursor() # establish cursor to enact on the DB
 
@@ -508,22 +524,6 @@ def handle_command(command, channel,aUser,tStamp):
 #############################
 # testing channel GDJEY6HJN #
 #############################
-
-#################
-#   TODO LIST   #
-#################
-
-# Monthly formatted report: 
-# Person who reported the most - number of reports (Snek's favorite person of the month)
-# Most errant server - server number - number of issues
-# Overall highest reporter - number of reports
-# overall most errant server - number of reports
-# Daily highest number of issues.
-# Highest issues on a day in that month
-# Daily average overall
-# daily average on the month
-
-############################################################################
 
 def mos3():
         # Jan 25 2019
