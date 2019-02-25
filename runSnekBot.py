@@ -19,9 +19,9 @@ from cryptography.fernet import Fernet
 conn = sqlite3.connect('snekbot/data/snekbot.db') # Connect to the database
 serverCursor = conn.cursor() # establish cursor to enact on the DB
 
-#######################################
-#####   Begin token decryption   ######
-#######################################
+######################################
+#####   Begin token decryption   #####
+######################################
 
 keyFile = open('snekbot/data/snek_token.key', 'rb')
 key = keyFile.read()
@@ -34,9 +34,9 @@ encryptedToken = encryptedTokenFile.read()
 
 decryptedToken = f.decrypt(encryptedToken)
 
-#######################################
-#####   End token decryption   ########
-#######################################
+####################################
+#####   End token decryption   #####
+####################################
 
 SLACK_BOT_TOKEN = decryptedToken.decode() # set slack token
 
@@ -338,21 +338,22 @@ def directResponse(someUser,text): # respond directly
 
 def parseVM(vmMsg): # breaks up a message starting with "VM"
 	try:
-		vm,stat,rest = vmMsg.split(':',2) # 'rest' is ignored
-	except:
-		return False, False
+		vm, stat, rest = vmMsg.split(':',2) # breaks string into 3 parts on a colon
+		del rest # 'rest' is deleted
+	except: # if there aren't at least 3 parts
+		return False, False # returns double false
 	vm = vm[2:].strip()
-	return vm, stat
+	return vm, stat # returns the VM number and status
 
 def parseDateRange(someDates): # breaks apart dates
 	date1, date2 = someDates.split(',')
-	return date1, date2
+	return date1.strip(), date2.strip()
 
-############################################################################
-############################################################################
-##############  Evaluate the commands    ###################################
-############################################################################
-############################################################################
+#######################################################
+#######################################################
+##############  Evaluate the commands    ##############
+#######################################################
+#######################################################
 
 def handle_command(command, channel,aUser,tStamp):
 	command = command.lower()
@@ -456,8 +457,8 @@ def handle_command(command, channel,aUser,tStamp):
 		insertStatus(vm, stat)
 		insertHistory(vm, stat)
 		inChannelResponse(channel,"You have fed Snek.")
-		print(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
-		allStat = getReports('2018-01-01', '9999-12-04')
+		stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
+		allStat = getReports('2018-01-01', '9999-12-31')
 		if (allStat % 1000) == 0: # shoots off every 1k issues logged
 			gif, info = celebrate(allStat)
 			inChannelResponse('CC568PC3X',gif)
@@ -466,11 +467,11 @@ def handle_command(command, channel,aUser,tStamp):
 	
 	return # ends handle_command method
 
-############################################################################
-############################################################################
-##############   End command evaluation     ################################
-############################################################################
-############################################################################
+########################################################
+########################################################
+##############   End command evaluation   ##############
+########################################################
+########################################################
 
 	####################
 	# Example commands #
@@ -498,11 +499,11 @@ def handle_command(command, channel,aUser,tStamp):
 	# 		inChannelResponse(channel,"Good bye eveyone!")
 	# 	return
 	
-############################################################################
-############################################################################
-##############   Start of scheduled events       ###########################
-############################################################################
-############################################################################
+###########################################################
+###########################################################
+##############   Start of scheduled events   ##############
+###########################################################
+###########################################################
 
 #############################
 # testing channel GDJEY6HJN #
@@ -678,27 +679,27 @@ checkDate(bDay,datetime(2023,10,25,18,15,30),year5)
 
 bDay.start()
 
-############################################################################
-############################################################################
-##############     End of scheduled events       ###########################
-############################################################################
-############################################################################
+#########################################################
+#########################################################
+##############   End of scheduled events   ##############
+#########################################################
+#########################################################
 
 if __name__ == "__main__":
 	if slack_client.rtm_connect(with_team_state=False):
-		print("Snek Bot connected and running!")
+		stdOut("Snek Bot connected and running!")
 		# Read bot's user ID by calling Web API method `auth.test`
 		snekBotID = slack_client.api_call("auth.test")["user_id"]
-	while True:
-		try:
-                    command, channel,usr,stp = parseSlackInput(slack_client.rtm_read())
-                    if command:
-                        handle_command(command, channel,usr,stp)
-                    schedule.run_pending()
-		except:
-                    pass
-                
-		time.sleep(RTM_READ_DELAY)
+		while True:
+			try:
+				command, channel,usr,stp = parseSlackInput(slack_client.rtm_read())
+				schedule.run_pending()
+				if command:
+					handle_command(command, channel,usr,stp)
+			except:
+				pass
+
+			time.sleep(RTM_READ_DELAY)
 	else:
-                pass
-		print("Connection failed. Exception traceback stdOuted above.")
+		pass
+		stdOut("Connection failed. Exception traceback above.")
