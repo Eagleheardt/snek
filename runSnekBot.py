@@ -495,7 +495,7 @@ def handle_command(command, channel,aUser,tStamp):
 	# ADMIN command
 	# if command == "!farewell":
 	# 	if aUser == "UC176R92M":
-	# 		inChannelResponse(channel,"Good bye eveyone! Glad that I could introduce myself and you could all meet me!")
+	# 		inChannelResponse(channel,"Good bye eveyone!")
 	# 	return
 	
 ############################################################################
@@ -507,6 +507,22 @@ def handle_command(command, channel,aUser,tStamp):
 #############################
 # testing channel GDJEY6HJN #
 #############################
+
+#################
+#   TODO LIST   #
+#################
+
+# Monthly formatted report: 
+# Person who reported the most - number of reports (Snek's favorite person of the month)
+# Most errant server - server number - number of issues
+# Overall highest reporter - number of reports
+# overall most errant server - number of reports
+# Daily highest number of issues.
+# Highest issues on a day in that month
+# Daily average overall
+# daily average on the month
+
+############################################################################
 
 def mos3():
         # Jan 25 2019
