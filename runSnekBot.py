@@ -134,7 +134,7 @@ def insertHistory (server, stat): # adds a server number and status
 def insertUserHistory (server, stat, user): # adds a server number and status
 	serverCursor.execute(("""
 		INSERT INTO 
-			UseHistory (ServerNumber, ServerStatus) 
+			UseHistory (ServerNumber, ServerStatus, SlackID)
 		VALUES
 			('{0}','{1}','{2}');
 	""").format(checkInt(server), convertStatus(stat.strip()), user))
@@ -275,6 +275,9 @@ def historicalReport (date1, date2): # Gets a range summary of the VM number and
 
 	newStr += ("\nTotal reports: {0}").format(getReports(date1, date2))
 	return newStr
+
+### SELECT UseHistory.TimeStamp, UseHistory.ServerNumber, UseHistory.ServerStatus, User.UserName FROM UseHistory JOIN User ON User.SlackID = UseHistory.SlackID WHERE UseHistory.SlackID NOT LIKE 'NOID' AND UseHistory.ServerNumber IN(1,2,3,4,17);
+#### New comprehensive query
 
 def getPets(): # returns the amount of love Snek gets
 	cmd = """
@@ -482,7 +485,7 @@ def handle_command(command, channel,aUser,tStamp):
 			return
 		insertStatus(vm, stat)
 		insertHistory(vm, stat)
-		insertUserHistory(vm, stat, aUser)
+                insertUserHistory(vm, stat, aUser)
 		inChannelResponse(channel,"You have fed Snek.")
 		stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
 		allStat = getReports('2018-01-01', '9999-12-31')
