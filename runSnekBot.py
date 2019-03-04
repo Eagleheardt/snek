@@ -130,6 +130,16 @@ def insertHistory (server, stat): # adds a server number and status
 	""").format(checkInt(server), convertStatus(stat.strip())))
 	conn.commit()
 	return
+
+def insertUserHistory (server, stat, user): # adds a server number and status
+	serverCursor.execute(("""
+		INSERT INTO 
+			UseHistory (ServerNumber, ServerStatus) 
+		VALUES
+			('{0}','{1}','{2}');
+	""").format(checkInt(server), convertStatus(stat.strip()), user))
+	conn.commit()
+	return
 	
 def EODReport (aDate): # Gets a daily summary of the VM number and status reported
 	cmd = (("""
@@ -472,6 +482,7 @@ def handle_command(command, channel,aUser,tStamp):
 			return
 		insertStatus(vm, stat)
 		insertHistory(vm, stat)
+		insertUserHistory(vm, stat, aUser)
 		inChannelResponse(channel,"You have fed Snek.")
 		stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
 		allStat = getReports('2018-01-01', '9999-12-31')
