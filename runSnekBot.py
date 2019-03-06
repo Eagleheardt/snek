@@ -487,7 +487,11 @@ def handle_command(command, channel,aUser,tStamp):
 		insertHistory(vm, stat)
                 insertUserHistory(vm, stat, aUser)
 		inChannelResponse(channel,"You have fed Snek.")
-		stdOut(("Snek feeding - VM{0} Status:{1}").format(checkInt(vm),convertStatus(stat)))
+
+		currentDT = datetime.now()
+		currentDT = currentDT.strftime("%Y-%m-%d %H:%M:%S")
+
+		stdOut(("Snek|{0}|{1}|{2}|{3}").format(currentDT, checkInt(vm), convertStatus(stat), aUser))
 		allStat = getReports('2018-01-01', '9999-12-31')
 		if (allStat % 1000) == 0: # shoots off every 1k issues logged
 			gif, info = celebrate(allStat)
