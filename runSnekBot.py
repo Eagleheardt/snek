@@ -276,8 +276,38 @@ def historicalReport (date1, date2): # Gets a range summary of the VM number and
 	newStr += ("\nTotal reports: {0}").format(getReports(date1, date2))
 	return newStr
 
-### SELECT UseHistory.TimeStamp, UseHistory.ServerNumber, UseHistory.ServerStatus, User.UserName FROM UseHistory JOIN User ON User.SlackID = UseHistory.SlackID WHERE UseHistory.SlackID NOT LIKE 'NOID' AND UseHistory.ServerNumber IN(1,2,3,4,17);
-#### New comprehensive query
+def mikeReport (date1, date2): # Gets the time, VM number, and status reported across a date range
+	cmd = (("""
+		SELECT 
+			TimeStamp
+			, ServerNumber
+			, ServerStatus
+		FROM
+			UseHistory 
+		WHERE
+			date(TimeStamp) BETWEEN '{0}' AND '{1}' 
+			AND ServerNumber IN('1','2','3','4','17');
+	""").format(date1, date2))
+	results = SQLReturn(conn,cmd)
+	newStr = "Report for: " + date1 + " to " + date2 + "\n"
+	for row in results:
+		i = 1
+		for item in row:
+			if i == 1:
+				newStr += "TimeStamp: " + str(item) + " - "
+			if i == 2:
+				newStr += "VM: " + str(item) + " - "
+			if i == 3:
+				newStr += "Status: " + str(item)
+			i += 1
+		newStr += "\n"
+
+	newStr += ("\nTotal reports: {0}").format(getReports(date1, date2))
+	return newStr
+
+#####
+# "SELECT TimeStamp, ServerNumber, ServerStatus from UseHistory WHERE ServerNumber < 100;" 
+#####
 
 def getPets(): # returns the amount of love Snek gets
 	cmd = """
@@ -459,6 +489,13 @@ def handle_command(command, channel,aUser,tStamp):
 
 	if command.startswith("!range"):
 		theDates = command[7:]
+		date1,date2 = parseDateRange(theDates)
+		response = historicalReport(date1,date2)
+		directResponse(aUser,response)
+		return
+
+	if command.startswith("!mike"):
+		theDates = command[6:]
 		date1,date2 = parseDateRange(theDates)
 		response = historicalReport(date1,date2)
 		directResponse(aUser,response)
