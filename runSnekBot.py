@@ -435,7 +435,8 @@ def handle_command(command, channel,aUser,tStamp):
 				!pet - I love the pets!
 
 				!report[SPACE][YYYY-MM-DD] - gives a breakdown of all the server statuses reported for that day.
-				!range[SPACE][YYYY-MM-DD],[YYYY-MM-DD]- gives a breakdown of all the server statuses reported for that date range.
+				!range[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - gives a breakdown of all the server statuses reported for that date range.
+				!mike[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - WARNING: huge report! Gives a breakdown of the time, the server, and the status for that date range.
 				"""
 		threadedResponse(channel,response,tStamp)
 		addPet(aUser, "help")
