@@ -686,14 +686,14 @@ bDay = BackgroundScheduler()
 
 checkDate(bDay,datetime(2019,2,7,2,15,30),testJOBFuture)
 
-checkDate(bDay,datetime(2019,1,25,18,35,30),mos3)
-checkDate(bDay,datetime(2019,4,25,18,15,30),mos6)
-checkDate(bDay,datetime(2019,7,25,18,35,30),mos9)
-checkDate(bDay,datetime(2019,10,25,18,15,30),year1)
-checkDate(bDay,datetime(2020,10,25,18,15,30),year2)
-checkDate(bDay,datetime(2021,10,25,18,15,30),year3)
-checkDate(bDay,datetime(2022,10,25,18,15,30),year4)
-checkDate(bDay,datetime(2023,10,25,18,15,30),year5)
+checkDate(bDay,datetime(2019,1,25,12,35,30),mos3)
+checkDate(bDay,datetime(2019,4,25,12,15,30),mos6)
+checkDate(bDay,datetime(2019,7,25,12,35,30),mos9)
+checkDate(bDay,datetime(2019,10,25,12,15,30),year1)
+checkDate(bDay,datetime(2020,10,25,12,15,30),year2)
+checkDate(bDay,datetime(2021,10,25,12,15,30),year3)
+checkDate(bDay,datetime(2022,10,25,12,15,30),year4)
+checkDate(bDay,datetime(2023,10,25,12,15,30),year5)
 
 bDay.start()
 
