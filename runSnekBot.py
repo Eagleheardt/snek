@@ -497,7 +497,7 @@ def handle_command(command, channel,aUser,tStamp):
 	if command.startswith("!mike"):
 		theDates = command[6:]
 		date1,date2 = parseDateRange(theDates)
-		response = historicalReport(date1,date2)
+		response = mikeReport(date1,date2)
 		directResponse(aUser,response)
 		return
 
