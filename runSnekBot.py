@@ -325,7 +325,6 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 			Week, ServerStatus;
 	""").format(date1, date2))
 	results = SQLReturn(conn,cmd)
-	#stdOut("\n\nREPORT:\n" + results + "\n\n")
 	newStr = "Report for: " + date1 + " to " + date2 + "\n"
 	for row in results:
 		i = 1
