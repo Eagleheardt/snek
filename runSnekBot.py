@@ -306,6 +306,7 @@ def mikeReport (date1, date2): # Gets the time, VM number, and status reported a
 	return newStr
 
 def garyReport (date1, date2): # Gets the time, VM number, and status reported across a date range
+	
 	cmd = (("""
 		SELECT 
 			Week
@@ -317,13 +318,14 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 			FROM UseHistory
 		) as t
 		WHERE 
-			date(TimeStamp) BETWEEN '{0}' AND '{1}' 
+			Week BETWEEN '{0}' AND '{1}' 
 		GROUP BY 
 			Week, ServerStatus
 		ORDER BY 
 			Week, ServerStatus;
 	""").format(date1, date2))
 	results = SQLReturn(conn,cmd)
+	#stdOut("\n\nREPORT:\n" + results + "\n\n")
 	newStr = "Report for: " + date1 + " to " + date2 + "\n"
 	for row in results:
 		i = 1
