@@ -309,7 +309,7 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 	
 	cmd = (("""
 		SELECT 
-			Week
+			date(Week)
 			, ServerStatus
 			, count(0) as Issues
 		FROM (
@@ -333,9 +333,9 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 			if i == 1:
 				newStr += "Week Start: " + str(item) + " - "
 			if i == 2:
-				newStr += "Status: " + str(item) + " - "
+				newStr += "Status: " + str(item)
 			if i == 3:
-				newStr += "Count: " + str(item)
+				newStr += ": " + str(item)
 			i += 1
 		newStr += "\n"
 
