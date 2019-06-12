@@ -305,9 +305,43 @@ def mikeReport (date1, date2): # Gets the time, VM number, and status reported a
 	newStr += ("\nTotal reports: {0}").format(getReports(date1, date2))
 	return newStr
 
-#####
-# "SELECT TimeStamp, ServerNumber, ServerStatus from UseHistory WHERE ServerNumber < 100;" 
-#####
+def garyReport (date1, date2): # Gets the time, VM number, and status reported across a date range
+	
+	cmd = (("""
+		SELECT 
+			date(Week)
+			, ServerStatus
+			, count(0) as Issues
+		FROM (
+			SELECT datetime([TimeStamp], 'start of day', 'weekday 1', '-7 day') as Week
+				, ServerStatus
+			FROM UseHistory
+		) as t
+		WHERE 
+			Week BETWEEN '{0}' AND '{1}' 
+		GROUP BY 
+			Week, ServerStatus
+		ORDER BY 
+			Week, ServerStatus;
+	""").format(date1, date2))
+	results = SQLReturn(conn,cmd)
+	newStr = "Report for: " + date1 + " to " + date2 + "\n"
+	for row in results:
+		i = 1
+		for item in row:
+			if i == 1:
+				newStr += "Week Start: " + str(item) + " - "
+			if i == 2:
+				newStr += "Status: " + str(item)
+			if i == 3:
+				if int(item) > 1:
+					newStr += " - " + str(item) + " times"
+				else:
+					newStr += " - " + str(item) + " time"
+			i += 1
+		newStr += "\n"
+
+	return newStr
 
 def getPets(): # returns the amount of love Snek gets
 	cmd = """
@@ -437,6 +471,7 @@ def handle_command(command, channel,aUser,tStamp):
 				!report[SPACE][YYYY-MM-DD] - gives a breakdown of all the server statuses reported for that day.
 				!range[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - gives a breakdown of all the server statuses reported for that date range.
 				!mike[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - WARNING: huge report! Gives a breakdown of the time, the server, and the status for that date range.
+				!gary[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - WARNING: huge report! Gives a breakdown of the the week, the status, and the number of times occurred.
 				"""
 		threadedResponse(channel,response,tStamp)
 		addPet(aUser, "help")
@@ -499,6 +534,13 @@ def handle_command(command, channel,aUser,tStamp):
 		theDates = command[6:]
 		date1,date2 = parseDateRange(theDates)
 		response = mikeReport(date1,date2)
+		directResponse(aUser,response)
+		return
+
+	if command.startswith("!gary"):
+		theDates = command[6:]
+		date1,date2 = parseDateRange(theDates)
+		response = garyReport(date1,date2)
 		directResponse(aUser,response)
 		return
 
