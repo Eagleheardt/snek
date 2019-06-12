@@ -335,7 +335,10 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 			if i == 2:
 				newStr += "Status: " + str(item)
 			if i == 3:
-				newStr += ": " + str(item)
+				if int(item) > 1:
+					newStr += " - " + str(item) + " times"
+				else:
+					newStr += " - " + str(item) + " time"
 			i += 1
 		newStr += "\n"
 
