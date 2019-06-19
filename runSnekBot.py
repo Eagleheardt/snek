@@ -30,6 +30,9 @@ from cryptography.fernet import Fernet
 # Daily average overall
 # daily average on the month
 
+# update to the 2.X version and python3.7
+# https://github.com/slackapi/python-slackclient/wiki/Migrating-to-2.x#basic-usage-of-the-rtm-client
+
 ############################################################################
 
 conn = sqlite3.connect('snekbot/data/snekbot.db') # Connect to the database
