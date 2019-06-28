@@ -35,20 +35,20 @@ from cryptography.fernet import Fernet
 
 ############################################################################
 
-conn = sqlite3.connect('snekbot/data/snekbot.db') # Connect to the database
+conn = sqlite3.connect('/home/ubuntu/snekbot/data/snekbot.db') # Connect to the database
 serverCursor = conn.cursor() # establish cursor to enact on the DB
 
 ######################################
 #####   Begin token decryption   #####
 ######################################
 
-keyFile = open('snekbot/data/snek_token.key', 'rb')
+keyFile = open('/home/ubuntu/snekbot/data/snek_token.key', 'rb')
 key = keyFile.read()
 keyFile.close()
 
 f = Fernet(key)
 
-encryptedTokenFile = open('snekbot/data/snek_token.encrypted', 'rb')
+encryptedTokenFile = open('/home/ubuntu/snekbot/data/snek_token.encrypted', 'rb')
 encryptedToken = encryptedTokenFile.read()
 
 decryptedToken = f.decrypt(encryptedToken)
