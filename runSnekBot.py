@@ -515,6 +515,11 @@ def handle_command(command, channel,aUser,tStamp):
 		threadedResponse(channel,"Boop Snek snoot. Doot doot.",tStamp)	
 		return
 
+	if command == "!kiss":
+		addPet(aUser, "kiss")
+		threadedResponse(channel,"You lean in close and kiss Snek. Snek blushes!",tStamp)	
+		return
+
 	if command == "!snekpets":
 		addPet(aUser, "snekpets")
 		directResponse(aUser,getPets())
