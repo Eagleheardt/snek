@@ -4,6 +4,16 @@ import datetime
 DATABASE = "lenderBot/data/lendingLibrary.db" # prod location
 sql.setConnection(DATABASE) # set DB connection
 
+
+####
+# CREATE TABLE IF NOT EXISTS "Status" ('ID' INTEGER PRIMARY KEY AUTOINCREMENT, 'TimeStamp' DATE DEFAULT (datetime('now','localtime')),ServerNumber INTEGER NOT NULL, ServerStatus TEXT NOT NULL);
+# CREATE TABLE IF NOT EXISTS "SnekStats" (ID INTEGER PRIMARY KEY AUTOINCREMENT, TimeStamp DATE DEFAULT (datetime('now','localtime')),User TEXT NOT NULL DEFAULT 'NONE',aStatus TEXT NOT NULL DEFAULT 'NONE');
+# CREATE TABLE History ('ID' INTEGER PRIMARY KEY AUTOINCREMENT, 'TimeStamp' DATE DEFAULT (datetime('now','localtime')), 'ServerNumber' INTEGER NOT NULL, 'ServerStatus' TEXT NOT NULL);
+# CREATE TABLE IF NOT EXISTS "Sorry"('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Link' TEXT NOT NULL DEFAULT 'www.google.com');
+# CREATE TABLE IF NOT EXISTS "User" ('ID' INTEGER PRIMARY KEY AUTOINCREMENT, 'SlackID' TEXT NOT NULL DEFAULT 'NOID', 'UserName' TEXT NOT NULL DEFAULT 'NONAME');
+# CREATE TABLE UseHistory ('ID' INTEGER PRIMARY KEY AUTOINCREMENT, 'TimeStamp' DATE DEFAULT (datetime('now','localtime')), 'ServerNumber' INTEGER NOT NULL, 'ServerStatus' TEXT NOT NULL, 'SlackID' TEXT NOT NULL DEFAULT 'NONAME');
+###
+
 #######################
 ###   Users Table   ###
 #######################
