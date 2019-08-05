@@ -1,6 +1,7 @@
 import command
 import decode as de
 from slack import RTMClient, WebClient
+import snekUtils as utils
 
 ##############################
 ###   Client 2.0 Updated   ###
@@ -47,6 +48,7 @@ if __name__ == '__main__':
             data = kwargs['data']   
             text = data['text'] 
             if data['user'] != USER_ID and validText(text):
+                utils.CLIENT = data['web_client']
                 command.runCommand(kwargs)
 
         rtm_client = RTMClient(token=SLACK_TOKEN)

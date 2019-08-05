@@ -1,10 +1,15 @@
-import snekAdapter as adapter
+import snekStrikes as act
 
-class Command:
-    def __init__(self, name, response, action, description):
-        self.name = name
-        self.response = response
-        self.description = description
-        self.action = action
+def isVM(someText=''):
+    if someText.startswith('vm'):
+        return True
+    return False
 
+def isBang(someText=''):
+    if someText.startswith('!'):
+        return True
+    return False
+ 
 
+def EVAL(**kwargs):
+    pass
