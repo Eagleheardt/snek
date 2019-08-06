@@ -23,10 +23,10 @@ def directResponse(aUser, response):
 ###########################
 
 class ExampleCommand(Command):
-    self.name = "ExampleCommand"
-    self.response = words.textExample
-    self.actions = doSomething
-    self.description =\
+    super.name = "ExampleCommand"
+    super.response = words.textExample
+    super.actions = doSomething
+    super.description =\
     """
         This is the description
     """
