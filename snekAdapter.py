@@ -2,7 +2,7 @@ import databaseProvider as sql
 import datetime
 import random
 
-DATABASE = "lenderBot/data/lendingLibrary.db" # prod location
+DATABASE = "snekBotTest/data/snekbot.db" # prod location
 sql.setConnection(DATABASE) # set DB connection
 
 
