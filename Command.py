@@ -11,5 +11,9 @@ def isBang(someText=''):
     return False
  
 
-def EVAL(**kwargs):
-    pass
+def EVAL(payload):
+    if 'text' in payload['data']:
+        data = payload['data']
+        print(data)
+
+    return

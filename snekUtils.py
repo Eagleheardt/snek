@@ -1,26 +1,74 @@
+import snekAdapter as adapter
+
+########################
+###   Slack client   ###
+########################
+
+# The main client
+# used to send the commands to the server
+
 CLIENT = None
 
+####################
+###   Statuses   ###
+####################
+
+# Record of the woes faced by our environment
+
+REACONNECT = "Auto reconnect"
+WINDOW = "Window closes"
+LOADING = "Loading"
+RESTART = "Restart IE"
+
+DEFAULT_STATUS = "Non-Specific Error"
+
+#############################
+###   Status conversion   ###
+#############################
+
+# Changes our emoji into something more ... useful
+
+STATUS_DICTIONARY = {
+
+	"face_vomiting":REACONNECT,
+
+	"fire":WINDOW,
+
+	"loading":LOADING,
+
+	"skull_and_crossbones":RESTART,
+	"angry_skeletor":RESTART,
+    "dumpster_fire":RESTART
+    
+	}
+
+#########################
+###   Command Class   ###
+#########################
+
+# Holds the basics of a command for Snek
+
 class Command:
-    def __init__(self, name, response, action, description):
+    def __init__(self, name, response, actions, triggers, description):
         self.name = name
         self.response = response
+        self.actions = actions
+        self.triggers = triggers
         self.description = description
-        self.action = action
 
-def convertStatus (stat): # converts the emoji to a human-readable status
-	statDict = {
-		"face_vomiting":"Auto reconnect",
-		"fire":"Window Closes",
-		"loading":"Loading",
-		"skull_and_crossbones":"Restart IE",
-		"angry_skeletor":"Restart IE",
-        "dumpster_fire":"Restart IE"
-	}
-    
-	if stat not in statDict:
-		return "Non-Specific Error"
+# End Command Class
+
+##########################
+###   Convert status   ###
+##########################
+
+# converts the emoji to a human-readable status
+
+def convertStatus (stat): 
+	if stat not in STATUS_DICTIONARY:
+		return DEFAULT_STATUS
 		
-	return statDict[stat]
+	return STATUS_DICTIONARY[stat]
 
 def inChannelResponse(channel, response):
     CLIENT.chat_postMessage(
@@ -37,9 +85,9 @@ def threadedResponse(channel, response, stamp):
         as_user=True
     )
 
-def directResponse(channel, someUser, text):
+def directResponse(aUser, response):
     CLIENT.chat_postMessage(
-        channel=someUser,
-        text=text,
+        channel=aUser,
+        text=response,
         as_user=True
         )

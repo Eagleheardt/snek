@@ -1,26 +1,35 @@
-textHelp = """I'm Snek! Here's how I can help!
+textExample =\
+"""
+This is the sample text for Snek.
+In the code, it shows an example of 3 quotation notation. 
+It also shows how to declare a variable on one 
+line and put the value on the next line.
+"""
+
+textHelp =\
+"""I'm Snek! Here's how I can help!
 				
-	If you just report VM issues, I will eat and store them!
-	Vm[#] [status] to report! That's it!
-	Don't bother editing your response, just say it again, if I don't eat it.
-	:face_vomiting: = Auto reconnect
-	:fire: = Window Closes
-	:skull_and_crossbones: = Restart IE completely
-	:loading: = Loading
+If you just report VM issues, I will eat and store them!
+Vm[#] [status] to report! That's it!
+Don't bother editing your response, just say it again, if I don't eat it.
+:face_vomiting: = Auto reconnect
+:fire: = Window Closes
+:skull_and_crossbones: = Restart IE completely
+:loading: = Loading
 	
-	!help - display this message.
-	!pet - I love the pets!
-	!report[SPACE][YYYY-MM-DD] - gives a breakdown of all the server statuses reported for that day.
-	!range[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - gives a breakdown of all the server statuses reported for that date range.
-	!mike[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - WARNING: huge report! Gives a breakdown of the time, the server, and the status for that date range.
-	!gary[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - WARNING: huge report! Gives a breakdown of the the week, the status, and the number of times occurred.
-	"""
+!help - display this message.
+!pet - I love the pets!
+!report[SPACE][YYYY-MM-DD] - gives a breakdown of all the server statuses reported for that day.
+!range[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - gives a breakdown of all the server statuses reported for that date range.
+!mike[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - WARNING: huge report! Gives a breakdown of the time, the server, and the status for that date range.
+!gary[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - WARNING: huge report! Gives a breakdown of the the week, the status, and the number of times occurred.
+"""
 
 textCantEat = "I can't eat that!"
 
 textEat = "You have fed Snek."
 
-textTotalProblems = "So far I've eaten {0} problems."
+textTotalProblems = "So far I've eaten {} problems."
 
 textSorry = "I'm sorry for the unstable environment. Let me send you something to brighten your mood!"
 
