@@ -1,4 +1,4 @@
-import Command as command
+import command
 import decode as de
 from slack import RTMClient, WebClient
 import snekUtils as utils
@@ -13,7 +13,7 @@ USER_ID = '' # Snek's user ID
 ###   Get the slack token   ###
 ###############################
 
-de.MAIN_KEY = "snekbot/data/snek_token" # prod location
+de.MAIN_KEY = "snekBotTest/data/snekTest" # prod location
 SLACK_TOKEN = de.getToken() # Bot's Slack token
 
 ###############################
