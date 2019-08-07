@@ -28,6 +28,10 @@ def EVAL(payload):
         print("bang bang")
         text = text.lstrip("!")
         print(text)
+        if text == "test":
+            act.ExampleCommand().doSomething(text)
+            print("INSIDE TEST")
+            return
         pass
 
     
