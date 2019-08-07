@@ -38,7 +38,7 @@ class ExampleCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        inChannelResponse(payLoad['data']['channel'],self.response)
+        inChannelResponse(payLoad['channel'],self.response)
         return
 
 publishedCommands.append(ExampleCommand())
