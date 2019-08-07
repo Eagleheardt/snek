@@ -2,6 +2,8 @@ import snekUtils as utils
 import snekResponse as words
 from snekUtils import Command
 
+publishedCommands = []
+
 #############################
 ###   Response Commands   ###
 #############################
@@ -23,18 +25,25 @@ def directResponse(aUser, response):
 ###########################
 
 class ExampleCommand(Command):
-    self.name = "ExampleCommand"
-    self.response = words.textExample
-    self.actions = doSomething
-    self.triggers = ['test']
-    self.description =\
-    """
-        This is the description
-    """
-    
+    def __init__(self):
+        super().__init__(
+            name = ExampleCommand, 
+            response = words.textExample,
+            actions = self.doSomething, 
+            triggers = ['test'],
+            description =\
+                """
+                    This is the description
+                """
+            )
 
-    def doSomething():
-        pass
+    def doSomething(self, payLoad):
+        print("Example Command!!!!")
+        print(payLoad)
+        print(self.response)
+        return
+
+publishedCommands.append(ExampleCommand())
 
 #########################################################
 
