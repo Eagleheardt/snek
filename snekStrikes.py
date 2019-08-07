@@ -2,8 +2,6 @@ import snekUtils as utils
 import snekResponse as words
 from snekUtils import Command
 
-publishedCommands = []
-
 #############################
 ###   Response Commands   ###
 #############################
@@ -42,7 +40,5 @@ class ExampleCommand(Command):
         print(payLoad)
         print(self.response)
         return
-
-publishedCommands.append(ExampleCommand())
 
 #########################################################

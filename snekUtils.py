@@ -15,7 +15,7 @@ CLIENT = None
 
 # Record of the woes faced by our environment
 
-REACONNECT = "Auto reconnect"
+RECONNECT = "Auto reconnect"
 WINDOW = "Window closes"
 LOADING = "Loading"
 RESTART = "Restart IE"
@@ -30,7 +30,7 @@ DEFAULT_STATUS = "Non-Specific Error"
 
 STATUS_DICTIONARY = {
 
-	"face_vomiting":REACONNECT,
+	"face_vomiting":RECONNECT,
 
 	"fire":WINDOW,
 
@@ -69,6 +69,10 @@ def convertStatus (stat):
 		return DEFAULT_STATUS
 		
 	return STATUS_DICTIONARY[stat]
+
+#############################
+###   Response Commands   ###
+#############################
 
 def inChannelResponse(channel, response):
     CLIENT.chat_postMessage(

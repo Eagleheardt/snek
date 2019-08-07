@@ -11,28 +11,38 @@ def isBang(someText=''):
     if someText.startswith('!'):
         return True
     return False
- 
+
+def parsePayload(**kwargs):
+    text = kwargs['text'].lower().strip()
+    channel = kwargs['channel']
+    aUser = kwargs['user']
+    stamp = kwargs['ts']
+
+    return text, channel, aUser, stamp
+
+def checkCommand(text, option):
+    for trigger in option.triggers:
+        if text == trigger:
+            return True
+    return False
 
 def EVAL(payload):
     if 'text' not in payload['data']:
         return
 
     data = payload['data']
-    text = data['text'].lower().strip()
+    text, channel, aUser, stamp = parsePayload(data)
 
     if isVM(text):
-        print("VM")
         pass
 
     if isBang(text):
-        print("bang bang")
         text = text.lstrip("!")
-        print(text)
-        if text == "test":
-            act.ExampleCommand().doSomething(text)
-            print("INSIDE TEST")
-            return
-        pass
+        for option in commandList:
+            if checkCommand(text, option):
+                option_method = getattr(option.name, option.actions.__name__)
+                if option_method:
+                    option.actions(payload)
 
     
 
