@@ -3,12 +3,6 @@ import decode as de
 from slack import RTMClient
 import snekUtils as utils
 
-##############################
-###   Client 2.0 Updated   ###
-##############################
-
-USER_ID = '' # Snek's user ID
-
 ###############################
 ###   Get the slack token   ###
 ###############################
@@ -23,10 +17,6 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 ############################################################################
 ############################################################################
 
-def shouldHandle(user=USER_ID, text=''):
-    return (user != USER_ID
-        and len(text) is not 0)
-
 if __name__ == '__main__':
 
     def main():
@@ -36,6 +26,7 @@ if __name__ == '__main__':
             data = kwargs['data']
             text = data['text']
             if text:
+                utils.CLIENT = kwargs['web_client']
                 cmd.EVAL(kwargs)
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
