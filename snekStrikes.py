@@ -46,11 +46,3 @@ class ExampleCommand(Command):
 publishedCommands.append(ExampleCommand())
 
 #########################################################
-
-class HelpCommand(Command):
-    self.name = "HelpCommand"
-    self.response = words
-    self.description =\
-    """
-        This is the description
-    """
