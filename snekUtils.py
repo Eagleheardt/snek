@@ -9,18 +9,24 @@
 
 CLIENT = None
 
+###################
+###   Globals   ###
+###################
+
+PATH = "/home/ubuntu/"
+
 ####################
 ###   Statuses   ###
 ####################
 
 # Record of the woes faced by our environment
 
-RECONNECT = "Auto reconnect"
-WINDOW = "Window closes"
-LOADING = "Loading"
-RESTART = "Restart IE"
+__RECONNECT = "Auto reconnect"
+__WINDOW = "Window closes"
+__LOADING = "Loading"
+__RESTART = "Restart IE"
 
-DEFAULT_STATUS = "Non-Specific Error"
+__DEFAULT_STATUS = "Non-Specific Error"
 
 #############################
 ###   Status conversion   ###
@@ -28,17 +34,17 @@ DEFAULT_STATUS = "Non-Specific Error"
 
 # Changes our emoji into something more ... useful
 
-STATUS_DICTIONARY = {
+__STATUS_DICTIONARY = {
 
-	"face_vomiting":RECONNECT,
+	"face_vomiting":__RECONNECT,
 
-	"fire":WINDOW,
+	"fire":__WINDOW,
 
-	"loading":LOADING,
+	"loading":__LOADING,
 
-	"skull_and_crossbones":RESTART,
-	"angry_skeletor":RESTART,
-    "dumpster_fire":RESTART
+	"skull_and_crossbones":__RESTART,
+	"angry_skeletor":__RESTART,
+    "dumpster_fire":__RESTART
     
 	}
 
@@ -73,10 +79,10 @@ def parsePayload(data):
 # converts the emoji to a human-readable status
 
 def convertStatus (stat): 
-	if stat not in STATUS_DICTIONARY:
-		return DEFAULT_STATUS
+	if stat not in __STATUS_DICTIONARY:
+		return __DEFAULT_STATUS
 		
-	return STATUS_DICTIONARY[stat]
+	return __STATUS_DICTIONARY[stat]
 
 #############################
 ###   Response Commands   ###

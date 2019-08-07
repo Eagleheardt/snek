@@ -1,8 +1,9 @@
 import databaseProvider as sql
+import snekUtils as utils
 import datetime
 import random
 
-DATABASE = "snekBotTest/data/snekbot.db" # prod location
+DATABASE = utils.PATH + "snekBotTest/data/snekbot.db" # prod location
 sql.setConnection(DATABASE) # set DB connection
 
 
