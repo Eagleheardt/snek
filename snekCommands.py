@@ -12,11 +12,11 @@ def isBang(someText=''):
         return True
     return False
 
-def parsePayload(**kwargs):
-    text = kwargs['text'].lower().strip()
-    channel = kwargs['channel']
-    aUser = kwargs['user']
-    stamp = kwargs['ts']
+def parsePayload(data):
+    text = data['text'].lower().strip()
+    channel = data['channel']
+    aUser = data['user']
+    stamp = data['ts']
 
     return text, channel, aUser, stamp
 
