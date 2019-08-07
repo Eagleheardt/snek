@@ -42,7 +42,7 @@ class ExampleCommand(Command):
         print(payLoad)
         print(self.response)
         print("exiting something")
-        inChannelResponse()
+        inChannelResponse(self.response)
         return
 
 publishedCommands.append(ExampleCommand())
