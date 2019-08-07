@@ -58,6 +58,14 @@ class Command:
 
 # End Command Class
 
+def parsePayload(data):
+    text = data['text'].lower().strip()
+    channel = data['channel']
+    aUser = data['user']
+    stamp = data['ts']
+
+    return text, channel, aUser, stamp
+
 ##########################
 ###   Convert status   ###
 ##########################

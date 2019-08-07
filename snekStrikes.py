@@ -30,7 +30,7 @@ class ExampleCommand(Command):
             name = ExampleCommand, 
             response = words.textExample,
             actions = self.doSomething, 
-            triggers = ['test'],
+            triggers = ['test', 'example'],
             description =\
                 """
                     This is the description
@@ -42,6 +42,7 @@ class ExampleCommand(Command):
         print(payLoad)
         print(self.response)
         print("exiting something")
+        inChannelResponse()
         return
 
 publishedCommands.append(ExampleCommand())

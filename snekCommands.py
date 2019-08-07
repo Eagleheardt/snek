@@ -1,4 +1,5 @@
 import snekStrikes as act
+import snekUtils as utils
 
 commandList = act.publishedCommands
 
@@ -12,14 +13,6 @@ def isBang(someText=''):
         return True
     return False
 
-def parsePayload(data):
-    text = data['text'].lower().strip()
-    channel = data['channel']
-    aUser = data['user']
-    stamp = data['ts']
-
-    return text, channel, aUser, stamp
-
 def checkCommand(text, option):
     for trigger in option.triggers:
         if text == trigger:
@@ -31,7 +24,7 @@ def EVAL(payload):
         return
 
     data = payload['data']
-    text, channel, aUser, stamp = parsePayload(data)
+    text, channel, aUser, stamp = utils.parsePayload(data)
 
     if isVM(text):
         pass
@@ -42,7 +35,7 @@ def EVAL(payload):
             if checkCommand(text, option):
                 option_method = getattr(option.name, option.actions.__name__)
                 if option_method:
-                    option.actions(payload)
+                    option.actions(data)
 
     
 
