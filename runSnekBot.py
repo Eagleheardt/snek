@@ -36,7 +36,6 @@ if __name__ == '__main__':
             data = kwargs['data']
             text = data['text']
             if data['user'] != USER_ID:
-                print(data)
                 cmd.EVAL(kwargs)
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
