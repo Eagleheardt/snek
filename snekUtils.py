@@ -1,4 +1,4 @@
-import snekAdapter as adapter
+# import snekAdapter as adapter
 
 ########################
 ###   Slack client   ###
