@@ -38,11 +38,7 @@ class ExampleCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        print("Example Command!!!!")
-        print(payLoad)
-        print(self.response)
-        print("exiting something")
-        inChannelResponse(self.response)
+        inChannelResponse(payLoad['channel'],self.response)
         return
 
 publishedCommands.append(ExampleCommand())
