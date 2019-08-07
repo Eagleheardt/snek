@@ -18,8 +18,6 @@ def EVAL(payload):
         return
 
     data = payload['data']
-    print(data)
-
     text = data['text'].lower().strip()
 
     if isVM(text):
@@ -29,6 +27,7 @@ def EVAL(payload):
     if isBang(text):
         print("bang bang")
         text = text.lstrip("!")
+        print(text)
         pass
 
     
