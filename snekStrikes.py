@@ -82,7 +82,7 @@ class PetCommand(Command):
             name = PetCommand, 
             response = words.textPet,
             actions = self.doSomething, 
-            triggers = ['help'],
+            triggers = ['pet'],
             description =\
                 """
                     This is the pet command.
@@ -109,7 +109,7 @@ class TreadCommand(Command):
             name = TreadCommand, 
             response = words.textTread,
             actions = self.doSomething, 
-            triggers = ['help'],
+            triggers = ['tread'],
             description =\
                 """
                     This is the tread command.
