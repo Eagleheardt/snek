@@ -23,12 +23,13 @@ if __name__ == '__main__':
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
-            data = kwargs['data']
-            print(data)
+
             try:
-                text = data['text']
+                text = kwargs['data']['text']
+
             except KeyError:
                 return
+
             if text:
                 utils.CLIENT = kwargs['web_client']
                 cmd.EVAL(kwargs)

@@ -20,9 +20,6 @@ def checkCommand(text, option):
     return False
 
 def EVAL(payload):
-    if 'text' not in payload['data']:
-        return
-
     data = payload['data']
     text, channel, aUser, stamp = utils.parsePayload(data)
 
