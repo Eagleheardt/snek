@@ -23,8 +23,16 @@ if __name__ == '__main__':
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
-            utils.CLIENT = kwargs['web_client']
-            cmd.EVAL(kwargs)
+
+            try:
+                text = kwargs['data']['text']
+
+            except KeyError:
+                return
+
+            if text:
+                utils.CLIENT = kwargs['web_client']
+                cmd.EVAL(kwargs)
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()
