@@ -122,6 +122,6 @@ class TreadCommand(Command):
         threadedResponse(payLoad, self.response)
         return
 
-publishedCommands.append(PetCommand())
+publishedCommands.append(TreadCommand())
 
 #############################################################
