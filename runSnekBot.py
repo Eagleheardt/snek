@@ -25,7 +25,10 @@ if __name__ == '__main__':
         def handle(**kwargs):
             data = kwargs['data']
             print(data)
-            text = data['text']
+            try:
+                text = data['text']
+            except KeyError:
+                return
             if text:
                 utils.CLIENT = kwargs['web_client']
                 cmd.EVAL(kwargs)
