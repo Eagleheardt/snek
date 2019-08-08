@@ -1,7 +1,7 @@
 import snekStrikes as act
 import snekUtils as utils
 
-commandList = act.publishedCommands
+__commandList = act.publishedCommands
 
 def isVM(someText=''):
     if someText.startswith('vm'):
@@ -21,19 +21,17 @@ def checkCommand(text, option):
 
 def EVAL(payload):
     data = payload['data']
-    text, channel, aUser, stamp = utils.parsePayload(data)
+    text = data['text']
 
     if isVM(text):
         pass
 
     if isBang(text):
         text = text.lstrip("!")
-        for option in commandList:
+        for option in __commandList:
             if checkCommand(text, option):
                 option_method = getattr(option.name, option.actions.__name__)
                 if option_method:
                     option.actions(data)
-
-    
 
     return
