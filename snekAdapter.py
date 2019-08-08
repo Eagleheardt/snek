@@ -110,22 +110,7 @@ def EODReportRange (date1, date2): # Gets a range summary of the VM number and s
 			,ServerStatus
 	""").format(date1, date2))
 	results = SQLReturn(conn,cmd)
-	newStr = "Report for: " + date1 + " to " + date2 + "\n"
-	for row in results:
-		i = 1
-		for item in row:
-			if i == 1:
-				newStr += "VM" + str(item) + " - "
-			if i == 2:
-				newStr += "Status: " + str(item) + " - "
-			if i == 3:
-				if item != 1:
-					newStr += "Reported: " + str(item) + " times"
-				else:
-					newStr += "Reported: " + str(item) + " time"
-			i += 1
-		newStr += "\n"
-	return newStr
+	return results
 
 def addPet(aUser,aStat):  #adds a 'pet' to the database
 	newCur = conn.cursor()
@@ -177,24 +162,8 @@ def historicalReport (date1, date2): # Gets a range summary of the VM number and
 			,ServerStatus
 	""").format(date1, date2))
 	results = SQLReturn(conn,cmd)
-	newStr = "Report for: " + date1 + " to " + date2 + "\n"
-	for row in results:
-		i = 1
-		for item in row:
-			if i == 1:
-				newStr += "VM" + str(item) + " - "
-			if i == 2:
-				newStr += "Status: " + str(item) + " - "
-			if i == 3:
-				if item != 1:
-					newStr += "Reported: " + str(item) + " times"
-				else:
-					newStr += "Reported: " + str(item) + " time"
-			i += 1
-		newStr += "\n"
-
-	newStr += ("\nTotal reports: {0}").format(getReports(date1, date2))
-	return newStr
+	
+	return results
 
 def mikeReport (date1, date2): # Gets the time, VM number, and status reported across a date range
 	cmd = (("""
@@ -209,21 +178,8 @@ def mikeReport (date1, date2): # Gets the time, VM number, and status reported a
 			AND ServerNumber IN('1','2','3','4','17');
 	""").format(date1, date2))
 	results = SQLReturn(conn,cmd)
-	newStr = "Report for: " + date1 + " to " + date2 + "\n"
-	for row in results:
-		i = 1
-		for item in row:
-			if i == 1:
-				newStr += "TimeStamp: " + str(item) + " - "
-			if i == 2:
-				newStr += "VM: " + str(item) + " - "
-			if i == 3:
-				newStr += "Status: " + str(item)
-			i += 1
-		newStr += "\n"
-
-	newStr += ("\nTotal reports: {0}").format(getReports(date1, date2))
-	return newStr
+	
+	return results
 
 def garyReport (date1, date2): # Gets the time, VM number, and status reported across a date range
 	
@@ -245,23 +201,8 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 			Week, ServerStatus;
 	""").format(date1, date2))
 	results = SQLReturn(conn,cmd)
-	newStr = "Report for: " + date1 + " to " + date2 + "\n"
-	for row in results:
-		i = 1
-		for item in row:
-			if i == 1:
-				newStr += "Week Start: " + str(item) + " - "
-			if i == 2:
-				newStr += "Status: " + str(item)
-			if i == 3:
-				if int(item) > 1:
-					newStr += " - " + str(item) + " times"
-				else:
-					newStr += " - " + str(item) + " time"
-			i += 1
-		newStr += "\n"
 
-	return newStr
+	return results
 
 def getPets(): # returns the amount of love Snek gets
 	cmd = """
@@ -275,35 +216,6 @@ def getPets(): # returns the amount of love Snek gets
 			Amount DESC;
 	"""
 	rawResults = SQLReturn(conn, cmd)
-	newStr = "People do lots of things to me! I love pets most of all, though!\nI have been:\n"
-	for row in rawResults:
-		i = 1
-		for item in row:
-			if i == 1:
-				newStr += str(item) + ": "
-			if i == 2:
-				newStr += str(item) + " times"
-			i += 1
-		newStr += "\n"
+	
 	return newStr
 
-def imSorry(aConn): # an appology for the environment in which we live
-        sqlCmd = "SELECT Link FROM Sorry;"
-        results = SQLReturn(aConn,sqlCmd)
-        allLinks = []
-        for aLink in results:
-                allLinks.append(aLink)
-        return (random.choice(allLinks))
-
-def celebrate(aNum): # returns a gif and an inspirational message
-    gif = """
-    https://media1.giphy.com/media/jKYU63SjCLCKkTmtml/giphy-downsized.gif?cid=6104955e5c06a4d74e61555a51acae3e
-    """
-    info = ("""
-    I have just received report number {0}!
-    Everyone, please keep your heads up!
-    I'm listening to your problems, and they are being recorded!
-	:rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: :rsi: 
-	As long as you keep reporting issues, we will fight for a more stable environment!
-    """.format(aNum))
-    return gif, info

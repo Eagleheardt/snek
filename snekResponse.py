@@ -7,7 +7,8 @@ line and put the value on the next line.
 """
 
 textHelp =\
-"""I'm Snek! Here's how I can help!
+"""
+I'm Snek! Here's how I can help!
 				
 If you just report VM issues, I will eat and store them!
 Vm[#] [status] to report! That's it!
@@ -48,6 +49,17 @@ textStep = "Watch for Snek. Snek helps!"
 textBoop = "Boop Snek snoot. Doot doot."
 
 textKiss = "You lean in close and kiss Snek. Snek blushes!"
+
+textThousandGif = "<http://gph.is/28NyLmU|{}th issue!>"
+textThousandFlags = ":rsi: " * 16
+textThousandInfo =\
+"""
+I have just received report number {0}!
+Everyone, please keep your heads up!
+I'm listening to your problems, and they are being recorded!
+As long as you keep reporting issues, we will fight for a more stable environment!
+"""
+
 
 	# if command == "!snekpets":
 	# 	addPet(aUser, "snekpets")
