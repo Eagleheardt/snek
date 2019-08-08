@@ -8,16 +8,16 @@ publishedCommands = []
 ###   Response Commands   ###
 #############################
 
-def inChannelResponse(channel, response):
-    utils.inChannelResponse(channel, response)
+def inChannelResponse(payLoad, response):
+    utils.inChannelResponse(payLoad['channel'], response)
     return
 
-def threadedResponse(channel, response, stamp):
-    utils.threadedResponse(channel, response, stamp)
+def threadedResponse(payLoad, response):
+    utils.threadedResponse(payLoad['channel'], response, payLoad['ts'])
     return
 
-def directResponse(aUser, response):
-    utils.directResponse(aUser, response)
+def directResponse(payLoad, response):
+    utils.directResponse(payLoad['user'], response)
     return
 
 ###########################
@@ -38,16 +38,16 @@ class ExampleCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        inChannelResponse(payLoad['channel'],self.response)
+        inChannelResponse(payLoad, self.response)
         return
 
 publishedCommands.append(ExampleCommand())
 
 #############################################################
 
-###########################
-###   Example Command   ###
-###########################
+########################
+###   Help Command   ###
+########################
 
 class HelpCommand(Command):
     def __init__(self):
@@ -65,9 +65,63 @@ class HelpCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        inChannelResponse(payLoad['channel'],self.response)
+        threadedResponse(payLoad, self.response)
         return
 
 publishedCommands.append(HelpCommand())
+
+#############################################################
+
+########################
+###   Pet Command   ###
+########################
+
+class PetCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = PetCommand, 
+            response = words.textPet,
+            actions = self.doSomething, 
+            triggers = ['help'],
+            description =\
+                """
+                    This is the pet command.
+                    It lets you give Snek a pet.
+                    It also records this action.
+                """
+            )
+
+    def doSomething(self, payLoad):
+        threadedResponse(payLoad, self.response)
+        return
+
+publishedCommands.append(PetCommand())
+
+#############################################################
+
+#########################
+###   Tread Command   ###
+#########################
+
+class TreadCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = TreadCommand, 
+            response = words.textTread,
+            actions = self.doSomething, 
+            triggers = ['help'],
+            description =\
+                """
+                    This is the tread command.
+                    It lets you tread on Snek.
+                    Why would you do this?
+                """
+            )
+
+    def doSomething(self, payLoad):
+        threadedResponse(payLoad, self.response)
+        return
+
+publishedCommands.append(PetCommand())
 
 #############################################################
