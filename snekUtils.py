@@ -9,6 +9,35 @@
 
 CLIENT = None
 
+#############################
+###   Response Commands   ###
+#############################
+
+def inChannelResponse(channel, response):
+    CLIENT.chat_postMessage(
+        channel=channel,
+        text=response,
+        as_user=True
+        )
+    return
+
+def threadedResponse(channel, response, stamp):
+    CLIENT.chat_postMessage(
+        channel=channel,
+        text=response,
+        thread_ts=stamp,
+        as_user=True
+        )
+    return
+
+def directResponse(aUser, response):
+    CLIENT.chat_postMessage(
+        channel=aUser,
+        text=response,
+        as_user=True
+        )
+    return
+
 ###################
 ###   Globals   ###
 ###################
@@ -76,28 +105,38 @@ def convertStatus (stat):
 		
 	return __STATUS_DICTIONARY[stat]
 
-#############################
-###   Response Commands   ###
-#############################
+# def parseVM(vmMsg): # breaks up a message starting with "VM"
+#     try:
+#         vm, stat, rest = vmMsg.split(':',2) # breaks string into 3 parts on a colon
+#         del rest # 'rest' is deleted
+#     except: # if there aren't at least 3 parts
+#         return False, False # returns double false
+#     vm = vm[2:].strip()
+#     return vm, stat # returns the VM number and status
 
-def inChannelResponse(channel, response):
-    CLIENT.chat_postMessage(
-        channel=channel,
-        text=response,
-        as_user=True
-        )
+# def parseDateRange(someDates): # breaks apart dates
+#     date1, date2 = someDates.split(',')
+#     return date1.strip(), date2.strip()
 
-def threadedResponse(channel, response, stamp):
-    CLIENT.chat_postMessage(
-        channel=channel,
-        text=response,
-        thread_ts=stamp,
-        as_user=True
-    )
+##########################################################
+# SQL formatters for reports
 
-def directResponse(aUser, response):
-    CLIENT.chat_postMessage(
-        channel=aUser,
-        text=response,
-        as_user=True
-        )
+# EOD report:
+
+# newStr = "Report for: " + aDate + "\n"
+# 	for row in results:
+# 		i = 1
+# 		for item in row:
+# 			if i == 1:
+# 				newStr += "VM" + str(item) + " - "
+# 			if i == 2:
+# 				newStr += "Status: " + str(item) + " - "
+# 			if i == 3:
+# 				if item != 1:
+# 					newStr += "Reported: " + str(item) + " times"
+# 				else:
+# 					newStr += "Reported: " + str(item) + " time"
+# 			i += 1
+# 		newStr += "\n"
+# 	return newStr
+
