@@ -65,7 +65,8 @@ class HelpCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        threadedResponse(payLoad, self.response)
+        threadedResponse(payLoad, self.response) # reply
+        # TODO need SQL insert
         return
 
 publishedCommands.append(HelpCommand())

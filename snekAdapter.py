@@ -91,22 +91,8 @@ def EODReport (aDate): # Gets a daily summary of the VM number and status report
 			,ServerStatus;
 	""").format(aDate))
 	results = SQLReturn(conn,cmd)
-	newStr = "Report for: " + aDate + "\n"
-	for row in results:
-		i = 1
-		for item in row:
-			if i == 1:
-				newStr += "VM" + str(item) + " - "
-			if i == 2:
-				newStr += "Status: " + str(item) + " - "
-			if i == 3:
-				if item != 1:
-					newStr += "Reported: " + str(item) + " times"
-				else:
-					newStr += "Reported: " + str(item) + " time"
-			i += 1
-		newStr += "\n"
-	return newStr
+	
+	return results
 	
 def EODReportRange (date1, date2): # Gets a range summary of the VM number and status reported
 	cmd = (("""
