@@ -24,15 +24,11 @@ if __name__ == '__main__':
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
 
-            try:
-                text = kwargs['data']['text']
-
-            except KeyError:
+            if kwargs['bot_id']:
                 return
 
-            if text:
-                utils.CLIENT = kwargs['web_client']
-                cmd.EVAL(kwargs)
+            utils.CLIENT = kwargs['web_client']
+            cmd.EVAL(kwargs)
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()
