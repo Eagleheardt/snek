@@ -7,7 +7,7 @@ import snekUtils as utils
 ###   Get the slack token   ###
 ###############################
 
-de.MAIN_KEY = utils.PATH + "snekBotTest/data/snekTest" # prod location
+de.MAIN_KEY = utils.PATH + "snekTest/data/snekTest" # prod location
 SLACK_TOKEN = de.getToken() # Bot's Slack token
 
 ###############################
