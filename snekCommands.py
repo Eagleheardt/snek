@@ -3,6 +3,11 @@ import snekUtils as utils
 
 __commandList = act.publishedCommands
 
+def dumpsterFire(someText=''):
+    if someText == "f5 :dumpster_fire:":
+        return True
+    return False
+
 def isVM(someText=''):
     if someText.startswith('vm'):
         return True
@@ -23,7 +28,12 @@ def EVAL(payload):
     data = payload['data']
     text = data['text'].lower().strip()
 
+    if dumpsterFire(text):
+        # TODO send I'm sorry
+        pass
+
     if isVM(text):
+        # TODO evaluate VM issues
         pass
 
     if isBang(text):

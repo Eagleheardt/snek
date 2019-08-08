@@ -125,3 +125,165 @@ class TreadCommand(Command):
 publishedCommands.append(TreadCommand())
 
 #############################################################
+
+###########################
+###   Provoke Command   ###
+###########################
+
+class ProvokeCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = ProvokeCommand, 
+            response = words.textProvoke,
+            actions = self.doSomething, 
+            triggers = ['provoke'],
+            description =\
+                """
+                    This is the provoke command.
+                    It lets you provoke Snek.
+                    Apparently some people wanted this.
+                """
+            )
+
+    def doSomething(self, payLoad):
+        threadedResponse(payLoad, self.response)
+        return
+
+publishedCommands.append(ProvokeCommand())
+
+#############################################################
+
+########################
+###   Poke Command   ###
+########################
+
+class PokeCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = PokeCommand, 
+            response = words.textPoke,
+            actions = self.doSomething, 
+            triggers = ['poke'],
+            description =\
+                """
+                    This is the poke command.
+                    It lets you poke Snek.
+                    You are hurt inside.
+                """
+            )
+
+    def doSomething(self, payLoad):
+        threadedResponse(payLoad, self.response)
+        return
+
+publishedCommands.append(PokeCommand())
+
+#############################################################
+
+#######################
+###   Hug Command   ###
+#######################
+
+class HugCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = HugCommand, 
+            response = words.textHug,
+            actions = self.doSomething, 
+            triggers = ['hug'],
+            description =\
+                """
+                    This is the hug command.
+                    It lets you give Snek a hug.
+                    You will certainly have a good day!
+                """
+            )
+
+    def doSomething(self, payLoad):
+        threadedResponse(payLoad, self.response)
+        return
+
+publishedCommands.append(HugCommand())
+
+#############################################################
+
+########################
+###   Step Command   ###
+########################
+
+class StepCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = StepCommand, 
+            response = words.textStep,
+            actions = self.doSomething, 
+            triggers = ['step'],
+            description =\
+                """
+                    This is the step command.
+                    You try to step on Snek.
+                    I hope that was an accident.
+                """
+            )
+
+    def doSomething(self, payLoad):
+        threadedResponse(payLoad, self.response)
+        return
+
+publishedCommands.append(StepCommand())
+
+#############################################################
+
+########################
+###   Boop Command   ###
+########################
+
+class BoopCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = BoopCommand, 
+            response = words.textStep,
+            actions = self.doSomething, 
+            triggers = ['boop'],
+            description =\
+                """
+                    This is the boop command.
+                    You boop Snek right on his snoot!
+                    It's just so cute.
+                """
+            )
+
+    def doSomething(self, payLoad):
+        threadedResponse(payLoad, self.response)
+        return
+
+publishedCommands.append(BoopCommand())
+
+#############################################################
+
+########################
+###   Kiss Command   ###
+########################
+
+class KissCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = KissCommand, 
+            response = words.textStep,
+            actions = self.doSomething, 
+            triggers = ['kiss'],
+            description =\
+                """
+                    This is the kiss command.
+                    Do you really love Snek?
+                    Show him you do!
+                """
+            )
+
+    def doSomething(self, payLoad):
+        threadedResponse(payLoad, self.response)
+        return
+
+publishedCommands.append(KissCommand())
+
+#############################################################

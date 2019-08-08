@@ -15,6 +15,22 @@ CLIENT = None
 
 PATH = "/home/ubuntu/"
 
+#########################
+###   Command Class   ###
+#########################
+
+# Holds the basics of a command for Snek
+
+class Command:
+    def __init__(self, name, response, actions, triggers, description):
+        self.name = name
+        self.response = response
+        self.actions = actions
+        self.triggers = triggers
+        self.description = description
+
+# End Command Class
+
 ####################
 ###   Statuses   ###
 ####################
@@ -47,22 +63,6 @@ __STATUS_DICTIONARY = {
     "dumpster_fire":__RESTART
     
 	}
-
-#########################
-###   Command Class   ###
-#########################
-
-# Holds the basics of a command for Snek
-
-class Command:
-    def __init__(self, name, response, actions, triggers, description):
-        self.name = name
-        self.response = response
-        self.actions = actions
-        self.triggers = triggers
-        self.description = description
-
-# End Command Class
 
 ##########################
 ###   Convert status   ###
