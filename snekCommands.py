@@ -21,7 +21,7 @@ def checkCommand(text, option):
 
 def EVAL(payload):
     data = payload['data']
-    text = data['text']
+    text = data['text'].lower().strip()
 
     if isVM(text):
         pass
