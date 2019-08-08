@@ -24,6 +24,7 @@ if __name__ == '__main__':
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
             data = kwargs['data']
+            print(data)
             text = data['text']
             if text:
                 utils.CLIENT = kwargs['web_client']
