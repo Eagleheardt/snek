@@ -1,4 +1,4 @@
-import snekUtils as utils
+import slackutils as utils
 import snekResponse as words
 from snekUtils import Command
 

@@ -1,43 +1,5 @@
 # import snekAdapter as adapter
 
-########################
-###   Slack client   ###
-########################
-
-# The main client
-# used to send the commands to the server
-
-CLIENT = None
-
-#############################
-###   Response Commands   ###
-#############################
-
-def inChannelResponse(channel, response):
-    CLIENT.chat_postMessage(
-        channel=channel,
-        text=response,
-        as_user=True
-        )
-    return
-
-def threadedResponse(channel, response, stamp):
-    CLIENT.chat_postMessage(
-        channel=channel,
-        text=response,
-        thread_ts=stamp,
-        as_user=True
-        )
-    return
-
-def directResponse(aUser, response):
-    CLIENT.chat_postMessage(
-        channel=aUser,
-        text=response,
-        as_user=True
-        )
-    return
-
 ###################
 ###   Globals   ###
 ###################
@@ -140,3 +102,23 @@ def convertStatus (stat):
 # 		newStr += "\n"
 # 	return newStr
 
+# EODReport range
+
+# newStr = "Report for: " + date1 + " to " + date2 + "\n"
+# 	for row in results:
+# 		i = 1
+# 		for item in row:
+# 			if i == 1:
+# 				newStr += "VM" + str(item) + " - "
+# 			if i == 2:
+# 				newStr += "Status: " + str(item) + " - "
+# 			if i == 3:
+# 				if item != 1:
+# 					newStr += "Reported: " + str(item) + " times"
+# 				else:
+# 					newStr += "Reported: " + str(item) + " time"
+# 			i += 1
+# 		newStr += "\n"
+# 	return newStr
+
+#
