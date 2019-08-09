@@ -67,13 +67,6 @@ def convertStatus (stat):
 		
 	return __STATUS_DICTIONARY[stat]
 
-def howManyProblems(someText=''):
-	emojis = someText.count(":") / 2
-	if not(emojis % 2 == 0):
-		return -1
-	
-	return emojis
-
 # def parseVM(vmMsg): # breaks up a message starting with "VM"
 #     try:
 #         vm, stat, rest = vmMsg.split(':',2) # breaks string into 3 parts on a colon
