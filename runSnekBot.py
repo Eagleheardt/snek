@@ -675,7 +675,7 @@ def mos9():
 
 def year1():
         # Oct 25 2019
-        gif = """http://bestanimations.com/Holidays/Birthday/birthdaygifs/birthday-candles-happy-bday-wishes-animated-gif.gif"""
+        gif = """http://gph.is/2gzU6Dv"""
         res = """
         Hey everyone!
         I'm a year old, today!
