@@ -38,11 +38,15 @@ def EVAL(payload):
         text = text.lstrip("vm").strip() # removes the VM and whitespace from the original text
 
         emoji = text.split(":") # splits it apart by emoji
+
         VMServer = emoji.pop(0) # removes and returns the first item in the list - should be our VM number
+        VMServer = utils.checkInt(VMServer) # makes sure it's a number
 
         emoji = list(filter(None, emoji)) # removes the blanks from the list
         emoji = map(str.strip, emoji) # removes the whitespace from all objects
 
+        for i in emoji:
+            pass
 
         return
 

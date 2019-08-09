@@ -61,11 +61,23 @@ __STATUS_DICTIONARY = {
 
 # converts the emoji to a human-readable status
 
-def convertStatus (stat): 
+def convertStatus(stat=''): 
 	if stat not in __STATUS_DICTIONARY:
 		return __DEFAULT_STATUS
 		
 	return __STATUS_DICTIONARY[stat]
+
+####################
+###   Checkint   ###
+####################
+
+# validates input as integer; returns 99 if it isn't
+
+def checkInt(someText=''): 
+	try: 
+		return int(someText)
+	except ValueError:
+		return 99
 
 # def parseVM(vmMsg): # breaks up a message starting with "VM"
 #     try:
