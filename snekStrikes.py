@@ -28,7 +28,7 @@ class ExampleCommand(Command):
     def __init__(self):
         super().__init__(
             name = ExampleCommand, 
-            response = words.textExample,
+            response = words.textThousandFlags,
             actions = self.doSomething, 
             triggers = ['test', 'example'],
             description =\

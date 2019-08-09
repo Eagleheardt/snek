@@ -60,6 +60,7 @@ I'm listening to your problems, and they are being recorded!
 As long as you keep reporting issues, we will fight for a more stable environment!
 """
 
+textYearGif = "http://gph.is/2fVdfmI"
 
 	# if command == "!snekpets":
 	# 	addPet(aUser, "snekpets")
