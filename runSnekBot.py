@@ -1,7 +1,8 @@
 import snekCommands as cmd
-import decode as de
-from slack import RTMClient
 import slackutils as utils
+import decode as de
+
+from slack import RTMClient
 
 ###############################
 ###   Get the slack token   ###

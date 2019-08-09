@@ -97,19 +97,19 @@ def VARIABLE_INSERT(tableName, amtOfColumns, vArgs):
 
 	return code
 
-def SIMPLE_UPDATE(tableName, updateColumn, updateValue, whereColumn, whereCondition):
-	cmd = """
-		UPDATE {0}
-		SET {1} = {2}
-		WHERE {3} = {4};
-	""".format(tableName, updateColumn, updateValue, whereColumn, whereCondition)
+# def SIMPLE_UPDATE(tableName, updateColumn, updateValue, whereColumn, whereCondition):
+# 	cmd = """
+# 		UPDATE {0}
+# 		SET {1} = {2}
+# 		WHERE {3} = {4};
+# 	""".format(tableName, updateColumn, updateValue, whereColumn, whereCondition)
 
-	return EXEC(cmd)
+# 	return EXEC(cmd)
 
-def SIMPLE_DELETE(tableName, whereColumn, whereCondition):
-	cmd = """
-		DELETE FROM {0}
-        WHERE {1} = {2};
-	""".format(tableName, whereColumn, whereCondition)
+# def SIMPLE_DELETE(tableName, whereColumn, whereCondition):
+# 	cmd = """
+# 		DELETE FROM {0}
+#         WHERE {1} = {2};
+# 	""".format(tableName, whereColumn, whereCondition)
 
-	return EXEC(cmd)
+# 	return EXEC(cmd)
