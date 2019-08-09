@@ -1,7 +1,8 @@
-import snekStrikes as act
+import snekStrikes as action
+import snekReports as reporting
 import snekUtils as utils
 
-__commandList = act.publishedCommands
+__commandList = action.publishedCommands# + reporting.publishedCommands
 
 def dumpsterFire(someText=''):
     if someText == "f5 :dumpster_fire:":

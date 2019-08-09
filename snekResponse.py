@@ -50,8 +50,8 @@ textBoop = "Boop Snek snoot. Doot doot."
 
 textKiss = "You lean in close and kiss Snek. Snek blushes!"
 
-textThousandGif = "<http://gph.is/28NyLmU|{}th issue!>"
 textThousandFlags = ":rsi: " * 16
+textThousandGif = "<http://gph.is/28NyLmU|{}th issue!>"
 textThousandInfo =\
 """
 I have just received report number {0}!
@@ -60,7 +60,9 @@ I'm listening to your problems, and they are being recorded!
 As long as you keep reporting issues, we will fight for a more stable environment!
 """
 
-textYearGif = "http://gph.is/2fVdfmI"
+textYearGif = "<http://gph.is/2fVdfmI|It was rough>" # last year was rough
+textYearGif2 = "<http://gph.is/2gzU6Dv|Quite a year>" # it's been quite a year
+
 
 	# if command == "!snekpets":
 	# 	addPet(aUser, "snekpets")
