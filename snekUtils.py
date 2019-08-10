@@ -1,11 +1,11 @@
-# import snekAdapter as adapter
+import datetime
 
 ###################
 ###   Globals   ###
 ###################
 
 # Snek's birthday is October 25, 2018
-
+SNEK_BIRTHDAY = datetime.datetime(2018, 10, 25)
 PATH = "/home/ubuntu/"
 VM_CHANNEL = "CC568PC3X"
 
@@ -24,8 +24,6 @@ class Command:
         self.description = description
 
 # End Command Class
-
-
 
 ##########################################################
 # SQL formatters for reports

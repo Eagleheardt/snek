@@ -20,10 +20,18 @@ Don't bother editing your response, just say it again, if I don't eat it.
 	
 !help - display this message.
 !pet - I love the pets!
-!report[SPACE][YYYY-MM-DD] - gives a breakdown of all the server statuses reported for that day.
-!range[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - gives a breakdown of all the server statuses reported for that date range.
-!mike[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - WARNING: huge report! Gives a breakdown of the time, the server, and the status for that date range.
-!gary[SPACE][YYYY-MM-DD],[YYYY-MM-DD] - WARNING: huge report! Gives a breakdown of the the week, the status, and the number of times occurred.
+
+!report DATE
+	Gives a breakdown of all the server statuses reported for that day.
+
+!range DATE1, DATE2
+	Gives a breakdown of all the server statuses reported for that date range.
+
+!mike DATE1, DATE2 - WARNING: huge report! 
+	Gives a breakdown of the time, the server, and the status for that date range.
+
+!gary DATE1, DATE2 - WARNING: huge report! 
+	Gives a breakdown of the the week, the status, and the number of times occurred.
 """
 
 textCantEat = "I can't eat that!"
@@ -50,7 +58,7 @@ textBoop = "Boop Snek snoot. Doot doot."
 
 textKiss = "You lean in close and kiss Snek. Snek blushes!"
 
-textThousandFlags = ":rsi: " * 16
+textThousandFlags = ":rsi: " * 16 # 16 flags
 textThousandGif = "<http://gph.is/28NyLmU|{}th issue!>"
 textThousandInfo =\
 """

@@ -1,7 +1,7 @@
 import snekStrikes as action
 import snekReports as reporting
 import snekUtils as utils
-import snekVMParser as vmp
+import snekVMHandler as vmh
 
 __commandList = action.publishedCommands# + reporting.publishedCommands
 
@@ -36,7 +36,7 @@ def EVAL(payload):
 
     if isVM(text):
         # TODO evaluate VM issues
-        VMServer, emoji = vmp.parseVM(text)
+        VMServer, emoji = vmh.parseStatus(text)
 
         if emoji is None or len(emoji) is 0:
             return # if no emojis, do nothing
@@ -44,9 +44,9 @@ def EVAL(payload):
         for i in emoji:
             if len(i) > len(" skull_and_crossbones "):
                 continue # longer messages that are caught are ignored
-            
+
             # do the DB insert of he status
-            # VMServer, vmp.convertStatus(i)
+            # VMServer, vmh.convertStatus(i)
 
             # CC568PC3X
         return

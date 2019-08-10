@@ -63,7 +63,7 @@ def checkInt(someText=''):
 def oddColons(someText=''):
 	return bool(someText.count(":") % 2)
 
-def parseVM(text=''): # breaks up a message starting with "VM"
+def parseStatus(text=''): # breaks up a message starting with "VM"
 
 	if oddColons(text):
 		return 99, None 
