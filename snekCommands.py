@@ -36,6 +36,9 @@ def EVAL(payload):
     if isVM(text):
         # TODO evaluate VM issues
         VMServer, emoji = utils.parseVM(text)
+
+        if emoji is None or len(emoji) is 0:
+            return # if no emojis, do nothing
         
         for i in emoji:
             testInsert = "This will be inserted: "
