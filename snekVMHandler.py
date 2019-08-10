@@ -58,6 +58,12 @@ def checkInt(someText=''):
 	try: 
 		return int(someText)
 	except ValueError:
+		try:
+			VMServer, rest = someText.split(" ", 1) # should be our VM number
+			del rest # garbage collection
+			checkInt(VMServer)
+		except ValueError: # no number present
+			return 99, None
 		return 99
 
 ######################
@@ -91,19 +97,15 @@ def parseStatus(text=''):
 	emojiList = list(map(str.strip, emojiList)) # removes the whitespace from all objects
 
 	VMServerPart = emojiList.pop(0) # removes and returns the first item in the list 
-
-	try:
-		VMServer, rest = VMServerPart.split(" ", 1) # should be our VM number
-		del rest # garbage collection
-	except ValueError: # no number present
-		return 99, None
 	
-	if not emojiList:
-		return 99, None # if there's nothing left, get out
-
 	VMServer = checkInt(VMServer) # makes sure it's a number, else it's 99
 
-	print("Server: {}".format(VMServer))
+	print("Server2: {}".format(VMServer))
+
+	if VMServer is 99 or not emojiList:
+		return 99, None # if there's nothing left, get out
+
+	print("Server3: {}".format(VMServer))
 
 	emojiList = list(filter(None, emojiList)) # removes the blanks from the list
 
