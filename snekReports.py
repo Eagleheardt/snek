@@ -95,6 +95,7 @@ class ReportCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        print("begin report")
         # sql.get a day report
         text = payLoad['text']
         try:
