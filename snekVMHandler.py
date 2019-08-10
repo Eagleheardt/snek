@@ -60,10 +60,23 @@ def checkInt(someText=''):
 	except ValueError:
 		return 99
 
+######################
+###   Odd colons   ###
+######################
+
+# does the message contain an odd number of colons?
+
 def oddColons(someText=''):
 	return bool(someText.count(":") % 2)
 
-def parseStatus(text=''): # breaks up a message starting with "VM"
+########################
+###   Parse status   ###
+########################
+
+# Breaks up a message starting with "VM"
+# This is the main purpose of Snek!
+
+def parseStatus(text=''): 
 
 	if oddColons(text):
 		return 99, None 
@@ -74,18 +87,18 @@ def parseStatus(text=''): # breaks up a message starting with "VM"
 
 	text = text.lstrip("vm").strip() # removes the VM and whitespace from the original text
 
-	emoji = text.split(":") # splits it apart by emoji/colons
-	emoji = list(map(str.strip, emoji)) # removes the whitespace from all objects
+	emojiList = text.split(":") # splits it apart by emoji/colons
+	emojiList = list(map(str.strip, emojiList)) # removes the whitespace from all objects
 
-	VMServerPart = emoji.pop(0) # removes and returns the first item in the list 
+	VMServerPart = emojiList.pop(0) # removes and returns the first item in the list 
 	VMServer, rest = VMServerPart.split(" ", 1) # should be our VM number
 	del rest # garbage collection
 
-	if not emoji:
+	if not emojiList:
 		return 99, None # if there's nothing left, get out
 
 	VMServer = checkInt(VMServer) # makes sure it's a number, else it's 99
 
-	emoji = list(filter(None, emoji)) # removes the blanks from the list
+	emojiList = list(filter(None, emojiList)) # removes the blanks from the list
 
-	return VMServer, emoji
+	return VMServer, emojiList
