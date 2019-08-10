@@ -82,7 +82,12 @@ def checkInt(someText=''):
 	except ValueError:
 		return 99
 
+def evenColons(someText=''):
+	return (someText.count(":") % 2)
+
 def parseVM(text=''): # breaks up a message starting with "VM"
+
+	print(evenColons(text))
 	text = text.lstrip("vm").strip() # removes the VM and whitespace from the original text
 
 	emoji = text.split(":") # splits it apart by emoji
