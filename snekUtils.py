@@ -86,7 +86,7 @@ def parseVM(text=''): # breaks up a message starting with "VM"
 	text = text.lstrip("vm").strip() # removes the VM and whitespace from the original text
 
 	emoji = text.split(":") # splits it apart by emoji
-	emoji = map(str.strip, emoji) # removes the whitespace from all objects
+	emoji = list(map(str.strip, emoji)) # removes the whitespace from all objects
 
 	VMServer = emoji.pop(0) # removes and returns the first item in the list - should be our VM number
 	VMServer = utils.checkInt(VMServer) # makes sure it's a number
