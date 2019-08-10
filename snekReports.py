@@ -101,7 +101,7 @@ class ReportCommand(Command):
         try:
             date = utils.dateStripper(text)
             date = utils.dateConverter(date)
-            print(date.format())
+            print("kd{}".format(date))
             #adapter.getReports
         except:
             return
