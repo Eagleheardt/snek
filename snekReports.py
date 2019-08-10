@@ -40,7 +40,7 @@ class ExampleCommand(Command):
         inChannelResponse(payLoad, self.response)
         return
 
-publishedCommands.append(ExampleCommand())
+# publishedCommands.append(ExampleCommand())
 
 #############################################################
 
