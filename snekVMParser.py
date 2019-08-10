@@ -61,7 +61,6 @@ def checkInt(someText=''):
 		return 99
 
 def oddColons(someText=''):
-	print(someText)
 	return bool(someText.count(":") % 2)
 
 def parseVM(text=''): # breaks up a message starting with "VM"
@@ -79,6 +78,7 @@ def parseVM(text=''): # breaks up a message starting with "VM"
 	emoji = list(map(str.strip, emoji)) # removes the whitespace from all objects
 
 	VMServer = emoji.pop(0) # removes and returns the first item in the list - should be our VM number
+	print("Server: {}".format(VMServer))
 
 	if not emoji or len(emoji[0]) > len(" skull_and_crossbones "):
 		return 99, None # This is to attempt to mitigate longer, maintenance style messages
