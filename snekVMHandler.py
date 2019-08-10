@@ -98,7 +98,7 @@ def parseStatus(text=''):
 
 	VMServerPart = emojiList.pop(0) # removes and returns the first item in the list 
 	
-	VMServer = checkInt(VMServer) # makes sure it's a number, else it's 99
+	VMServer = checkInt(VMServerPart) # makes sure it's a number, else it's 99
 
 	print("Server2: {}".format(VMServer))
 
