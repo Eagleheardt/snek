@@ -91,13 +91,19 @@ def parseStatus(text=''):
 	emojiList = list(map(str.strip, emojiList)) # removes the whitespace from all objects
 
 	VMServerPart = emojiList.pop(0) # removes and returns the first item in the list 
-	VMServer, rest = VMServerPart.split(" ", 1) # should be our VM number
-	del rest # garbage collection
 
+	try:
+		VMServer, rest = VMServerPart.split(" ", 1) # should be our VM number
+		del rest # garbage collection
+	except ValueError: # no number present
+		return 99, None
+	
 	if not emojiList:
 		return 99, None # if there's nothing left, get out
 
 	VMServer = checkInt(VMServer) # makes sure it's a number, else it's 99
+
+	print("Server: {}".format(VMServer))
 
 	emojiList = list(filter(None, emojiList)) # removes the blanks from the list
 
