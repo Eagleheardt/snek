@@ -50,6 +50,7 @@ def directResponse(aUser, response):
 
 def dateStripper(someText=''):
 	firstDigitIndex = re.search("\d", someText)
+	print("date stripper {}".format(firstDigitIndex.start()))
 	if firstDigitIndex:
 		return someText[firstDigitIndex.start()]
 	else:
