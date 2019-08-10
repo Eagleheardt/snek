@@ -77,10 +77,9 @@ def parseVM(text=''): # breaks up a message starting with "VM"
 	emoji = text.split(":") # splits it apart by emoji/colons
 	emoji = list(map(str.strip, emoji)) # removes the whitespace from all objects
 
-	VMServerPart = emoji.pop(0) # removes and returns the first item in the list - should be our VM number
-	VMServer, rest = VMServerPart.split(" ", 1)
-	del rest
-	print("Server: {}".format(VMServer))
+	VMServerPart = emoji.pop(0) # removes and returns the first item in the list 
+	VMServer, rest = VMServerPart.split(" ", 1) # should be our VM number
+	del rest # garbage collection
 
 	if not emoji or len(emoji[0]) > len(" skull_and_crossbones "):
 		return 99, None # This is to attempt to mitigate longer, maintenance style messages
