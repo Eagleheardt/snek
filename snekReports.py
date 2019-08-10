@@ -94,7 +94,8 @@ class ReportCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        # parse the payload
+        utils.parseSingleDayReport(payLoad) # parse the payload
+        
         # parse the date
         # try to figure out a way to evaluate multiple dates?s
         # sql.get a day report

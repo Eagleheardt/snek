@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
             if text:
                 slackutils.CLIENT = kwargs['web_client']
-                cmd.EVAL(kwargs)
+                cmd.EVAL(kwargs['data'])
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()

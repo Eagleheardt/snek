@@ -26,8 +26,7 @@ def checkCommand(text, option):
             return True
     return False
 
-def EVAL(payload):
-    data = payload['data']
+def EVAL(data):
     text = data['text'].lower().strip()
 
     if dumpsterFire(text):
@@ -45,7 +44,7 @@ def EVAL(payload):
             if len(i) > len("skull_and_crossbones"):
                 continue # longer messages that are caught are ignored
 
-            # do the DB insert of he status
+            # do the DB insert of the status
             # print(VMServer, vmh.convertStatus(i))
 
         return
