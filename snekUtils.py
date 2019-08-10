@@ -33,16 +33,16 @@ class Command:
 ###   Response Commands   ###
 #############################
 
-def inChannelResponse(payLoad, response):
-    utils.inChannelResponse(payLoad['channel'], response)
+def inChannelResponse(channel, response):
+    utils.inChannelResponse(channel, response)
     return
 
-def threadedResponse(payLoad, response):
-    utils.threadedResponse(payLoad['channel'], response, payLoad['ts'])
+def threadedResponse(channel, response, stamp):
+    utils.threadedResponse(channel, response, stamp)
     return
 
-def directResponse(payLoad, response):
-    utils.directResponse(payLoad['user'], response)
+def directResponse(aUser, response):
+    utils.directResponse(aUser, response)
     return
 
 # stripper
