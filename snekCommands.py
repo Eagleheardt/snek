@@ -42,13 +42,12 @@ def EVAL(payload):
             return # if no emojis, do nothing
         
         for i in emoji:
-            if len(i) > len(" skull_and_crossbones "):
+            if len(i) > len("skull_and_crossbones"):
                 continue # longer messages that are caught are ignored
-            
-            # do the DB insert of he status
-            print(VMServer, vmh.convertStatus(i))
 
-            # CC568PC3X
+            # do the DB insert of he status
+            # print(VMServer, vmh.convertStatus(i))
+
         return
 
     if isBang(text):

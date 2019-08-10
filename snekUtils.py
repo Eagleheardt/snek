@@ -30,22 +30,23 @@ class Command:
 
 # EOD report:
 
-# newStr = "Report for: " + aDate + "\n"
-# 	for row in results:
-# 		i = 1
-# 		for item in row:
-# 			if i == 1:
-# 				newStr += "VM" + str(item) + " - "
-# 			if i == 2:
-# 				newStr += "Status: " + str(item) + " - "
-# 			if i == 3:
-# 				if item != 1:
-# 					newStr += "Reported: " + str(item) + " times"
-# 				else:
-# 					newStr += "Reported: " + str(item) + " time"
-# 			i += 1
-# 		newStr += "\n"
-# 	return newStr
+def parseSingleDayReport(sqlPayload):
+	newStr = "Report for: " + aDate + "\n"
+		for row in results:
+			i = 1
+			for item in row:
+				if i == 1:
+					newStr += "VM" + str(item) + " - "
+				if i == 2:
+					newStr += "Status: " + str(item) + " - "
+				if i == 3:
+					if item != 1:
+						newStr += "Reported: " + str(item) + " times"
+					else:
+						newStr += "Reported: " + str(item) + " time"
+				i += 1
+			newStr += "\n"
+		return newStr
 
 # EODReport range
 
