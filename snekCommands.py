@@ -42,7 +42,7 @@ def EVAL(payload):
         
         for i in emoji:
             testInsert = "This will be inserted: "
-            testInsert += "VM: {} Status: {}".format(VMServer, i)
+            testInsert += "VM: {} Status: {}".format(VMServer, utils.convertStatus(i))
             print(testInsert)
 
             # CC568PC3X
