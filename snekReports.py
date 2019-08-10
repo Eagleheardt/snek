@@ -1,4 +1,5 @@
 import snekUtils as utils
+import snekAdapter as adapter
 from snekUtils import Command
 
 publishedCommands = []
@@ -71,7 +72,7 @@ class SnekpetsCommand(Command):
         directResponse(payLoad, response)
         return
 
-publishedCommands.append(SnekpetsCommand())
+# publishedCommands.append(SnekpetsCommand())
 
 #############################################################
 
@@ -94,11 +95,19 @@ class ReportCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        utils.parseSingleDayReport(payLoad) # parse the payload
-        
-        # parse the date
-        # try to figure out a way to evaluate multiple dates?s
         # sql.get a day report
+        text = payLoad['text']
+        try:
+            date = utils.dateStripper(text)
+            date = utils.dateConverter(date)
+            print(date.format())
+            #adapter.getReports
+        except:
+            return
+
+        response = utils.parseSingleDayReport(payLoad) # parse the payload
+        
+        
         # utils. parse day report
         # response = parsed day report
         directResponse(payLoad, response)
@@ -136,7 +145,7 @@ class RangeCommand(Command):
         directResponse(payLoad, response)
         return
 
-publishedCommands.append(RangeCommand())
+# publishedCommands.append(RangeCommand())
 
 
 # if command.startswith("!mike"):

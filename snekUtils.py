@@ -1,4 +1,6 @@
 import datetime
+import re
+import slackutils as utils
 
 ###################
 ###   Globals   ###
@@ -26,6 +28,20 @@ class Command:
 # End Command Class
 
 ##########################################################
+
+# stripper
+# needs to remove everything before the date
+
+def dateStripper(someText=''):
+	firstDigitIndex = re.search("\d", someText)
+	if firstDigitIndex:
+		return someText[firstDigitIndex.start()]
+	else:
+		return None
+
+def dateConverter(someText=''):
+	return utils.dateConverter(someText)
+
 # SQL formatters for reports
 
 # EOD report:

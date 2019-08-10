@@ -105,3 +105,18 @@ def parseStatus(text=''):
 	emojiList = list(filter(None, emojiList)) # removes the blanks from the list
 
 	return VMServer, emojiList
+
+def insertStatus(data):
+
+	VMServer, emoji = parseStatus(data['text'])
+	user = data['user']
+
+	if emoji is None or len(emoji) is 0:
+		return # if no emojis, do nothing
+
+	for i in emoji:
+		if len(i) > len("skull_and_crossbones"):
+			continue # longer messages that are caught are ignored
+
+		# do the DB insert of the status
+		print(VMServer, convertStatus(i))
