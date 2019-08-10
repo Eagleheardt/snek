@@ -30,6 +30,7 @@ class Command:
 
 # EOD report:
 
+
 def parseSingleDayReport(sqlPayload):
 	newStr = "Report for: " + aDate + "\n"
 		for row in results:
