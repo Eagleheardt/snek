@@ -1,6 +1,7 @@
 import snekStrikes as action
 import snekReports as reporting
 import snekUtils as utils
+import snekVMParser as vmp
 
 __commandList = action.publishedCommands# + reporting.publishedCommands
 
@@ -35,14 +36,14 @@ def EVAL(payload):
 
     if isVM(text):
         # TODO evaluate VM issues
-        VMServer, emoji = utils.parseVM(text)
+        VMServer, emoji = vmp.parseVM(text)
 
         if emoji is None or len(emoji) is 0:
             return # if no emojis, do nothing
         
         for i in emoji:
             testInsert = "This will be inserted: "
-            testInsert += "VM: {} Status: {}".format(VMServer, utils.convertStatus(i))
+            testInsert += "VM: {} Status: {}".format(VMServer, vmp.convertStatus(i))
             print(testInsert)
 
             # CC568PC3X
