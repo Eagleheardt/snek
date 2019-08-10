@@ -44,9 +44,9 @@ def EVAL(payload):
         for i in emoji:
             if len(i) > len(" skull_and_crossbones "):
                 continue # longer messages that are caught are ignored
-
+            
             # do the DB insert of he status
-            # VMServer, vmh.convertStatus(i)
+            print(VMServer, vmh.convertStatus(i))
 
             # CC568PC3X
         return
