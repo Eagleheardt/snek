@@ -100,6 +100,7 @@ class ReportCommand(Command):
         text = payLoad['text']
         try:
             date = utils.dateStripper(text)
+            print("3")
             date = utils.dateConverter(date)
             print("kd{}".format(date))
             #adapter.getReports
