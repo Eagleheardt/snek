@@ -6,7 +6,6 @@ import random
 DATABASE = utils.PATH + "snekBotTest/data/snekbot.db" # prod location
 sql.setConnection(DATABASE) # set DB connection
 
-
 ####
 
 # CREATE TABLE IF NOT EXISTS "Status" (

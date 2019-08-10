@@ -4,7 +4,10 @@
 ###   Globals   ###
 ###################
 
+# Snek's birthday is October 25, 2018
+
 PATH = "/home/ubuntu/"
+VM_CHANNEL = "CC568PC3X"
 
 #########################
 ###   Command Class   ###
@@ -26,7 +29,7 @@ class Command:
 ###   Statuses   ###
 ####################
 
-# Record of the woes faced by our environment
+# the woes faced by our environment
 
 __RECONNECT = "Auto reconnect"
 __WINDOW = "Window closes"
@@ -79,18 +82,20 @@ def checkInt(someText=''):
 	except ValueError:
 		return 99
 
-# def parseVM(vmMsg): # breaks up a message starting with "VM"
-#     try:
-#         vm, stat, rest = vmMsg.split(':',2) # breaks string into 3 parts on a colon
-#         del rest # 'rest' is deleted
-#     except: # if there aren't at least 3 parts
-#         return False, False # returns double false
-#     vm = vm[2:].strip()
-#     return vm, stat # returns the VM number and status
+def parseVM(text=''): # breaks up a message starting with "VM"
+	text = text.lstrip("vm").strip() # removes the VM and whitespace from the original text
 
-# def parseDateRange(someDates): # breaks apart dates
-#     date1, date2 = someDates.split(',')
-#     return date1.strip(), date2.strip()
+	emoji = text.split(":") # splits it apart by emoji
+	emoji = map(str.strip, emoji) # removes the whitespace from all objects
+
+	VMServer = emoji.pop(0) # removes and returns the first item in the list - should be our VM number
+	VMServer = utils.checkInt(VMServer) # makes sure it's a number
+
+	emoji = list(filter(None, emoji)) # removes the blanks from the list
+
+	return VMServer, emoji
+
+
 
 ##########################################################
 # SQL formatters for reports

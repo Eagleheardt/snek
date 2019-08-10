@@ -35,19 +35,14 @@ def EVAL(payload):
 
     if isVM(text):
         # TODO evaluate VM issues
-        text = text.lstrip("vm").strip() # removes the VM and whitespace from the original text
-
-        emoji = text.split(":") # splits it apart by emoji
-
-        VMServer = emoji.pop(0) # removes and returns the first item in the list - should be our VM number
-        VMServer = utils.checkInt(VMServer) # makes sure it's a number
-
-        emoji = list(filter(None, emoji)) # removes the blanks from the list
-        emoji = map(str.strip, emoji) # removes the whitespace from all objects
-
+        VMServer, emoji = utils.parseVM(text)
+        
         for i in emoji:
-            pass
+            testInsert = "This will be inserted: "
+            testInsert += "VM: {} Status: {}".format(VMServer, i)
+            print(testInsert)
 
+            # CC568PC3X
         return
 
     if isBang(text):
