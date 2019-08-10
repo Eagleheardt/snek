@@ -75,7 +75,7 @@ def parseVM(text=''): # breaks up a message starting with "VM"
 
 	VMServer = emoji.pop(0) # removes and returns the first item in the list - should be our VM number
 
-	if not emoji[0]:
+	if not emoji:
 		return 99, None
 
 	if len(emoji[0]) > len(" skull_and_crossbones "):
