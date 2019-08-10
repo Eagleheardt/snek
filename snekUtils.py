@@ -82,12 +82,14 @@ def checkInt(someText=''):
 	except ValueError:
 		return 99
 
-def evenColons(someText=''):
-	return not bool(someText.count(":") % 2)
+def oddColons(someText=''):
+	return bool(someText.count(":") % 2)
 
 def parseVM(text=''): # breaks up a message starting with "VM"
 
-	print(evenColons(text))
+	if oddColons(text):
+		return 99, None
+
 	text = text.lstrip("vm").strip() # removes the VM and whitespace from the original text
 
 	emoji = text.split(":") # splits it apart by emoji
@@ -96,7 +98,7 @@ def parseVM(text=''): # breaks up a message starting with "VM"
 	VMServer = emoji.pop(0) # removes and returns the first item in the list - should be our VM number
 
 	if len(emoji[0]) > len(" skull_and_crossbones "):
-		return # This is to attempt to mitigate longer, maintenance style messages
+		return 99, None # This is to attempt to mitigate longer, maintenance style messages
 
 	VMServer = checkInt(VMServer) # makes sure it's a number
 
