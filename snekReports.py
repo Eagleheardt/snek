@@ -1,5 +1,5 @@
 import snekUtils as utils
-import snekAdapter as adapter
+# import snekAdapter as adapter
 from snekUtils import Command
 
 publishedCommands = []
