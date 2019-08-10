@@ -42,9 +42,11 @@ def EVAL(payload):
             return # if no emojis, do nothing
         
         for i in emoji:
-            testInsert = "This will be inserted: "
-            testInsert += "VM: {} Status: {}".format(VMServer, vmp.convertStatus(i))
-            print(testInsert)
+            if len(i) > len(" skull_and_crossbones "):
+                continue # longer messages that are caught are ignored
+            
+            # do the DB insert of he status
+            # VMServer, vmp.convertStatus(i)
 
             # CC568PC3X
         return

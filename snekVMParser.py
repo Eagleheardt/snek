@@ -81,8 +81,8 @@ def parseVM(text=''): # breaks up a message starting with "VM"
 	VMServer, rest = VMServerPart.split(" ", 1) # should be our VM number
 	del rest # garbage collection
 
-	if not emoji or len(emoji[0]) > len(" skull_and_crossbones "):
-		return 99, None # This is to attempt to mitigate longer, maintenance style messages
+	if not emoji:
+		return 99, None # if there's nothing left, get out
 
 	VMServer = checkInt(VMServer) # makes sure it's a number, else it's 99
 
