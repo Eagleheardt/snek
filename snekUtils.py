@@ -49,8 +49,13 @@ __STATUS_DICTIONARY = {
 	"face_vomiting":__RECONNECT,
 
 	"fire":__WINDOW,
+	"dumpster_fire":__WINDOW,
+	"fireball":__WINDOW,
 
 	"loading":__LOADING,
+	"slow_bro":__LOADING,
+	"sloth":__LOADING,
+	"slow_parrot":__LOADING,
 
 	"skull_and_crossbones":__RESTART,
 	"angry_skeletor":__RESTART,
