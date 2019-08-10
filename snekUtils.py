@@ -83,7 +83,7 @@ def checkInt(someText=''):
 		return 99
 
 def evenColons(someText=''):
-	return (someText.count(":") % 2)
+	return not bool(someText.count(":") % 2)
 
 def parseVM(text=''): # breaks up a message starting with "VM"
 
@@ -94,13 +94,15 @@ def parseVM(text=''): # breaks up a message starting with "VM"
 	emoji = list(map(str.strip, emoji)) # removes the whitespace from all objects
 
 	VMServer = emoji.pop(0) # removes and returns the first item in the list - should be our VM number
+
+	if len(emoji[0]) > len(" skull_and_crossbones "):
+		return # This is to attempt to mitigate longer, maintenance style messages
+
 	VMServer = checkInt(VMServer) # makes sure it's a number
 
 	emoji = list(filter(None, emoji)) # removes the blanks from the list
 
 	return VMServer, emoji
-
-
 
 ##########################################################
 # SQL formatters for reports
