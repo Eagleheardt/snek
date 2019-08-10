@@ -43,8 +43,8 @@ def EVAL(data):
         text = text.lstrip("!")
         print("begin bang")
         for option in __commandList:
+            print(option)
             if checkCommand(text, option):
-                print(option)
                 option_method = getattr(option.name, option.actions.__name__)
                 if option_method:
                     option.actions(data)

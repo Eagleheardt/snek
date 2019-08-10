@@ -29,6 +29,22 @@ class Command:
 
 ##########################################################
 
+#############################
+###   Response Commands   ###
+#############################
+
+def inChannelResponse(payLoad, response):
+    utils.inChannelResponse(payLoad['channel'], response)
+    return
+
+def threadedResponse(payLoad, response):
+    utils.threadedResponse(payLoad['channel'], response, payLoad['ts'])
+    return
+
+def directResponse(payLoad, response):
+    utils.directResponse(payLoad['user'], response)
+    return
+
 # stripper
 # needs to remove everything before the date
 
