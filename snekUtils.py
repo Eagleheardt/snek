@@ -49,15 +49,10 @@ def directResponse(aUser, response):
 # needs to remove everything before the date
 
 def dateStripper(someText=''):
-	firstDigitIndex = re.search("\d", someText)
-	print('en number')
-	print(firstDigitIndex.start())
-	print('en number')
-	print(someText[(int(firstDigitIndex.start())) + 1:])
-	if firstDigitIndex:
-		print('stripper')
-		print((someText[(int(firstDigitIndex.start())) + 1:]).strip())
-		return (someText[(int(firstDigitIndex.start())) + 1:]).strip()
+	firstDigitMatch = re.search("\d", someText)
+	if firstDigitMatch:
+		firstDigitIndex = firstDigitIndex.start()
+		return someText[firstDigitIndex:].strip()
 	else:
 		return None
 
