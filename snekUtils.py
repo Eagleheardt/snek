@@ -10,6 +10,7 @@ import slackutils as utils
 SNEK_BIRTHDAY = datetime.datetime(2018, 10, 25)
 PATH = "/home/ubuntu/"
 VM_CHANNEL = "CC568PC3X"
+MAX_REPORTS = 1
 
 #########################
 ###   Command Class   ###
@@ -45,8 +46,18 @@ def directResponse(aUser, response):
     utils.directResponse(aUser, response)
     return
 
-# stripper
-# needs to remove everything before the date
+def sanitizeID(slackID=''):
+	utils.sanitizeID(slackID)
+	return
+
+def reconstitueID(slackID=''):
+	utils.reconstitueID(slackID)
+	return
+
+def dateConverter(someText=''):
+	return utils.dateConverter(someText)
+
+# remove everything before the date
 
 def dateStripper(someText=''):
 	firstDigitMatch = re.search("\d", someText)
@@ -56,15 +67,11 @@ def dateStripper(someText=''):
 	else:
 		return None
 
-def dateConverter(someText=''):
-	return utils.dateConverter(someText)
-
 # SQL formatters for reports
-
-# EOD report:
 
 def parseSingleDayReport(sqlPayload):
 	print(sqlPayload)
+	return(sqlPayload)
 	# newStr = "Report for: " + aDate + "\n"
 	# for row in sqlPayload:
 	# 	i = 1

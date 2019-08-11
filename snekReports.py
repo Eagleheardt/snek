@@ -102,16 +102,12 @@ class ReportCommand(Command):
             print(date)
             if date is None:
                 return
-            date = utils.dateConverter(date)
+            
             #adapter.getReports
         except:
             return
 
         response = utils.parseSingleDayReport(payLoad) # parse the payload
-        
-        
-        # utils. parse day report
-        # response = parsed day report
         directResponse(payLoad, response)
         return
 

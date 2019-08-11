@@ -2,7 +2,7 @@ import snekStrikes as action
 import snekReports as reporting
 import snekUtils as utils
 
-__commandList = action.publishedCommands
+__commandList = action.publishedCommands + reporting.publishedCommands
 
 def dumpsterFire(someText=''):
     if someText == "f5 :dumpster_fire:":
@@ -54,11 +54,9 @@ def EVAL(data):
                     option.actions(data)
                     return
 
-        for option in reporting.publishedCommands:
             if checkStart(text, option):
                 option_method = getattr(option.name, option.actions.__name__)
                 if option_method:
                     option.actions(data)
                     return
-
     return

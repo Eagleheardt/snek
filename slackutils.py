@@ -38,28 +38,6 @@ def directResponse(aUser, response):
         )
     return
 
-def dateConverter(someDate=''):
-    datetimeObject = ''
-    print("date congert")
-
-    try:
-        print("try1")
-        datetimeObject = dt.strptime(someDate, '%Y-%m-%d')
-        print(datetimeObject.strftime("%m/%d/%Y"))
-        return datetimeObject
-    except:
-        pass
-
-    try:
-        print("try2")
-        datetimeObject = dt.strptime(someDate, '%m/%d/%Y')
-        print(datetimeObject.strftime("%m/%d/%Y"))
-        return datetimeObject
-    except:
-        pass
-
-    return None
-
 def sanitizeID(slackID=''):
     return slackID.replace('<', '').replace('>','').replace('@','').upper()
 
