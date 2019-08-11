@@ -40,6 +40,7 @@ def directResponse(aUser, response):
 
 def dateConverter(someDate=''):
     datetimeObject = ''
+    print("date congert")
 
     try:
         datetimeObject = dt.strptime(someDate, '%Y-%m-%d')
