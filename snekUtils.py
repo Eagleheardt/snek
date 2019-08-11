@@ -59,7 +59,7 @@ def dateConverter(someText=''):
 
 # remove everything before the date
 SINGLE_DATE = "\d{4}-\d{2}-\d{2}"
-DOUBLE_DATE = re.compile("\d{4}-\d{2}-\d{2}, \d{4}-\d{2}-\d{2}")
+DOUBLE_DATE = "\d{4}-\d{2}-\d{2}, \d{4}-\d{2}-\d{2}"
 
 def dateStripper(someText=''):
 	print("stripper")
@@ -68,7 +68,7 @@ def dateStripper(someText=''):
 	print(extractedDate)
 	print("Before If")
 	if extractedDate:
-		print(extractedDate.match())
+		print(extractedDate.group())
 		return #someText[firstDigitIndex:].strip()
 	else:
 		return None
