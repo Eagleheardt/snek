@@ -54,8 +54,8 @@ def dateStripper(someText=''):
 	print("489")
 	print("date stripper {}".format(firstDigitIndex.group()))
 	if firstDigitIndex:
-		print(someText[(int(firstDigitIndex.group())):])
-		return someText[firstDigitIndex.group():]
+		print(someText[(int(firstDigitIndex.group())) + 1:])
+		return (someText[(int(firstDigitIndex.group())) + 1:]).strip()
 	else:
 		return None
 
