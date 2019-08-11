@@ -52,7 +52,7 @@ def dateStripper(someText=''):
 	print(someText)
 	firstDigitIndex = re.search("\d", someText)
 	print("489")
-	print("date stripper {}".format(firstDigitIndex))
+	print("date stripper {}".format(firstDigitIndex.match()))
 	if firstDigitIndex:
 		return someText[firstDigitIndex.start()]
 	else:
