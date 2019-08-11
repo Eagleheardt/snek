@@ -57,7 +57,7 @@ def dateStripper(someText=''):
 
 def dateConverter(someText=''):
 	print("Date converter")
-	print(someText)
+	print(utils.dateConverter(someText))
 	return utils.dateConverter(someText)
 
 # SQL formatters for reports

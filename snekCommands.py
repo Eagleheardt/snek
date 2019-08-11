@@ -47,9 +47,7 @@ def EVAL(data):
 
     if isBang(text):
         text = text.lstrip("!")
-        print("begin bang")
         for option in __commandList:
-            print(option)
             if checkCommand(text, option):
                 option_method = getattr(option.name, option.actions.__name__)
                 if option_method:
@@ -57,7 +55,6 @@ def EVAL(data):
                     return
 
         for option in reporting.publishedCommands:
-            print(option)
             if checkStart(text, option):
                 option_method = getattr(option.name, option.actions.__name__)
                 if option_method:

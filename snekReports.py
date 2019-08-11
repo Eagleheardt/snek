@@ -86,7 +86,7 @@ class ReportCommand(Command):
             name = ReportCommand, 
             response = None,
             actions = self.doSomething, 
-            triggers = ['report', 'day', 'single', 'one'],
+            triggers = ['report'],
             description =\
                 """
                     This is the report command.
@@ -103,7 +103,6 @@ class ReportCommand(Command):
             if date is None:
                 return
             date = utils.dateConverter(date)
-            print("kd{}".format(date))
             #adapter.getReports
         except:
             return
