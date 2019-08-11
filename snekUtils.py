@@ -12,6 +12,13 @@ PATH = "/home/ubuntu/"
 VM_CHANNEL = "CC568PC3X"
 MAX_REPORTS = 1
 
+#################
+###   ReGeX   ###
+#################
+
+ONE_DATE = "\d{4}-\d{2}-\d{2}"
+DATE_RANGE = "\d{4}-\d{2}-\d{2}, \d{4}-\d{2}-\d{2}"
+
 #########################
 ###   Command Class   ###
 #########################
@@ -58,18 +65,14 @@ def dateConverter(someText=''):
 	return utils.dateConverter(someText)
 
 # remove everything before the date
-SINGLE_DATE = "\d{4}-\d{2}-\d{2}"
-DOUBLE_DATE = "\d{4}-\d{2}-\d{2}, \d{4}-\d{2}-\d{2}"
 
-def dateStripper(someText=''):
-	print("stripper")
-	extractedDate = re.search(SINGLE_DATE, someText)
-	print('after')
+
+def dateStripper(someText='',pattern=''):
+	extractedDate = re.search(pattern, someText)
 	print(extractedDate)
-	print("Before If")
 	if extractedDate:
-		print(extractedDate.group())
-		return #someText[firstDigitIndex:].strip()
+		print(extractedDate.group(0))
+		return extractedDate.group(0).strip()
 	else:
 		return None
 
