@@ -49,17 +49,15 @@ def directResponse(aUser, response):
 # needs to remove everything before the date
 
 def dateStripper(someText=''):
-	print(someText)
 	firstDigitIndex = re.search("\d", someText)
-	print("489")
-	print("date stripper {}".format(firstDigitIndex.group()))
 	if firstDigitIndex:
-		print(someText[(int(firstDigitIndex.group())) + 1:])
 		return (someText[(int(firstDigitIndex.group())) + 1:]).strip()
 	else:
 		return None
 
 def dateConverter(someText=''):
+	print("Date converter")
+	print(someText)
 	return utils.dateConverter(someText)
 
 # SQL formatters for reports
