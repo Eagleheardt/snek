@@ -62,9 +62,8 @@ SINGLE_DATE = "\d{4}-\d{2}-\d{2}"
 DOUBLE_DATE = "\d{4}-\d{2}-\d{2}, \d{4}-\d{2}-\d{2}"
 
 def dateStripper(someText='', pattern=''):
-	prog = re.compile(pattern)
 	print("stripper")
-	extractedDate = re.search(prog, someText)
+	extractedDate = re.match(SINGLE_DATE, someText)
 	print('after')
 	print(extractedDate)
 	if extractedDate:
