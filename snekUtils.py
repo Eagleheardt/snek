@@ -53,11 +53,11 @@ def dateStripper(someText=''):
 	print('en number')
 	print(firstDigitIndex.start())
 	print('en number')
-	print(someText[(int(firstDigitIndex.group())) + 1:])
+	print(someText[(int(firstDigitIndex.start())) + 1:])
 	if firstDigitIndex:
 		print('stripper')
-		print((someText[(int(firstDigitIndex.group())) + 1:]).strip())
-		return (someText[(int(firstDigitIndex.group())) + 1:]).strip()
+		print((someText[(int(firstDigitIndex.start())) + 1:]).strip())
+		return (someText[(int(firstDigitIndex.start())) + 1:]).strip()
 	else:
 		return None
 
