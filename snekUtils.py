@@ -54,7 +54,7 @@ def dateStripper(someText=''):
 	print(firstDigitMatch)
 	if firstDigitMatch:
 		print("RES")
-		firstDigitIndex = firstDigitIndex.start()
+		firstDigitIndex = int(firstDigitIndex.start())
 		print(firstDigitIndex)
 		return someText[firstDigitIndex:].strip()
 	else:
