@@ -61,7 +61,7 @@ def dateConverter(someText=''):
 SINGLE_DATE = re.compile("\d{4}-\d{2}-\d{2}")
 DOUBLE_DATE = re.compile("\d{4}-\d{2}-\d{2}, \d{4}-\d{2}-\d{2}")
 
-def dateStripper(someText='', pattern=''):
+def dateStripper(someText=''):
 	print("stripper")
 	extractedDate = re.search("\d", someText)
 	print('after')

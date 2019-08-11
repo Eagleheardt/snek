@@ -98,7 +98,7 @@ class ReportCommand(Command):
         # sql.get a day report
         text = payLoad['text']
         try:
-            date = utils.dateStripper(utils.SINGLE_DATE, text)
+            date = utils.dateStripper(text)
             print(date)
             if date is None:
                 return
