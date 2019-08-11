@@ -42,8 +42,14 @@ def dateConverter(someDate=''):
     datetimeObject = ''
 
     try:
-        datetimeObject = dt.strptime(someDate, '%m/%d/%y')
         datetimeObject = dt.strptime(someDate, '%Y-%m-%d')
+        print(datetimeObject + "2")
+    except:
+        pass
+
+    try:
+        datetimeObject = dt.strptime(someDate, '%m/%d/%Y')
+        print(datetimeObject + "3")
     except:
         pass
 
