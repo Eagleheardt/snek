@@ -98,8 +98,12 @@ class ReportCommand(Command):
         print("begin report")
         # sql.get a day report
         text = payLoad['text']
+        print("text")
+        print(text)
         try:
             date = utils.dateStripper(text)
+            print("Date")
+            print(date)
             if date is None:
                 return
             date = utils.dateConverter(date)
