@@ -58,12 +58,12 @@ def dateConverter(someText=''):
 	return utils.dateConverter(someText)
 
 # remove everything before the date
-SINGLE_DATE = re.compile("\d{4}-\d{2}-\d{2}")
+SINGLE_DATE = "\d{4}-\d{2}-\d{2}"
 DOUBLE_DATE = re.compile("\d{4}-\d{2}-\d{2}, \d{4}-\d{2}-\d{2}")
 
 def dateStripper(someText=''):
 	print("stripper")
-	extractedDate = re.search("\d", someText)
+	extractedDate = re.search(SINGLE_DATE, someText)
 	print('after')
 	print(extractedDate)
 	print("Before If")
