@@ -44,17 +44,19 @@ def dateConverter(someDate=''):
 
     try:
         datetimeObject = dt.strptime(someDate, '%Y-%m-%d')
-        print(datetimeObject + "2")
+        print(datetimeObject)
+        return datetimeObject
     except:
         pass
 
     try:
         datetimeObject = dt.strptime(someDate, '%m/%d/%Y')
-        print(datetimeObject + "3")
+        print(datetimeObject)
+        return datetimeObject
     except:
         pass
 
-    return datetimeObject
+    return None
 
 def sanitizeID(slackID=''):
     return slackID.replace('<', '').replace('>','').replace('@','').upper()
