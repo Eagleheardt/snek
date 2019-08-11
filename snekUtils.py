@@ -67,7 +67,7 @@ def dateConverter(someText=''):
 # remove everything before the date
 
 
-def dateStripper(someText='',pattern=''):
+def dateStripper(pattern='',someText=''):
 	extractedDate = re.search(pattern, someText)
 	print(extractedDate)
 	if extractedDate:
