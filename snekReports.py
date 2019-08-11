@@ -99,6 +99,7 @@ class ReportCommand(Command):
         text = payLoad['text']
         try:
             date = utils.dateStripper(text)
+            print(date)
             if date is None:
                 return
             date = utils.dateConverter(date)
