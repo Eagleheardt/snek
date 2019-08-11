@@ -43,7 +43,7 @@ def dateConverter(someDate=''):
     print("date congert")
 
     try:
-        print("1")
+        print(someDate)
         datetimeObject = dt.strptime(someDate, '%Y-%m-%d')
         print(datetimeObject.strftime("%m/%d/%Y"))
         return datetimeObject
