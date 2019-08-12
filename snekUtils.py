@@ -64,15 +64,14 @@ def reconstitueID(slackID=''):
 def dateConverter(someText=''):
 	return utils.dateConverter(someText)
 
-# remove everything before the date
+def linkFormatter(someURL='',someText=''):
+    return utils.linkFormatter(someURL, someText)
 
-
-def dateStripper(pattern='',someText=''):
+# extract the date
+def dateExtractor(pattern='',someText=''):
 	extractedDate = re.search(pattern, someText)
-	print(extractedDate)
 	if extractedDate:
-		print(extractedDate.group(0))
-		return extractedDate.group(0).strip()
+		return extractedDate.group(0)
 	else:
 		return None
 

@@ -1,5 +1,3 @@
-import datetime as dt
-
 ########################
 ###   Slack client   ###
 ########################
@@ -44,3 +42,6 @@ def sanitizeID(slackID=''):
 
 def reconstitueID(slackID=''):
     return '<@{}>'.format(slackID)
+
+def linkFormatter(someURL='',someText=''):
+    return "<{}|{}>".format(someURL, someText)

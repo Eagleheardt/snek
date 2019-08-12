@@ -98,13 +98,10 @@ class ReportCommand(Command):
         # sql.get a day report
         text = payLoad['text']
         try:
-            date = utils.dateStripper(utils.ONE_DATE,text)
-            print("DASTE")
-            print(date)
+            date = utils.dateExtractor(utils.ONE_DATE, text)
             if date is None:
                 return
-            
-            #adapter.getReports
+            #sqlResults = adapter.getReport(date)
         except:
             return
 
