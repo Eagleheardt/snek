@@ -102,10 +102,11 @@ class ReportCommand(Command):
             if date is None:
                 return
             #sqlResults = adapter.getReport(date)
+            response = utils.parseSingleDayReport(payLoad) # parse the payload
         except:
             return
 
-        response = utils.parseSingleDayReport(payLoad) # parse the payload
+        
         directResponse(payLoad, response)
         return
 

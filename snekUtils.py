@@ -16,8 +16,8 @@ MAX_REPORTS = 1
 ###   ReGeX   ###
 #################
 
-ONE_DATE = "\d{4}-\d{2}-\d{2}"
-DATE_RANGE = "\d{4}-\d{2}-\d{2}, \d{4}-\d{2}-\d{2}"
+ONE_DATE = "^(20[1-2][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]))$"
+DATE_RANGE = "^(20[1-2][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]), 20[1-2][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]))$"
 
 #########################
 ###   Command Class   ###
@@ -79,7 +79,7 @@ def dateExtractor(pattern='',someText=''):
 
 def parseSingleDayReport(sqlPayload):
 	print(sqlPayload)
-	return(sqlPayload)
+	return sqlPayload
 	# newStr = "Report for: " + aDate + "\n"
 	# for row in sqlPayload:
 	# 	i = 1
