@@ -43,7 +43,8 @@ def singleDayReport(aDate): # Gets a daily summary of the VM number and status r
 	""").format(aDate))
 	print(cmd)
 	results = sql.GET(cmd)
-	
+	print("after")
+	print(results)
 	return results
 
 def rangeReport (date1, date2): # Gets a range summary of the VM number and status reported
