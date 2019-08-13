@@ -1,6 +1,7 @@
+import slackutils as utils
 import datetime
 import re
-import slackutils as utils
+
 
 ###################
 ###   Globals   ###
@@ -17,7 +18,7 @@ MAX_REPORTS = 1
 #################
 
 ONE_DATE = "^(20[1-2][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]))$"
-DATE_RANGE = "^(20[1-2][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]), 20[1-2][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]))$"
+DATE_RANGE = "^(20[1-2][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]),\s?20[1-2][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]))$"
 
 #########################
 ###   Command Class   ###
@@ -69,7 +70,10 @@ def linkFormatter(someURL='',someText=''):
 
 # extract the date
 def dateExtractor(pattern='',someText=''):
-	extractedDate = re.search(pattern, someText)
+	print("re")
+	extractedDate = re.match(pattern, someText)
+	print(extractedDate)
+
 	if extractedDate:
 		return extractedDate.group(0)
 	else:
@@ -188,3 +192,10 @@ def parseSingleDayReport(sqlPayload):
 # 		newStr += "\n"
         # return newStr
 
+
+#I'm sorry
+
+# allLinks = []
+# for aLink in results:
+# 		allLinks.append(aLink)
+# return (random.choice(allLinks))

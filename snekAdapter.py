@@ -19,9 +19,9 @@ import random
 def insertIssue (server, stat): # adds am Issue as a server number and status
 	sql.EXEC(("""
 		INSERT INTO 
-			Status (ServerNumber, ServerStatus) 
+			"Issues" (ServerNumber, ServerStatus) 
 		VALUES
-			('{0}','{1}');
+			({0},'{1}');
 	""").format(server,stat))
 	return
 
@@ -34,8 +34,8 @@ def singleDayReport(aDate): # Gets a daily summary of the VM number and status r
 		FROM 
 			Status
 		WHERE 
-			date(TimeStamp) IN('{0}')
-			AND ServerNumber IN(1,2,3,4,17)
+			date(TimeStamp) IN ('{0}')
+			AND ServerNumber IN (1, 2, 3, 4, 17)
 		GROUP BY 
 			ServerNumber
 			,ServerStatus;
@@ -44,7 +44,7 @@ def singleDayReport(aDate): # Gets a daily summary of the VM number and status r
 	
 	return results
 
-def multiDayReport (date1, date2): # Gets a range summary of the VM number and status reported
+def rangeReport (date1, date2): # Gets a range summary of the VM number and status reported
 	cmd = (("""
 		SELECT 
 			ServerNumber as [Server]
@@ -54,7 +54,7 @@ def multiDayReport (date1, date2): # Gets a range summary of the VM number and s
 			Status
 		WHERE 
 			date(TimeStamp) BETWEEN '{0}' AND '{1}'
-			AND ServerNumber IN('1','2','3','4','17')
+			AND ServerNumber IN (1, 2, 3, 4, 17)
 		GROUP BY 
 			ServerNumber
 			,ServerStatus
@@ -72,7 +72,7 @@ def mikeReport (date1, date2): # Gets the time, VM number, and status reported a
 			UseHistory 
 		WHERE
 			date(TimeStamp) BETWEEN '{0}' AND '{1}' 
-			AND ServerNumber IN('1','2','3','4','17');
+			AND ServerNumber IN(1, 2, 3, 4, 17);
 	""").format(date1, date2))
 	results = SQLReturn(conn,cmd)
 	
@@ -101,8 +101,7 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 	return results
 
 def allIssues():
-	allStat = getReports('2018-01-01', '9999-12-31')
-	pass
+	return (rangeReport('1999-12-31', '9999-12-31'))
 
 # CREATE TABLE IF NOT EXISTS "Interactions" (
 # 'ID' INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -111,7 +110,7 @@ def allIssues():
 # 'aStatus' TEXT NOT NULL DEFAULT 'NONE'
 # );
 
-def addPet(aUser,aStat):  #adds a 'pet' to the database
+def addPet(aUser,aStat):  # adds a 'pet' to the database
 	sql.EXEC(("""
 		INSERT INTO 
 			Interactions (User, aStatus)
@@ -139,12 +138,9 @@ def getPets(): # returns the amount of love Snek gets
 # );
 
 def imSorry(aConn): # an appology for the environment in which we live
-	sqlCmd = "SELECT Link FROM Sorry;"
-	results = SQLReturn(aConn,sqlCmd)
-	allLinks = []
-	for aLink in results:
-			allLinks.append(aLink)
-	return (random.choice(allLinks))
+	sqlCmd = "SELECT Link FROM Music;"
+	results = sql.GET(sqlCmd)
+	return results
 
 # CREATE TABLE IF NOT EXISTS "Users" (
 # 'ID' INTEGER PRIMARY KEY AUTOINCREMENT, 
