@@ -30,19 +30,19 @@ def insertIssue (server, stat): # adds am Issue as a server number and status
 def singleDayReport(aDate): # Gets a daily summary of the VM number and status reported
 	print("singleDayReport")
 	cmd = (("""
-		SELECT 
-			ServerNumber as [Server]
-			, ServerStatus as [Status]
-			, count(ServerStatus) as [Amount]
-		FROM 
-			'Issues'
-		WHERE 
-			date(TimeStamp) IN ('{0}')
-			AND ServerNumber IN (1, 2, 3, 4, 17)
-		GROUP BY 
-			ServerNumber
-			,ServerStatus;
-	""").format(aDate))
+			SELECT 	
+				ServerNumber as [Server]
+				, ServerStatus as [Status]
+				, count(ServerStatus) as [Amount] 
+			FROM 
+				Issues 
+			WHERE 
+				date(TimeStamp) IN ('{0}') 
+				AND ServerNumber IN (1, 2, 3, 4, 17) 
+			GROUP BY 
+				ServerNumber
+				, ServerStatus;
+			""").format(aDate))
 	print(cmd)
 	results = sql.GET(cmd)
 	print("after")
