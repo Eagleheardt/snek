@@ -5,6 +5,9 @@ import random
 
 sql.DATABASE = utils.PATH + "snekTest/data/newSnek.db" # prod location
 
+print("SDFLKJ")
+print(sql.DATABASE)
+
 ####
 
 # CREATE TABLE IF NOT EXISTS "Issues" (
