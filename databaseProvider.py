@@ -42,8 +42,9 @@ def GET(sqlCmd):
 		print("result")
 		print(result)
 
-	except:
+	except Exception as e:
 		print('why???')
+		print(e)
 		return -1
 
 	finally:
