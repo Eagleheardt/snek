@@ -80,23 +80,16 @@ def dateExtractor(pattern='',someText=''):
 
 # SQL formatters for reports
 
-def parseSingleDayReport(sqlPayload):
+def parseSingleDayReport(sqlPayload, aDate):
 	report = "Report for: " + aDate + "\n"
-	for row in sqlPayload:
-		i = 1
-		for item in row:
-			if i == 1:
-				newStr += "VM" + str(item) + " - "
-			if i == 2:
-				newStr += "Status: " + str(item) + " - "
-			if i == 3:
-				if item != 1:
-					newStr += "Reported: " + str(item) + " times"
-				else:
-					newStr += "Reported: " + str(item) + " time"
-			i += 1
-	newStr += "\n"
-	return newStr
+	for tupple in sqlPayload:
+		print(tupple)
+		# report += "VM" + str(item) + " - "
+		# report += "Status: " + str(item) + " - "
+		# report += "Reported: " + str(item) + " times"
+		# report += "Reported: " + str(item) + " time"
+		# report += "\n"
+	return report
 
 # EODReport range
 

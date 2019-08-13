@@ -103,7 +103,7 @@ class ReportCommand(Command):
                 return
             sqlResults = adapter.singleDayReport(date)
             print(sqlResults)
-            response = utils.parseSingleDayReport(sqlResults) # parse the payload
+            response = utils.parseSingleDayReport(sqlResults, date) # parse the payload
             print(response)
         except:
             return
