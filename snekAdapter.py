@@ -5,7 +5,7 @@ import datetime
 import random
 
 DATABASE = utils.WORKING_PATH + utils.DATABASE_PATH
-sql.__MAIN_CONNECTION(sqlite3.connect(DATABASE, check_same_thread=False)) # prod location
+sql.__MAIN_CONNECTION = (sqlite3.connect(DATABASE, check_same_thread=False)) # prod location
 
 print("SDFLKJ")
 
