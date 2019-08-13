@@ -32,10 +32,16 @@ def EXEC(sqlCmd): # fetches data from the database
 def GET(sqlCmd):
 	try:
 		someCursor = MAIN_CONNECTION.cursor()
+		print("cursor set")
+		print(someCursor)
 		someCursor.execute(sqlCmd)
+		print('do it')
 		result = someCursor.fetchall()
+		print("result")
+		print(result)
 
 	except:
+		print('why???')
 		return -1
 
 	finally:
