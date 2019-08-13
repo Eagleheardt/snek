@@ -32,7 +32,7 @@ def singleDayReport(aDate): # Gets a daily summary of the VM number and status r
 			, ServerStatus as [Status]
 			, count(ServerStatus) as [Amount]
 		FROM 
-			Issues
+			'Issues'
 		WHERE 
 			date(TimeStamp) IN ('{0}')
 			AND ServerNumber IN (1, 2, 3, 4, 17)

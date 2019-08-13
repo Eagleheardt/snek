@@ -6,9 +6,9 @@ __MAIN_CONNECTION = sqlite3.connect(DATABASE, check_same_thread=False)
 
 def EXEC(sqlCmd): # fetches data from the database
 	try:
-		someCursor = __MAIN_CONNECTION.cursor()
-		someCursor.execute(sqlCmd)
-		if someCursor.rowcount == 0:
+		__someCursor = __MAIN_CONNECTION.cursor()
+		__someCursor.execute(sqlCmd)
+		if __someCursor.rowcount == 0:
 			return 3
 		__MAIN_CONNECTION.commit() 
 
@@ -24,16 +24,16 @@ def EXEC(sqlCmd): # fetches data from the database
 		return 9
 
 	finally:
-		someCursor.close()
+		__someCursor.close()
 
 def GET(sqlCmd):
 	try:
-		someCursor = __MAIN_CONNECTION.cursor()
+		__someCursor = __MAIN_CONNECTION.cursor()
 		print("cursor set")
-		print(someCursor)
-		someCursor.execute(sqlCmd)
+		print(__someCursor)
+		__someCursor.execute(sqlCmd)
 		print('do it')
-		result = someCursor.fetchall()
+		result = __someCursor.fetchall()
 		print("result")
 		print(result)
 
@@ -43,7 +43,7 @@ def GET(sqlCmd):
 		return -1
 
 	finally:
-		someCursor.close()
+		__someCursor.close()
 
 	return result
 
