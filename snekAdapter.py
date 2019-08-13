@@ -19,7 +19,7 @@ sql.setConnection(DATABASE) # set DB connection
 def insertIssue (server, stat): # adds am Issue as a server number and status
 	sql.EXEC(("""
 		INSERT INTO 
-			"Issues" (ServerNumber, ServerStatus) 
+			Issues (ServerNumber, ServerStatus) 
 		VALUES
 			({0},'{1}');
 	""").format(server,stat))
@@ -33,7 +33,7 @@ def singleDayReport(aDate): # Gets a daily summary of the VM number and status r
 			, ServerStatus as [Status]
 			, count(ServerStatus) as [Amount]
 		FROM 
-			Status
+			Issues
 		WHERE 
 			date(TimeStamp) IN ('{0}')
 			AND ServerNumber IN (1, 2, 3, 4, 17)
@@ -53,7 +53,7 @@ def rangeReport (date1, date2): # Gets a range summary of the VM number and stat
 			, ServerStatus as [Status]
 			, count(ServerStatus) as [Amount]
 		FROM 
-			Status
+			Issues
 		WHERE 
 			date(TimeStamp) BETWEEN '{0}' AND '{1}'
 			AND ServerNumber IN (1, 2, 3, 4, 17)
@@ -71,7 +71,7 @@ def mikeReport (date1, date2): # Gets the time, VM number, and status reported a
 			, ServerNumber
 			, ServerStatus
 		FROM
-			UseHistory 
+			Issues 
 		WHERE
 			date(TimeStamp) BETWEEN '{0}' AND '{1}' 
 			AND ServerNumber IN(1, 2, 3, 4, 17);
@@ -86,11 +86,11 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 		SELECT 
 			date(Week)
 			, ServerStatus
-			, count(0) as Issues
+			, count(0) as probs
 		FROM (
 			SELECT datetime([TimeStamp], 'start of day', 'weekday 1', '-7 day') as Week
 				, ServerStatus
-			FROM UseHistory
+			FROM Issues
 		) as t
 		WHERE 
 			Week BETWEEN '{0}' AND '{1}' 
