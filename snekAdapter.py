@@ -29,7 +29,7 @@ def insertIssue (server, stat): # adds am Issue as a server number and status
 def singleDayReport(aDate): # Gets a daily summary of the VM number and status reported
 	cmd = (("""
 			SELECT
-				{},
+				{0},
 				ServerNumber as [Server]
 				, ServerStatus as [Status]
 				, count(ServerStatus) as [Amount] 
