@@ -30,7 +30,6 @@ def GET(sqlCmd):
 	try:
 		__someCursor = __MAIN_CONNECTION.cursor()
 		print("cursor set")
-		print(__someCursor)
 		__someCursor.execute(sqlCmd)
 		print('do it')
 		result = __someCursor.fetchall()
