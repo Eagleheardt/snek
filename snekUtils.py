@@ -72,7 +72,6 @@ def linkFormatter(someURL='',someText=''):
 def dateExtractor(pattern='',someText=''):
 	extractedDate = re.search(pattern, someText)
 	if extractedDate:
-		print(extractedDate.group(0))
 		return extractedDate.group(0)
 	else:
 		return None
@@ -80,6 +79,7 @@ def dateExtractor(pattern='',someText=''):
 # SQL formatters for reports
 
 def parseSingleDayReport(sqlPayload):
+	print("parseSingleDayReport")
 	print(sqlPayload)
 	return sqlPayload
 	# newStr = "Report for: " + aDate + "\n"

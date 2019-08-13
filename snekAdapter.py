@@ -40,7 +40,7 @@ def singleDayReport(aDate): # Gets a daily summary of the VM number and status r
 			ServerNumber
 			,ServerStatus;
 	""").format(aDate))
-	results = SQLReturn(conn,cmd)
+	results = sql.GET(cmd)
 	
 	return results
 
