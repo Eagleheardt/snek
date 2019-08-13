@@ -5,6 +5,7 @@ __MAIN_CONNECTION = None
 
 def setConnection(DATABASE):
 	__MAIN_CONNECTION = sqlite3.connect(DATABASE, check_same_thread=False)
+	SCHEMA()
 
 def SCHEMA():
 	__someCursor = __MAIN_CONNECTION.cursor()
