@@ -7,7 +7,7 @@ def SCHEMA():
 	__someCursor = __MAIN_CONNECTION.cursor()
 	__someCursor.execute("PRAGMA database_list;")
 	schemaResults = __someCursor.fetchall()
-	print(schemaResults)
+	return schemaResults
 
 def EXEC(sqlCmd): # fetches data from the database
 	try:
@@ -32,18 +32,12 @@ def EXEC(sqlCmd): # fetches data from the database
 		__someCursor.close()
 
 def GET(sqlCmd):
-	SCHEMA()
 	try:
 		__someCursor = __MAIN_CONNECTION.cursor()
-		print("cursor set")
 		__someCursor.execute(sqlCmd)
-		print('do it')
 		result = __someCursor.fetchall()
-		print("result")
-		print(result)
 
 	except Exception as e:
-		print('why???')
 		print(e)
 		return -1
 

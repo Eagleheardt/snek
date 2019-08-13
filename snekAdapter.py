@@ -7,8 +7,6 @@ import random
 DATABASE = utils.WORKING_PATH + utils.DATABASE_PATH
 sql.__MAIN_CONNECTION = (sqlite3.connect(DATABASE, check_same_thread=False)) # prod location
 
-print("SDFLKJ")
-
 ####
 
 # CREATE TABLE IF NOT EXISTS "Issues" (
@@ -29,9 +27,9 @@ def insertIssue (server, stat): # adds am Issue as a server number and status
 	return
 
 def singleDayReport(aDate): # Gets a daily summary of the VM number and status reported
-	print("singleDayReport")
 	cmd = (("""
-			SELECT 	
+			SELECT
+				{},
 				ServerNumber as [Server]
 				, ServerStatus as [Status]
 				, count(ServerStatus) as [Amount] 
@@ -44,10 +42,7 @@ def singleDayReport(aDate): # Gets a daily summary of the VM number and status r
 				ServerNumber
 				, ServerStatus;
 			""").format(aDate))
-	print(cmd)
 	results = sql.GET(cmd)
-	print("after")
-	print(results)
 	return results
 
 def rangeReport (date1, date2): # Gets a range summary of the VM number and status reported
