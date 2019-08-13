@@ -2,7 +2,7 @@ import sqlite3
 import numpy as np
 
 DATABASE = ''
-__MAIN_CONNECTION = sqlite3.connect(DATABASE)
+__MAIN_CONNECTION = sqlite3.connect(DATABASE, check_same_thread=False)
 
 def EXEC(sqlCmd): # fetches data from the database
 	try:
