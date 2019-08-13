@@ -1,10 +1,11 @@
 import sqlite3
 import numpy as np
 
-__MAIN_CONNECTION = None
+__MAIN_CONNECTION = ''
 
 def setConnection(DATABASE):
 	__MAIN_CONNECTION = sqlite3.connect(DATABASE, check_same_thread=False)
+	print(__MAIN_CONNECTION)
 	SCHEMA()
 
 def SCHEMA():
