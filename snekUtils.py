@@ -83,38 +83,14 @@ def dateExtractor(pattern='',someText=''):
 def parseSingleDayReport(sqlPayload, aDate):
 	report = "Report for: " + aDate + "\n"
 	for tupple in sqlPayload:
-		try:
-			print(tupple[0])
-		except:
-			print("no 0")
 		tServerNumber = tupple[0]
 		tStatus = tupple[1]
 		tAmount = tupple[2]
-		rep = "Report" if int(tAmount) == 1 else "Reports"
+		amt = "time" if int(tAmount) == 1 else "times"
 
-		report += "VM{} - Status: {} - {}: {} + \n".format(tServerNumber, tStatus, rep, tAmount)
+		report += "VM{} - Status: {} - {} {}\n".format(tServerNumber, tStatus, tAmount, amt)
 
 	return report
-
-# EODReport range
-
-# newStr = "Report for: " + date1 + " to " + date2 + "\n"
-# 	for row in results:
-# 		i = 1
-# 		for item in row:
-# 			if i == 1:
-# 				newStr += "VM" + str(item) + " - "
-# 			if i == 2:
-# 				newStr += "Status: " + str(item) + " - "
-# 			if i == 3:
-# 				if item != 1:
-# 					newStr += "Reported: " + str(item) + " times"
-# 				else:
-# 					newStr += "Reported: " + str(item) + " time"
-# 			i += 1
-# 		newStr += "\n"
-# 	return newStr
-
 # historical report
 
 # newStr = "Report for: " + date1 + " to " + date2 + "\n"
