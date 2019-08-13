@@ -4,6 +4,14 @@ import numpy as np
 DATABASE = ''
 __MAIN_CONNECTION = sqlite3.connect(DATABASE, check_same_thread=False)
 
+def SCHEMA():
+	__someCursor = __MAIN_CONNECTION.cursor()
+	__someCursor.execute("PRAGMA database_list;")
+	schemaResults = __someCursor.fetchall()
+	print(schemaResults)
+
+SCHEMA()
+
 def EXEC(sqlCmd): # fetches data from the database
 	try:
 		__someCursor = __MAIN_CONNECTION.cursor()
