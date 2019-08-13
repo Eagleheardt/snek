@@ -101,9 +101,8 @@ class ReportCommand(Command):
             date = utils.dateExtractor(utils.ONE_DATE, text)
             if date is None:
                 return
-            #sqlResults = adapter.getReport(date)
-            response = utils.parseSingleDayReport(date) # parse the payload
-            print(response)
+            sqlResults = adapter.getReport(date)
+            response = utils.parseSingleDayReport(sqlResults) # parse the payload
         except:
             return
 

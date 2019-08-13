@@ -81,7 +81,7 @@ def dateExtractor(pattern='',someText=''):
 def parseSingleDayReport(sqlPayload):
 	print("parseSingleDayReport")
 	print(sqlPayload)
-	return sqlPayload
+	return # sqlPayload
 	# newStr = "Report for: " + aDate + "\n"
 	# for row in sqlPayload:
 	# 	i = 1
