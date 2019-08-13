@@ -86,7 +86,7 @@ def parseSingleDayReport(sqlPayload, aDate):
 		tServerNumber = tupple[0]
 		tStatus = tupple[1]
 		tAmount = tupple[2]
-		rep = "Report" if tAmount is 1 else "Reports"
+		rep = "Report" if int(tAmount) == 1 else "Reports"
 
 		report += "VM{} - Status: {} - {}: {} + \n".format(tServerNumber, tStatus, rep, tAmount)
 
