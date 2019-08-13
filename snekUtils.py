@@ -83,6 +83,10 @@ def dateExtractor(pattern='',someText=''):
 def parseSingleDayReport(sqlPayload, aDate):
 	report = "Report for: " + aDate + "\n"
 	for tupple in sqlPayload:
+		try:
+			print(tupple[0])
+		except:
+			print("no 0")
 		tServerNumber = tupple[0]
 		tStatus = tupple[1]
 		tAmount = tupple[2]
