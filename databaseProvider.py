@@ -1,16 +1,18 @@
 import sqlite3
 import numpy as np
 
-DATABASE = ''
-__MAIN_CONNECTION = sqlite3.connect(DATABASE, check_same_thread=False)
+__MAIN_CONNECTION = None
+
+def setConnection(someDB):
+	__MAIN_CONNECTION = sqlite3.connect(someDB, check_same_thread=False)
+	SCHEMA()
+	pass
 
 def SCHEMA():
 	__someCursor = __MAIN_CONNECTION.cursor()
 	__someCursor.execute("PRAGMA database_list;")
 	schemaResults = __someCursor.fetchall()
 	print(schemaResults)
-
-SCHEMA()
 
 def EXEC(sqlCmd): # fetches data from the database
 	try:
