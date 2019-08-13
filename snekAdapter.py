@@ -26,6 +26,7 @@ def insertIssue (server, stat): # adds am Issue as a server number and status
 	return
 
 def singleDayReport(aDate): # Gets a daily summary of the VM number and status reported
+	print("singleDayReport")
 	cmd = (("""
 		SELECT 
 			ServerNumber as [Server]
@@ -40,6 +41,7 @@ def singleDayReport(aDate): # Gets a daily summary of the VM number and status r
 			ServerNumber
 			,ServerStatus;
 	""").format(aDate))
+	print(cmd)
 	results = sql.GET(cmd)
 	
 	return results
