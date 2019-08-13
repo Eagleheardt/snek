@@ -5,6 +5,8 @@ MAIN_CONNECTION = None
 
 def setConnection(DATABASE):
 	MAIN_CONNECTION = sqlite3.connect(DATABASE)
+	print("connection set?")
+	print(MAIN_CONNECTION)
 	return 
 
 def EXEC(sqlCmd): # fetches data from the database
