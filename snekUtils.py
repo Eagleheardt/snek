@@ -70,12 +70,9 @@ def linkFormatter(someURL='',someText=''):
 
 # extract the date
 def dateExtractor(pattern='',someText=''):
-	print(someText)
-	print("re.search")
 	extractedDate = re.search(pattern, someText)
-	print(extractedDate)
-
 	if extractedDate:
+		print(extractedDate.group(0))
 		return extractedDate.group(0)
 	else:
 		return None
