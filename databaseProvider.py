@@ -1,21 +1,16 @@
 import sqlite3
 import numpy as np
 
-MAIN_CONNECTION = None
-
-def setConnection(DATABASE):
-	MAIN_CONNECTION = sqlite3.connect(DATABASE)
-	print("connection set?")
-	print(MAIN_CONNECTION)
-	return 
+DATABASE = ''
+__MAIN_CONNECTION = sqlite3.connect(DATABASE)
 
 def EXEC(sqlCmd): # fetches data from the database
 	try:
-		someCursor = MAIN_CONNECTION.cursor()
+		someCursor = __MAIN_CONNECTION.cursor()
 		someCursor.execute(sqlCmd)
 		if someCursor.rowcount == 0:
 			return 3
-		MAIN_CONNECTION.commit() 
+		__MAIN_CONNECTION.commit() 
 
 		return 0
 
@@ -33,7 +28,7 @@ def EXEC(sqlCmd): # fetches data from the database
 
 def GET(sqlCmd):
 	try:
-		someCursor = MAIN_CONNECTION.cursor()
+		someCursor = __MAIN_CONNECTION.cursor()
 		print("cursor set")
 		print(someCursor)
 		someCursor.execute(sqlCmd)

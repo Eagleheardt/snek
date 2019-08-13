@@ -3,8 +3,7 @@ import snekUtils as utils
 import datetime
 import random
 
-DATABASE = utils.PATH + "snekTest/data/newSnek.db" # prod location
-sql.setConnection(DATABASE) # set DB connection
+sql.DATABASE = utils.PATH + "snekTest/data/newSnek.db" # prod location
 
 ####
 
