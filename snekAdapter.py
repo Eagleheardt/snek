@@ -1,10 +1,12 @@
 import databaseProvider as sql
 import snekUtils as utils
+import sqlite3
 import datetime
 import random
 
-sql.setConnection(utils.WORKING_PATH + utils.DATABASE_PATH) # prod location
-print(sql)
+DATABASE = utils.WORKING_PATH + utils.DATABASE_PATH
+sql.__MAIN_CONNECTION(sqlite3.connect(DATABASE, check_same_thread=False)) # prod location
+
 print("SDFLKJ")
 
 ####

@@ -1,8 +1,7 @@
 import sqlite3
-import snekUtils as utils
 import numpy as np
 
-__MAIN_CONNECTION = sqlite3.connect(utils.DATABASE_PATH, check_same_thread=False)
+__MAIN_CONNECTION = None
 
 def SCHEMA():
 	__someCursor = __MAIN_CONNECTION.cursor()
