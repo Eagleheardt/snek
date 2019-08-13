@@ -1,7 +1,7 @@
 import sqlite3
 import numpy as np
 
-__MAIN_CONNECTION = ''
+__MAIN_CONNECTION = None
 
 def setConnection(DATABASE):
 	__MAIN_CONNECTION = sqlite3.connect(DATABASE, check_same_thread=False)
@@ -37,6 +37,7 @@ def EXEC(sqlCmd): # fetches data from the database
 		__someCursor.close()
 
 def GET(sqlCmd):
+	SCHEMA()
 	try:
 		__someCursor = __MAIN_CONNECTION.cursor()
 		print("cursor set")
