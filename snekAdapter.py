@@ -6,7 +6,6 @@ import random
 sql.setConnection(utils.WORKING_PATH + utils.DATABASE_PATH) # prod location
 print(sql)
 print("SDFLKJ")
-print(sql.DATABASE)
 
 ####
 
