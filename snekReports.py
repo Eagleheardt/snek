@@ -141,13 +141,15 @@ class RangeCommand(Command):
                 return
 
             date1, date2 = utils.dateExtractor(dateBlock)
-            print(date1,date2)
+            print(date1)
+            print(date2)
 
             sqlResults = adapter.multiDayReport(date1, date2)
             totalReports = adapter.reportCount(date1, date2)
             response = utils.parseMultiDayReport(sqlResults,date1, date2, totalReports) # parse the payload
             print(response)
-        except:
+        except Exception as e:
+            print(e)
             return
 
         directResponse(payLoad, response)
