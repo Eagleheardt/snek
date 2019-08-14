@@ -1,5 +1,3 @@
-import datetime as dt
-
 ########################
 ###   Slack client   ###
 ########################
@@ -38,20 +36,12 @@ def directResponse(aUser, response):
         )
     return
 
-def dateConverter(someDate=''):
-    datetimeObject = ''
-
-    try:
-        datetimeObject = dt.strptime(someDate, '%m/%d/%y')
-        datetimeObject = dt.strptime(someDate, '%Y-%m-%d')
-    except:
-        pass
-
-    return datetimeObject
-
 def sanitizeID(slackID=''):
     return slackID.replace('<', '').replace('>','').replace('@','').upper()
 
 
 def reconstitueID(slackID=''):
     return '<@{}>'.format(slackID)
+
+def linkFormatter(someURL='',someText=''):
+    return "<{}|{}>".format(someURL, someText)

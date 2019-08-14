@@ -1,19 +1,21 @@
 import sqlite3
 import numpy as np
 
-MAIN_CONNECTION = None
+__MAIN_CONNECTION = None
 
-def setConnection(DATABASE):
-	MAIN_CONNECTION = sqlite3.connect(DATABASE)
-	return 
+def SCHEMA():
+	__someCursor = __MAIN_CONNECTION.cursor()
+	__someCursor.execute("PRAGMA database_list;")
+	schemaResults = __someCursor.fetchall()
+	return schemaResults
 
 def EXEC(sqlCmd): # fetches data from the database
 	try:
-		someCursor = MAIN_CONNECTION.cursor()
-		someCursor.execute(sqlCmd)
-		if someCursor.rowcount == 0:
+		__someCursor = __MAIN_CONNECTION.cursor()
+		__someCursor.execute(sqlCmd)
+		if __someCursor.rowcount == 0:
 			return 3
-		MAIN_CONNECTION.commit() 
+		__MAIN_CONNECTION.commit() 
 
 		return 0
 
@@ -27,19 +29,20 @@ def EXEC(sqlCmd): # fetches data from the database
 		return 9
 
 	finally:
-		someCursor.close()
+		__someCursor.close()
 
 def GET(sqlCmd):
 	try:
-		someCursor = MAIN_CONNECTION.cursor()
-		someCursor.execute(sqlCmd)
-		result = someCursor.fetchall()
+		__someCursor = __MAIN_CONNECTION.cursor()
+		__someCursor.execute(sqlCmd)
+		result = __someCursor.fetchall()
 
-	except:
+	except Exception as e:
+		print(e)
 		return -1
 
 	finally:
-		someCursor.close()
+		__someCursor.close()
 
 	return result
 

@@ -26,7 +26,7 @@ from slack import RTMClient
 ###   Get the slack token   ###
 ###############################
 
-de.MAIN_KEY = utils.PATH + "snekTest/data/snekTest" # prod location
+de.MAIN_KEY = utils.WORKING_PATH + utils.KEY_PATH # prod location
 SLACK_TOKEN = de.getToken() # Bot's Slack token
 
 ###############################
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
             if text:
                 slackutils.CLIENT = kwargs['web_client']
-                cmd.EVAL(kwargs)
+                cmd.EVAL(kwargs['data'])
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()

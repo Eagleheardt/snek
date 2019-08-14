@@ -3,7 +3,7 @@ import snekReports as reporting
 import snekUtils as utils
 import snekVMHandler as vmh
 
-__commandList = action.publishedCommands# + reporting.publishedCommands
+__commandList = action.publishedCommands + reporting.publishedCommands
 
 def dumpsterFire(someText=''):
     if someText == "f5 :dumpster_fire:":
@@ -26,28 +26,22 @@ def checkCommand(text, option):
             return True
     return False
 
-def EVAL(payload):
-    data = payload['data']
+def checkStart(text, option):
+    for trigger in option.triggers:
+        if text.startswith(trigger):
+            return True
+    return False
+
+def EVAL(data):
     text = data['text'].lower().strip()
+    userID = data['user']
 
     if dumpsterFire(text):
         # TODO send I'm sorry
         pass
 
     if isVM(text):
-        # TODO evaluate VM issues
-        VMServer, emoji = vmh.parseStatus(text)
-
-        if emoji is None or len(emoji) is 0:
-            return # if no emojis, do nothing
-        
-        for i in emoji:
-            if len(i) > len("skull_and_crossbones"):
-                continue # longer messages that are caught are ignored
-
-            # do the DB insert of he status
-            # print(VMServer, vmh.convertStatus(i))
-
+        vmh.insertStatus(data, utils.MAX_REPORTS)
         return
 
     if isBang(text):
@@ -59,4 +53,9 @@ def EVAL(payload):
                     option.actions(data)
                     return
 
+            if checkStart(text, option):
+                option_method = getattr(option.name, option.actions.__name__)
+                if option_method:
+                    option.actions(data)
+                    return
     return

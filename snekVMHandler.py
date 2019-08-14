@@ -1,3 +1,5 @@
+import snekUtils as utils
+
 ####################
 ###   Statuses   ###
 ####################
@@ -62,7 +64,7 @@ def checkInt(someText=''):
 			VMServer, rest = someText.split(" ", 1) # should be our VM number
 			del rest # garbage collection
 			checkInt(VMServer)
-		except ValueError: # no number present
+		except:
 			return 99
 		return 99
 
@@ -105,3 +107,20 @@ def parseStatus(text=''):
 	emojiList = list(filter(None, emojiList)) # removes the blanks from the list
 
 	return VMServer, emojiList
+
+def insertStatus(data, limit=1):
+
+	VMServer, emoji = parseStatus(data['text'])
+	user = data['user']
+
+	if emoji is None or len(emoji) is 0:
+		return # if no emojis, do nothing
+
+	for i, j in enumerate(emoji, 1):
+		if len(j) > len("skull_and_crossbones"):
+			continue # longer messages that are caught are ignored
+
+		# do the DB insert of the status
+		print(VMServer, convertStatus(j))
+		if i >= limit:
+			return

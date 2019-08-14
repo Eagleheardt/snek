@@ -1,4 +1,7 @@
+import slackutils as utils
 import datetime
+import re
+
 
 ###################
 ###   Globals   ###
@@ -6,8 +9,18 @@ import datetime
 
 # Snek's birthday is October 25, 2018
 SNEK_BIRTHDAY = datetime.datetime(2018, 10, 25)
-PATH = "/home/ubuntu/"
+WORKING_PATH = "/home/ubuntu/"
+DATABASE_PATH = "snekTest/data/newSnek.db"
+KEY_PATH = "snekTest/data/snekTest"
 VM_CHANNEL = "CC568PC3X"
+MAX_REPORTS = 3
+
+#################
+###   ReGeX   ###
+#################
+
+ONE_DATE = "20[1-2][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])$"
+DATE_RANGE = "20[1-2][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]),\s?20[1-2][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])$"
 
 #########################
 ###   Command Class   ###
@@ -26,67 +39,79 @@ class Command:
 # End Command Class
 
 ##########################################################
+
+#############################
+###   Response Commands   ###
+#############################
+
+def inChannelResponse(channel, response):
+    utils.inChannelResponse(channel, response)
+    return
+
+def threadedResponse(channel, response, stamp):
+    utils.threadedResponse(channel, response, stamp)
+    return
+
+def directResponse(aUser, response):
+    utils.directResponse(aUser, response)
+    return
+
+def sanitizeID(slackID=''):
+	utils.sanitizeID(slackID)
+	return
+
+def reconstitueID(slackID=''):
+	utils.reconstitueID(slackID)
+	return
+
+def dateConverter(someText=''):
+	return utils.dateConverter(someText)
+
+def linkFormatter(someURL='',someText=''):
+    return utils.linkFormatter(someURL, someText)
+
+# extract the date
+def dateExtractor(pattern='',someText=''):
+	extractedDate = re.search(pattern, someText)
+	if extractedDate:
+		return extractedDate.group(0)
+	else:
+		return None
+
+def dateSplitter(dateGroup=''):
+	d1, d2 = dateGroup.split(',')
+	d1 = d1.strip()
+	d2 = d2.strip()
+
+	return d1, d2
+
 # SQL formatters for reports
 
-# EOD report:
+def parseStandardReport(sqlPayload):
+	report = ""
+	for tupple in sqlPayload:
+		tServerNumber = tupple[0]
+		tStatus = tupple[1]
+		tAmount = tupple[2]
+		amt = "time" if int(tAmount) == 1 else "times"
 
-def parseSingleDayReport(sqlPayload):
-	newStr = "Report for: " + aDate + "\n"
-		for row in results:
-			i = 1
-			for item in row:
-				if i == 1:
-					newStr += "VM" + str(item) + " - "
-				if i == 2:
-					newStr += "Status: " + str(item) + " - "
-				if i == 3:
-					if item != 1:
-						newStr += "Reported: " + str(item) + " times"
-					else:
-						newStr += "Reported: " + str(item) + " time"
-				i += 1
-			newStr += "\n"
-		return newStr
+		report += "VM{} - Status: {} - {} {}\n".format(tServerNumber, tStatus, tAmount, amt)
+	
+	return report
 
-# EODReport range
+def parseSingleDayReport(sqlPayload, aDate, totalReports):
+	report = "Report for: {}\n".format(aDate)
+	report += parseStandardReport(sqlPayload)	
+	report += "Total reports: {}".format(totalReports[0][0])
 
-# newStr = "Report for: " + date1 + " to " + date2 + "\n"
-# 	for row in results:
-# 		i = 1
-# 		for item in row:
-# 			if i == 1:
-# 				newStr += "VM" + str(item) + " - "
-# 			if i == 2:
-# 				newStr += "Status: " + str(item) + " - "
-# 			if i == 3:
-# 				if item != 1:
-# 					newStr += "Reported: " + str(item) + " times"
-# 				else:
-# 					newStr += "Reported: " + str(item) + " time"
-# 			i += 1
-# 		newStr += "\n"
-# 	return newStr
+	return report
 
-# historical report
+def parseMultiDayReport(sqlPayload, aDate1, aDate2, totalReports):
+	report = "Report for: {} to {}\n".format(aDate1, aDate2)
+	report += parseStandardReport(sqlPayload)	
+	report += "Total reports: {}".format(totalReports[0][0])
 
-# newStr = "Report for: " + date1 + " to " + date2 + "\n"
-# 	for row in results:
-# 		i = 1
-# 		for item in row:
-# 			if i == 1:
-# 				newStr += "VM" + str(item) + " - "
-# 			if i == 2:
-# 				newStr += "Status: " + str(item) + " - "
-# 			if i == 3:
-# 				if item != 1:
-# 					newStr += "Reported: " + str(item) + " times"
-# 				else:
-# 					newStr += "Reported: " + str(item) + " time"
-# 			i += 1
-# 		newStr += "\n"
-
-#     newStr += ("\nTotal reports: {0}").format(getReports(date1, date2))
-#     return newStr
+	return report
 
 # mike report
 
@@ -139,3 +164,10 @@ def parseSingleDayReport(sqlPayload):
 # 		newStr += "\n"
         # return newStr
 
+
+#I'm sorry
+
+# allLinks = []
+# for aLink in results:
+# 		allLinks.append(aLink)
+# return (random.choice(allLinks))

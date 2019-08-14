@@ -1,4 +1,5 @@
 import snekUtils as utils
+import snekAdapter as adapter
 from snekUtils import Command
 
 publishedCommands = []
@@ -71,7 +72,7 @@ class SnekpetsCommand(Command):
         directResponse(payLoad, response)
         return
 
-publishedCommands.append(SnekpetsCommand())
+# publishedCommands.append(SnekpetsCommand())
 
 #############################################################
 
@@ -85,7 +86,7 @@ class ReportCommand(Command):
             name = ReportCommand, 
             response = None,
             actions = self.doSomething, 
-            triggers = ['report', 'day', 'single', 'one'],
+            triggers = ['report'],
             description =\
                 """
                     This is the report command.
@@ -94,12 +95,17 @@ class ReportCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        # parse the payload
-        # parse the date
-        # try to figure out a way to evaluate multiple dates?s
-        # sql.get a day report
-        # utils. parse day report
-        # response = parsed day report
+        text = payLoad['text']
+        try:
+            date = utils.dateExtractor(utils.ONE_DATE, text)
+            if date is None:
+                return
+            sqlResults = adapter.singleDayReport(date)
+            totalReports = adapter.reportCount(date,date)
+            response = utils.parseSingleDayReport(sqlResults, date, totalReports) # parse the payload
+        except:
+            return
+
         directResponse(payLoad, response)
         return
 
@@ -126,12 +132,21 @@ class RangeCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        # parse the payload
-        # parse the date
-        # try to figure out a way to evaluate multiple dates?s
-        # sql.get a range report
-        # utils. parse range report
-        # response = parsed range report
+        text = payLoad['text']
+        try:
+            dateBlock = utils.dateExtractor(utils.DATE_RANGE, text)
+            if dateBlock is None:
+                return
+
+            date1, date2 = utils.dateSplitter(dateBlock)
+
+            sqlResults = adapter.multiDayReport(date1, date2)
+            totalReports = adapter.reportCount(date1, date2)
+            response = utils.parseMultiDayReport(sqlResults, date1, date2, totalReports) # parse the payload
+        except Exception as e:
+            print(e)
+            return
+
         directResponse(payLoad, response)
         return
 
