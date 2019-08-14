@@ -180,7 +180,7 @@ class HowmanyCommand(Command):
         inChannelResponse(payLoad, self.response.format(totalReports))
         return
 
-# publishedCommands.append(HowmanyCommand())
+publishedCommands.append(HowmanyCommand())
 
 #############################################################
 
