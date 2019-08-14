@@ -140,7 +140,7 @@ class RangeCommand(Command):
             if dateBlock is None:
                 return
 
-            date1, date2 = utils.dateExtractor(dateBlock)
+            date1, date2 = utils.dateSplitter(dateBlock)
             print(date1)
             print(date2)
 
