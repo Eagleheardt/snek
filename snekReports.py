@@ -136,10 +136,12 @@ class RangeCommand(Command):
         text = payLoad['text']
         try:
             dateBlock = utils.dateExtractor(utils.DATE_RANGE, text)
+            print(dateBlock)
             if dateBlock is None:
                 return
 
             date1, date2 = utils.dateExtractor(dateBlock)
+            print(date1,date2)
 
             sqlResults = adapter.multiDayReport(date1, date2)
             totalReports = adapter.reportCount(date1, date2)
