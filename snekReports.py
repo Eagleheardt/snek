@@ -103,7 +103,6 @@ class ReportCommand(Command):
             sqlResults = adapter.singleDayReport(date)
             totalReports = adapter.reportCount(date,date)
             response = utils.parseSingleDayReport(sqlResults, date, totalReports) # parse the payload
-            print(response)
         except:
             return
 
@@ -136,18 +135,14 @@ class RangeCommand(Command):
         text = payLoad['text']
         try:
             dateBlock = utils.dateExtractor(utils.DATE_RANGE, text)
-            print(dateBlock)
             if dateBlock is None:
                 return
 
             date1, date2 = utils.dateSplitter(dateBlock)
-            print(date1)
-            print(date2)
 
             sqlResults = adapter.multiDayReport(date1, date2)
             totalReports = adapter.reportCount(date1, date2)
-            response = utils.parseMultiDayReport(sqlResults,date1, date2, totalReports) # parse the payload
-            print(response)
+            response = utils.parseMultiDayReport(sqlResults, date1, date2, totalReports) # parse the payload
         except Exception as e:
             print(e)
             return

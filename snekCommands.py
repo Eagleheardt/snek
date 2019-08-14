@@ -1,6 +1,7 @@
 import snekStrikes as action
 import snekReports as reporting
 import snekUtils as utils
+import snekVMHandler as vmh
 
 __commandList = action.publishedCommands + reporting.publishedCommands
 
@@ -40,9 +41,7 @@ def EVAL(data):
         pass
 
     if isVM(text):
-        # Call VM command
-        # TODO evaluate VM issues
-        
+        vmh.insertStatus(data, utils.MAX_REPORTS)
         return
 
     if isBang(text):
