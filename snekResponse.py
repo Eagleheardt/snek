@@ -60,7 +60,7 @@ textKiss = "You lean in close and kiss Snek. Snek blushes!"
 
 textMultiEat = "You have fed Snek {} times."
 
-textThousandFlags = ":rsi: " * 16 # 16 flags
+textThousandFlags = ":rsi: " * 11 # 11 flags
 textThousandGif = "<http://gph.is/28NyLmU|{}th issue!>"
 textThousandInfo =\
 """

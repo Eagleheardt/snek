@@ -126,10 +126,7 @@ def insertStatus(data, limit=1):
 		adapter.insertIssue(VMServer, convertStatus(j), user)
 		#eval how many reports total for 1k explosion
 		total = adapter.getTotalReports()[0][0]
-		print("total?")
-		print(total, utils.VM_CHANNEL)
-		if (total % 10) == 0:
-			print("active!!")
+		if (total % 1000) == 0:
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandGif.format(total))
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)

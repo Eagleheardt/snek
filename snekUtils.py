@@ -11,7 +11,7 @@ SNEK_BIRTHDAY = datetime.datetime(2018, 10, 25)
 WORKING_PATH = "/home/ubuntu/"
 DATABASE_PATH = "snekTest/data/newSnek.db"
 KEY_PATH = "snekTest/data/snekTest"
-VM_CHANNEL = "GDJEY6HJN"
+VM_CHANNEL = "CC568PC3X" # #ppl_vm channel
 MAX_REPORTS = 3
 
 #################
