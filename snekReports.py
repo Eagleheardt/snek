@@ -145,7 +145,7 @@ class RangeCommand(Command):
 
             sqlResults = adapter.multiDayReport(date1, date2)
             totalReports = adapter.reportCount(date1, date2)
-            response = utils.parseSingleDayReport(sqlResults,date1, date2, totalReports) # parse the payload
+            response = utils.parseMultiDayReport(sqlResults,date1, date2, totalReports) # parse the payload
             print(response)
         except:
             return
