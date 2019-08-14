@@ -20,9 +20,9 @@ sql.__MAIN_CONNECTION = (sqlite3.connect(DATABASE, check_same_thread=False)) # p
 def insertIssue (server, stat): # adds am Issue as a server number and status
 	sql.EXEC(("""
 		INSERT INTO 
-			Issues (ServerNumber, ServerStatus) 
+			Issues (ServerNumber, ServerStatus, SlackID) 
 		VALUES
-			({0},'{1}');
+			({0},'{1}', '{2}');
 	""").format(server,stat))
 	return
 

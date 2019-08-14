@@ -123,7 +123,7 @@ def insertStatus(data, limit=1):
 			j -= 1
 			continue # longer messages that are caught are ignored
 
-		adapter.insertIssue(VMServer, convertStatus(j))
+		adapter.insertIssue(VMServer, convertStatus(j), user)
 		
 		if i >= limit:
 			break
