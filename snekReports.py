@@ -1,5 +1,6 @@
 import snekUtils as utils
 import snekAdapter as adapter
+import snekResponse as words
 from snekUtils import Command
 
 publishedCommands = []
@@ -151,6 +152,37 @@ class RangeCommand(Command):
         return
 
 publishedCommands.append(RangeCommand())
+
+#############################################################
+
+###########################
+###   Howmany Command   ###
+###########################
+
+class HowmanyCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = HowmanyCommand, 
+            response = words.textTotalProblems,
+            actions = self.doSomething, 
+            triggers = ['howmany'],
+            description =\
+                """
+                    This is the howmany command.
+                    It will return a simple message of how many issues have been reported
+                    in a direct message.
+                """
+            )
+
+    def doSomething(self, payLoad):
+
+        totalReports = adapter.getTotalReports()[0][0]
+        inChannelResponse(payLoad, self.response.format(totalReports))
+        return
+
+# publishedCommands.append(HowmanyCommand())
+
+#############################################################
 
 # if command.startswith("!mike"):
 #     theDates = command[6:]

@@ -26,7 +26,6 @@ __STATUS_DICTIONARY = {
 	"face_vomiting":__RECONNECT,
 
 	"fire":__WINDOW,
-	"dumpster_fire":__WINDOW,
 	"fireball":__WINDOW,
 
 	"loading":__LOADING,
@@ -126,6 +125,7 @@ def insertStatus(data, limit=1):
 			continue # longer messages that are caught are ignored
 
 		adapter.insertIssue(VMServer, convertStatus(j), user)
+		#eval how many reports total for 1k explosion
 		reports = i
 		if i >= limit:
 			break
