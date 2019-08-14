@@ -100,7 +100,6 @@ def parseStandardReport(sqlPayload):
 
 def parseSingleDayReport(sqlPayload, aDate, totalReports):
 	report = "Report for: {}\n".format(aDate)
-	print(sqlPayload)
 	report += parseStandardReport(sqlPayload)	
 	report += "Total reports: {}".format(totalReports[0][0])
 
