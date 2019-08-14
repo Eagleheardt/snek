@@ -115,7 +115,7 @@ def parseStatus(text=''):
 
 def insertStatus(data, limit=1):
 
-	VMServer, emoji = parseStatus(data['text'])
+	VMServer, emoji = parseStatus(data['text'].lower())
 	user = data['user']
 
 	if emoji is None or len(emoji) is 0:
