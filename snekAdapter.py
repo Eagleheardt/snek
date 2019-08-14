@@ -44,12 +44,12 @@ def singleDayReport(aDate): # Gets a daily summary of the VM number and status r
 	results = sql.GET(cmd)
 	return results
 
-def rangeReport (date1, date2): # Gets a range summary of the VM number and status reported
+def multiDayReport (date1, date2): # Gets a range summary of the VM number and status reported
 	cmd = (("""
 		SELECT 
-			ServerNumber as [Server]
-			, ServerStatus as [Status]
-			, count(ServerStatus) as [Amount]
+			ServerNumber
+			, ServerStatus
+			, count(ServerStatus) as AMT
 		FROM 
 			Issues
 		WHERE 
@@ -59,8 +59,33 @@ def rangeReport (date1, date2): # Gets a range summary of the VM number and stat
 			ServerNumber
 			,ServerStatus
 	""").format(date1, date2))
-	results = SQLReturn(conn,cmd)
+	results = sql.GET(cmd)
 	return results
+
+def reportCount(date1, date2):
+	cmd = (("""
+		SELECT 
+			SUM(AMT)
+		FROM
+			(SELECT 
+				ServerNumber
+				, ServerStatus
+				, count(ServerStatus) as AMT
+			FROM 
+				Issues
+			WHERE 
+				date(TimeStamp) BETWEEN '{0}' AND '{1}'
+				AND ServerNumber IN (1, 2, 3, 4, 17)
+			GROUP BY 
+				ServerNumber
+				,ServerStatus
+			) src;
+	""").format(date1, date2))
+	results = sql.GET(cmd)
+	return results
+
+def getTotalReports():
+	return (reportCount('1999-12-31', '9999-12-31'))
 
 def mikeReport (date1, date2): # Gets the time, VM number, and status reported across a date range
 	cmd = (("""
@@ -100,8 +125,7 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 
 	return results
 
-def allIssues():
-	return (rangeReport('1999-12-31', '9999-12-31'))
+
 
 # CREATE TABLE IF NOT EXISTS "Interactions" (
 # 'ID' INTEGER PRIMARY KEY AUTOINCREMENT, 

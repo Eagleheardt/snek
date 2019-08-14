@@ -80,8 +80,22 @@ def dateExtractor(pattern='',someText=''):
 
 # SQL formatters for reports
 
-def parseSingleDayReport(sqlPayload, aDate):
-	report = "Report for: " + aDate + "\n"
+def parseSingleDayReport(sqlPayload, aDate, totalReports):
+	report = "Report for: {}\n".format(aDate)
+	for tupple in sqlPayload:
+		tServerNumber = tupple[0]
+		tStatus = tupple[1]
+		tAmount = tupple[2]
+		amt = "time" if int(tAmount) == 1 else "times"
+
+		report += "VM{} - Status: {} - {} {}\n".format(tServerNumber, tStatus, tAmount, amt)
+	
+	report += "Total reports: {}".format(totalReports[0][0])
+
+	return report
+
+def parseMultiDayReport(sqlPayload, aDate1, aDate2, totalReports):
+	report = "Report for: {} to {}\n".format(aDate1, aDate2)
 	for tupple in sqlPayload:
 		tServerNumber = tupple[0]
 		tStatus = tupple[1]
@@ -90,27 +104,9 @@ def parseSingleDayReport(sqlPayload, aDate):
 
 		report += "VM{} - Status: {} - {} {}\n".format(tServerNumber, tStatus, tAmount, amt)
 
+	report += "Total reports: {}".format(totalReports[0][0])
+
 	return report
-# historical report
-
-# newStr = "Report for: " + date1 + " to " + date2 + "\n"
-# 	for row in results:
-# 		i = 1
-# 		for item in row:
-# 			if i == 1:
-# 				newStr += "VM" + str(item) + " - "
-# 			if i == 2:
-# 				newStr += "Status: " + str(item) + " - "
-# 			if i == 3:
-# 				if item != 1:
-# 					newStr += "Reported: " + str(item) + " times"
-# 				else:
-# 					newStr += "Reported: " + str(item) + " time"
-# 			i += 1
-# 		newStr += "\n"
-
-#     newStr += ("\nTotal reports: {0}").format(getReports(date1, date2))
-#     return newStr
 
 # mike report
 
