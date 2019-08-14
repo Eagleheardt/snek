@@ -87,8 +87,8 @@ def dateSplitter(dateGroup=''):
 
 # SQL formatters for reports
 
-def parseSingleDayReport(sqlPayload, aDate, totalReports):
-	report = "Report for: {}\n".format(aDate)
+def parseStandardReport(sqlPayload):
+	report = ""
 	for tupple in sqlPayload:
 		tServerNumber = tupple[0]
 		tStatus = tupple[1]
@@ -97,20 +97,18 @@ def parseSingleDayReport(sqlPayload, aDate, totalReports):
 
 		report += "VM{} - Status: {} - {} {}\n".format(tServerNumber, tStatus, tAmount, amt)
 	
+	return report
+
+def parseSingleDayReport(sqlPayload, aDate, totalReports):
+	report = "Report for: {}\n".format(aDate)
+	report += parseStandardReport(sqlPayload)	
 	report += "Total reports: {}".format(totalReports[0][0])
 
 	return report
 
 def parseMultiDayReport(sqlPayload, aDate1, aDate2, totalReports):
 	report = "Report for: {} to {}\n".format(aDate1, aDate2)
-	for tupple in sqlPayload:
-		tServerNumber = tupple[0]
-		tStatus = tupple[1]
-		tAmount = tupple[2]
-		amt = "time" if int(tAmount) == 1 else "times"
-
-		report += "VM{} - Status: {} - {} {}\n".format(tServerNumber, tStatus, tAmount, amt)
-
+	report += parseStandardReport(sqlPayload)	
 	report += "Total reports: {}".format(totalReports[0][0])
 
 	return report
