@@ -40,11 +40,20 @@ def directResponse(aUser, response):
 ###   General parsers   ###
 ###########################
 
+# removes all decoration from a user ID
+# use when needing to get ID from inside a message
+
 def sanitizeID(slackID=''):
     return slackID.replace('<', '').replace('>','').replace('@','').upper()
 
+# adds the decoration back to an ID
+# use when calling out a person by name in a channel
+
 def reconstitueID(slackID=''):
     return '<@{}>'.format(slackID)
+
+# renames a link to something more readable
+# use when you want to hide ugly URLs
 
 def linkFormatter(someURL='',someText=''):
     return "<{}|{}>".format(someURL, someText)
