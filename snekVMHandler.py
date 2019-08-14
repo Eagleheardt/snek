@@ -129,6 +129,7 @@ def insertStatus(data, limit=1):
 		print("total?")
 		print(total, utils.VM_CHANNEL)
 		if (total % 10) == 0:
+			print("active!!")
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandGif.format(total))
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
