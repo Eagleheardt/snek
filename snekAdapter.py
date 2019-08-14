@@ -17,7 +17,7 @@ sql.__MAIN_CONNECTION = (sqlite3.connect(DATABASE, check_same_thread=False)) # p
 # 'SlackID' TEXT NOT NULL DEFAULT 'NONAME'
 # );
 
-def insertIssue (server, stat): # adds am Issue as a server number and status
+def insertIssue (server, stat, userID): # adds am Issue as a server number and status
 	sql.EXEC(("""
 		INSERT INTO 
 			Issues (ServerNumber, ServerStatus, SlackID) 
