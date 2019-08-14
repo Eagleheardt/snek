@@ -78,6 +78,13 @@ def dateExtractor(pattern='',someText=''):
 	else:
 		return None
 
+def dateSplitter(dateGroup=''):
+	d1, d2 = dateGroup.split(',')
+	d1 = d1.strip()
+	d2 = d2.strip()
+
+	return d1, d2
+
 # SQL formatters for reports
 
 def parseSingleDayReport(sqlPayload, aDate, totalReports):

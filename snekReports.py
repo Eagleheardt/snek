@@ -95,7 +95,6 @@ class ReportCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        # sql.get a day report
         text = payLoad['text']
         try:
             date = utils.dateExtractor(utils.ONE_DATE, text)
@@ -134,12 +133,21 @@ class RangeCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        # parse the payload
-        # parse the date
-        # try to figure out a way to evaluate multiple dates?s
-        # sql.get a range report
-        # utils. parse range report
-        # response = parsed range report
+        text = payLoad['text']
+        try:
+            dateBlock = utils.dateExtractor(utils.DATE_RANGE, text)
+            if dateBlock is None:
+                return
+
+            date1, date2 = utils.dateExtractor(dateBlock)
+
+            sqlResults = adapter.multiDayReport(date1, date2)
+            totalReports = adapter.reportCount(date1, date2)
+            response = utils.parseSingleDayReport(sqlResults,date1, date2, totalReports) # parse the payload
+            print(response)
+        except:
+            return
+
         directResponse(payLoad, response)
         return
 
