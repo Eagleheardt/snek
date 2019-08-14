@@ -23,7 +23,7 @@ def insertIssue (server, stat, userID): # adds am Issue as a server number and s
 			Issues (ServerNumber, ServerStatus, SlackID) 
 		VALUES
 			({0},'{1}', '{2}');
-	""").format(server,stat))
+	""").format(server,stat, userID))
 	return
 
 def singleDayReport(aDate): # Gets a daily summary of the VM number and status reported
