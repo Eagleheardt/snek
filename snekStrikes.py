@@ -1,5 +1,6 @@
 import slackutils as utils
 import snekResponse as words
+import snekAdapter as adapter
 from snekUtils import Command
 
 publishedCommands = []
@@ -65,8 +66,8 @@ class HelpCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        adapter.addPet(payLoad['user'], 'help')
         threadedResponse(payLoad, self.response) # reply
-        # TODO need SQL insert
         return
 
 publishedCommands.append(HelpCommand())
@@ -93,6 +94,7 @@ class PetCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        adapter.addPet(payLoad['user'], 'pet')
         threadedResponse(payLoad, self.response)
         return
 
@@ -120,6 +122,7 @@ class TreadCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        adapter.addPet(payLoad['user'], 'tread')
         threadedResponse(payLoad, self.response)
         return
 
@@ -147,6 +150,7 @@ class ProvokeCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        adapter.addPet(payLoad['user'], 'provoke')
         threadedResponse(payLoad, self.response)
         return
 
@@ -174,6 +178,7 @@ class PokeCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        adapter.addPet(payLoad['user'], 'poke')
         threadedResponse(payLoad, self.response)
         return
 
@@ -201,6 +206,7 @@ class HugCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        adapter.addPet(payLoad['user'], 'hug')
         threadedResponse(payLoad, self.response)
         return
 
@@ -228,6 +234,7 @@ class StepCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        adapter.addPet(payLoad['user'], 'step')
         threadedResponse(payLoad, self.response)
         return
 
@@ -255,6 +262,7 @@ class BoopCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        adapter.addPet(payLoad['user'], 'boop')
         threadedResponse(payLoad, self.response)
         return
 
@@ -282,6 +290,7 @@ class KissCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        adapter.addPet(payLoad['user'], 'kiss')
         threadedResponse(payLoad, self.response)
         return
 

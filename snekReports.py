@@ -152,7 +152,6 @@ class RangeCommand(Command):
 
 publishedCommands.append(RangeCommand())
 
-
 # if command.startswith("!mike"):
 #     theDates = command[6:]
 #     date1,date2 = parseDateRange(theDates)

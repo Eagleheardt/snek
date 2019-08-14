@@ -125,8 +125,6 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 
 	return results
 
-
-
 # CREATE TABLE IF NOT EXISTS "Interactions" (
 # 'ID' INTEGER PRIMARY KEY AUTOINCREMENT, 
 # 'TimeStamp' DATE DEFAULT (datetime('now','localtime')),
