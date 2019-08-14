@@ -117,10 +117,10 @@ def insertStatus(data, limit=1):
 		return # if no emojis, do nothing
 
 	for i, j in enumerate(emoji):
-		if len(i) > len("skull_and_crossbones"):
+		if len(j) > len("skull_and_crossbones"):
 			continue # longer messages that are caught are ignored
 
 		# do the DB insert of the status
 		print(VMServer, convertStatus(i))
-		if j >= limit:
+		if i >= limit:
 			return
