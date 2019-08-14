@@ -146,7 +146,7 @@ def getPets(): # returns the amount of love Snek gets
 		SELECT 
 			aStatus, COUNT(*) as Amount
 		FROM
-			SnekStats
+			Interactions
 		GROUP BY
 			aStatus
 		ORDER BY
