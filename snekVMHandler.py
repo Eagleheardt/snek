@@ -1,4 +1,6 @@
 import snekUtils as utils
+import snekResponse as words
+import snekAdapter as adapter
 
 ####################
 ###   Statuses   ###
@@ -121,6 +123,9 @@ def insertStatus(data, limit=1):
 			j -= 1
 			continue # longer messages that are caught are ignored
 
-		# do the DB insert of the status
+		adapter.insertIssue(VMServer, convertStatus(j))
+		
 		if i >= limit:
-			return
+			break
+	
+	utils.inChannelResponse(data['channel'], words.textEat)
