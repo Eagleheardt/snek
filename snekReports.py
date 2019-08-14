@@ -155,7 +155,7 @@ class RangeCommand(Command):
         directResponse(payLoad, response)
         return
 
-# publishedCommands.append(RangeCommand())
+publishedCommands.append(RangeCommand())
 
 
 # if command.startswith("!mike"):
