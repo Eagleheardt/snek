@@ -36,7 +36,8 @@ __STATUS_DICTIONARY = {
 
 	"skull_and_crossbones":__RESTART,
 	"angry_skeletor":__RESTART,
-    "dumpster_fire":__RESTART
+    "dumpster_fire":__RESTART,
+	"sad_panda":__RESTART
     
 	}
 

@@ -36,9 +36,12 @@ def directResponse(aUser, response):
         )
     return
 
+###########################
+###   General parsers   ###
+###########################
+
 def sanitizeID(slackID=''):
     return slackID.replace('<', '').replace('>','').replace('@','').upper()
-
 
 def reconstitueID(slackID=''):
     return '<@{}>'.format(slackID)
