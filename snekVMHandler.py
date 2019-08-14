@@ -129,3 +129,4 @@ def insertStatus(data, limit=1):
 			break
 	
 	utils.inChannelResponse(data['channel'], words.textEat)
+	return
