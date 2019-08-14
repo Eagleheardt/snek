@@ -2,7 +2,6 @@ import slackutils as utils
 import datetime
 import re
 
-
 ###################
 ###   Globals   ###
 ###################

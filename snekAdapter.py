@@ -17,13 +17,13 @@ sql.__MAIN_CONNECTION = (sqlite3.connect(DATABASE, check_same_thread=False)) # p
 # 'SlackID' TEXT NOT NULL DEFAULT 'NONAME'
 # );
 
-def insertIssue (server, stat): # adds am Issue as a server number and status
+def insertIssue (server, stat, userID): # adds am Issue as a server number and status
 	sql.EXEC(("""
 		INSERT INTO 
-			Issues (ServerNumber, ServerStatus) 
+			Issues (ServerNumber, ServerStatus, SlackID) 
 		VALUES
-			({0},'{1}');
-	""").format(server,stat))
+			({0},'{1}', '{2}');
+	""").format(server,stat, userID))
 	return
 
 def singleDayReport(aDate): # Gets a daily summary of the VM number and status reported
@@ -125,8 +125,6 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 
 	return results
 
-
-
 # CREATE TABLE IF NOT EXISTS "Interactions" (
 # 'ID' INTEGER PRIMARY KEY AUTOINCREMENT, 
 # 'TimeStamp' DATE DEFAULT (datetime('now','localtime')),
@@ -148,7 +146,7 @@ def getPets(): # returns the amount of love Snek gets
 		SELECT 
 			aStatus, COUNT(*) as Amount
 		FROM
-			SnekStats
+			Interactions
 		GROUP BY
 			aStatus
 		ORDER BY

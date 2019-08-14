@@ -1,4 +1,6 @@
 import snekUtils as utils
+import snekResponse as words
+import snekAdapter as adapter
 
 ####################
 ###   Statuses   ###
@@ -116,11 +118,18 @@ def insertStatus(data, limit=1):
 	if emoji is None or len(emoji) is 0:
 		return # if no emojis, do nothing
 
+	reports = 0
 	for i, j in enumerate(emoji, 1):
 		if len(j) > len("skull_and_crossbones"):
+			j -= 1
 			continue # longer messages that are caught are ignored
 
-		# do the DB insert of the status
-		print(VMServer, convertStatus(j))
+		adapter.insertIssue(VMServer, convertStatus(j), user)
+		reports = i
 		if i >= limit:
-			return
+			break
+	
+	utils.inChannelResponse(data['channel'], words.textEat)
+	if reports > 1:
+		utils.directResponse(user, words.textMultiEat.format(reports))
+	return
