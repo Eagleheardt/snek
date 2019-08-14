@@ -13,7 +13,7 @@ WORKING_PATH = "/home/ubuntu/"
 DATABASE_PATH = "snekTest/data/newSnek.db"
 KEY_PATH = "snekTest/data/snekTest"
 VM_CHANNEL = "CC568PC3X"
-MAX_REPORTS = 1
+MAX_REPORTS = 3
 
 #################
 ###   ReGeX   ###
