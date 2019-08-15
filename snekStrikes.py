@@ -324,7 +324,7 @@ class DumpsterCommand(Command):
             allLinks.append(aLink[0])
             
         song = random.choice(allLinks)
-        directResponse(payLoad['user'], song)
+        directResponse(payLoad, song)
         return
 
 # publishedCommands.append(PetCommand())
