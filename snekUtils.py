@@ -88,7 +88,7 @@ def dateSplitter(dateGroup=''):
 	return d1, d2
 
 def validPayload(sqlPayload):
-	if sqlPayload[0][0]:
+	if sqlPayload:
 		return True
 	return False
 
