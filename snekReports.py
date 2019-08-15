@@ -220,7 +220,7 @@ class MikeReportCommand(Command):
             date1, date2 = utils.dateSplitter(dateBlock)
             totalReports = adapter.reportCount(date1, date2)
             sqlResults = adapter.mikeReport(date1, date2)
-            if not utils.validPayload(payLoad):
+            if not utils.validPayload(payLoad) or totalReports > utils.MAX_RETURN:
                 directResponse(payLoad, words.textBadReport)
                 return 
             
