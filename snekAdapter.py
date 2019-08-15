@@ -81,7 +81,9 @@ def reportCount(date1, date2):
 				,ServerStatus
 			) src;
 	""").format(date1, date2))
+	print(cmd)
 	results = sql.GET(cmd)
+	print(results[0][0])
 	return results[0][0]
 
 def getTotalReports():
