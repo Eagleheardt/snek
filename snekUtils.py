@@ -116,6 +116,7 @@ def parseMultiDayReport(sqlPayload, aDate1, aDate2, totalReports):
 
 def parseMikeReport(sqlPayload, aDate1, aDate2, totalReports):
 	report = "MikeReport for: {} to {}\n".format(aDate1, aDate2)
+	print(report)
 	for tupple in sqlPayload:
 		tTimeStamp = tupple[0]
 		tServer = tupple[1]
@@ -129,6 +130,7 @@ def parseMikeReport(sqlPayload, aDate1, aDate2, totalReports):
 
 def parseGaryReport(sqlPayload, aDate1, aDate2, totalReports):
 	report = "GaryReport for: {} to {}\n".format(aDate1, aDate2)
+	print(report)
 	for tupple in sqlPayload:
 		tWeek = tupple[0]
 		tStatus = tupple[1]
