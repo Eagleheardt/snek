@@ -280,6 +280,6 @@ class GaryReportCommand(Command):
         directResponse(payLoad, response)
         return
 
-# publishedCommands.append(GaryReportCommand())
+publishedCommands.append(GaryReportCommand())
 
 #############################################################
