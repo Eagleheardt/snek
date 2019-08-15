@@ -164,7 +164,6 @@ def getPets(): # returns the amount of love Snek gets
 def imSorry(): # an appology for the environment in which we operate
 	sqlCmd = "SELECT Link FROM Music;"
 	results = sql.GET(sqlCmd)
-	print(results)
 	return results
 
 # CREATE TABLE IF NOT EXISTS "Users" (
