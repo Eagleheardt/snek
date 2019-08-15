@@ -9,9 +9,9 @@ import re
 # Snek's birthday is October 25, 2018
 SNEK_BIRTHDAY = datetime.datetime(2018, 10, 25)
 WORKING_PATH = "/home/ubuntu/"
-DATABASE_NAME = "music.db"
-DATABASE_PATH = "snekTest/data/"
-KEY_PATH = "snekTest/data/snekTest"
+DATABASE_NAME = "newSnek.db"
+DATABASE_PATH = "snekbot/data/"
+KEY_PATH = "snekbot/data/snek_token"
 VM_CHANNEL = "CC568PC3X" # #ppl_vm channel
 TEST_CHANNEL = "GDJEY6HJN" # #testing channel
 MAX_REPORTS = 3
