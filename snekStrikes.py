@@ -251,7 +251,7 @@ class BoopCommand(Command):
     def __init__(self):
         super().__init__(
             name = BoopCommand, 
-            response = words.textStep,
+            response = words.textBoop,
             actions = self.doSomething, 
             triggers = ['boop'],
             description =\
@@ -279,7 +279,7 @@ class KissCommand(Command):
     def __init__(self):
         super().__init__(
             name = KissCommand, 
-            response = words.textStep,
+            response = words.textKiss,
             actions = self.doSomething, 
             triggers = ['kiss'],
             description =\
@@ -327,6 +327,6 @@ class DumpsterCommand(Command):
         directResponse(payLoad, song)
         return
 
-# publishedCommands.append(PetCommand())
+# publishedCommands.append(DumpsterCommand())
 
 #############################################################

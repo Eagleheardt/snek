@@ -56,7 +56,7 @@ class SnekpetsCommand(Command):
             name = SnekpetsCommand, 
             response = None,
             actions = self.doSomething, 
-            triggers = ['snekpets','getpets','allpets','sneksnek'],
+            triggers = ['snekpets'],
             description =\
                 """
                     This is the snekpets command.
@@ -67,6 +67,7 @@ class SnekpetsCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        adapter.addPet(payLoad['user'], 'snekpets')
         sqlResults = adapter.getPets()
         if utils.validPayload(payLoad):
             directResponse(payLoad, words.textBadReport)
@@ -231,7 +232,7 @@ class MikeReportCommand(Command):
         directResponse(payLoad, response)
         return
 
-publishedCommands.append(MikeReportCommand())
+# publishedCommands.append(MikeReportCommand())
 
 #############################################################
 
@@ -279,6 +280,6 @@ class GaryReportCommand(Command):
         directResponse(payLoad, response)
         return
 
-publishedCommands.append(GaryReportCommand())
+# publishedCommands.append(GaryReportCommand())
 
 #############################################################
