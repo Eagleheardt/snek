@@ -232,7 +232,7 @@ class MikeReportCommand(Command):
         directResponse(payLoad, response)
         return
 
-# publishedCommands.append(MikeReportCommand())
+publishedCommands.append(MikeReportCommand())
 
 #############################################################
 
