@@ -184,7 +184,7 @@ class HowmanyCommand(Command):
 
     def doSomething(self, payLoad):
         totalReports = adapter.getTotalReports()
-        inChannelResponse(payLoad, self.response.format(totalReports))
+        directResponse(payLoad, self.response.format(totalReports))
         return
 
 publishedCommands.append(HowmanyCommand())

@@ -38,7 +38,7 @@ def EVAL(data):
 
     if dumpsterFire(text):
         fire = action.DumpsterCommand
-        fire.doSomething(data)
+        fire.actions(data)
         return
 
     if isVM(text):
