@@ -10,8 +10,10 @@ import re
 SNEK_BIRTHDAY = datetime.datetime(2018, 10, 25)
 WORKING_PATH = "/home/ubuntu/"
 DATABASE_NAME = "newSnek.db"
-DATABASE_PATH = "snekbot/data/"
-KEY_PATH = "snekbot/data/snek_token"
+# DATABASE_PATH = "snekbot/data/" # prod
+DATABASE_PATH = "snekTest/data/"
+# KEY_PATH = "snekbot/data/snek_token" # prod
+KEY_PATH = "snekTest/data/snekTest"
 VM_CHANNEL = "CC568PC3X" # #ppl_vm channel
 TEST_CHANNEL = "GDJEY6HJN" # #testing channel
 MAX_REPORTS = 3
