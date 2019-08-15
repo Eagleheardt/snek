@@ -37,7 +37,7 @@ def EVAL(data):
     userID = data['user']
 
     if dumpsterFire(text):
-        fire = action.DumpsterCommand
+        fire = action.DumpsterCommand()
         fire.actions(data)
         return
 
