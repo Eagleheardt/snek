@@ -81,9 +81,7 @@ def reportCount(date1, date2):
 				,ServerStatus
 			) src;
 	""").format(date1, date2))
-	print(cmd)
 	results = sql.GET(cmd)
-	print(results[0][0])
 	return results[0][0]
 
 def getTotalReports():
@@ -124,8 +122,6 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 			Week, ServerStatus;
 	""").format(date1, date2))
 	results = sql.GET(cmd)
-	print(cmd)
-	print(results)
 
 	return results
 
@@ -165,7 +161,7 @@ def getPets(): # returns the amount of love Snek gets
 # 'Description' TEXT NOT NULL DEFAULT 'NOT SET'
 # );
 
-def imSorry(): # an appology for the environment in which we live
+def imSorry(): # an appology for the environment in which we operate
 	sqlCmd = "SELECT Link FROM Music;"
 	results = sql.GET(sqlCmd)
 	print(results)

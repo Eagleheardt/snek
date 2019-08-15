@@ -68,6 +68,9 @@ class SnekpetsCommand(Command):
 
     def doSomething(self, payLoad):
         sqlResults = adapter.getPets()
+        if not utils.validPayload(payLoad):
+            directResponse(payLoad, words.textBadReport)
+            return 
         response = utils.parsePets(sqlResults)
         directResponse(payLoad, response)
         return
@@ -101,6 +104,9 @@ class ReportCommand(Command):
             if date is None:
                 return
             sqlResults = adapter.singleDayReport(date)
+            if not utils.validPayload(payLoad):
+                directResponse(payLoad, words.textBadReport)
+                return 
             totalReports = adapter.reportCount(date, date)
             response = utils.parseSingleDayReport(sqlResults, date, totalReports) # parse the payload
         except:
@@ -141,6 +147,9 @@ class RangeCommand(Command):
             date1, date2 = utils.dateSplitter(dateBlock)
 
             sqlResults = adapter.multiDayReport(date1, date2)
+            if not utils.validPayload(payLoad):
+                directResponse(payLoad, words.textBadReport)
+                return 
             totalReports = adapter.reportCount(date1, date2)
             response = utils.parseMultiDayReport(sqlResults, date1, date2, totalReports) # parse the payload
         except Exception as e:
@@ -209,11 +218,10 @@ class MikeReportCommand(Command):
 
             date1, date2 = utils.dateSplitter(dateBlock)
             totalReports = adapter.reportCount(date1, date2)
-            if totalReports > utils.MAX_RETURN:
-                directResponse(payLoad, words.textTooMuchInfo)
-                return
-            
             sqlResults = adapter.mikeReport(date1, date2)
+            if not utils.validPayload(payLoad):
+                directResponse(payLoad, words.textBadReport)
+                return 
             
             response = utils.parseMikeReport(sqlResults, date1, date2, totalReports) # parse the payload
         except Exception as e:
@@ -259,6 +267,9 @@ class GaryReportCommand(Command):
                 return
             
             sqlResults = adapter.garyReport(date1, date2)
+            if not utils.validPayload(payLoad):
+                directResponse(payLoad, words.textBadReport)
+                return 
             
             response = utils.parseGaryReport(sqlResults, date1, date2, totalReports) # parse the payload
         except Exception as e:

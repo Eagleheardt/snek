@@ -58,7 +58,7 @@ textBoop = "Boop Snek snoot. Doot doot."
 
 textKiss = "You lean in close and kiss Snek. Snek blushes!"
 
-textTooMuchInfo = "The report you have requested is too large."
+textBadReport = "The report you have requested could not be returned."
 
 textMultiEat = "You have fed Snek {} times."
 
