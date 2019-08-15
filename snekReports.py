@@ -68,7 +68,7 @@ class SnekpetsCommand(Command):
 
     def doSomething(self, payLoad):
         sqlResults = adapter.getPets()
-        if not utils.validPayload(payLoad):
+        if utils.validPayload(payLoad):
             directResponse(payLoad, words.textBadReport)
             return 
         response = utils.parsePets(sqlResults)
@@ -104,7 +104,7 @@ class ReportCommand(Command):
             if date is None:
                 return
             sqlResults = adapter.singleDayReport(date)
-            if not utils.validPayload(payLoad):
+            if utils.validPayload(payLoad):
                 directResponse(payLoad, words.textBadReport)
                 return 
             totalReports = adapter.reportCount(date, date)
@@ -147,7 +147,7 @@ class RangeCommand(Command):
             date1, date2 = utils.dateSplitter(dateBlock)
 
             sqlResults = adapter.multiDayReport(date1, date2)
-            if not utils.validPayload(payLoad):
+            if utils.validPayload(payLoad):
                 directResponse(payLoad, words.textBadReport)
                 return 
             totalReports = adapter.reportCount(date1, date2)
@@ -219,7 +219,7 @@ class MikeReportCommand(Command):
             date1, date2 = utils.dateSplitter(dateBlock)
             totalReports = adapter.reportCount(date1, date2)
             sqlResults = adapter.mikeReport(date1, date2)
-            if not utils.validPayload(payLoad):
+            if utils.validPayload(payLoad):
                 directResponse(payLoad, words.textBadReport)
                 return 
             
@@ -267,7 +267,7 @@ class GaryReportCommand(Command):
                 return
             
             sqlResults = adapter.garyReport(date1, date2)
-            if not utils.validPayload(payLoad):
+            if utils.validPayload(payLoad):
                 directResponse(payLoad, words.textBadReport)
                 return 
             
