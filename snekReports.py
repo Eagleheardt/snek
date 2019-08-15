@@ -183,21 +183,92 @@ publishedCommands.append(HowmanyCommand())
 
 #############################################################
 
-# if command.startswith("!mike"):
-#     theDates = command[6:]
-#     date1,date2 = parseDateRange(theDates)
-#     response = mikeReport(date1,date2)
-#     directResponse(aUser,response)
-#     return
+##############################
+###   MikeReport Command   ###
+##############################
 
-# if command.startswith("!gary"):
-#     theDates = command[6:]
-#     date1,date2 = parseDateRange(theDates)
-#     response = garyReport(date1,date2)
-#     directResponse(aUser,response)
-#     return
+class MikeReportCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = MikeReportCommand, 
+            response = None,
+            actions = self.doSomething, 
+            triggers = ['mike'],
+            description =\
+                """
+                    This is the MikeReport command.
+                    It will return a report of ...
+                """
+            )
 
-# if command == "!howmany":
-#     allStat = getReports('1900-01-01', '9999-12-31')
-#     directResponse(aUser,"So far I've eaten {0} problems.".format(allStat))
-#     return
+    def doSomething(self, payLoad):
+        text = payLoad['text']
+        try:
+            dateBlock = utils.dateExtractor(utils.DATE_RANGE, text)
+            if dateBlock is None:
+                return
+
+            date1, date2 = utils.dateSplitter(dateBlock)
+            totalReports = adapter.reportCount(date1, date2)
+            if totalReports > utils.MAX_RETURN:
+                directResponse(payLoad, utils.textTooMuchInfo)
+                return
+            
+            sqlResults = adapter.mikeReport(date1, date2)
+            
+            response = utils.parseMultiDayReport(sqlResults, date1, date2, totalReports) # parse the payload
+        except Exception as e:
+            print(e)
+            return
+
+        directResponse(payLoad, response)
+        return
+
+publishedCommands.append(MikeReportCommand())
+
+#############################################################
+
+##############################
+###   GaryReport Command   ###
+##############################
+
+class GaryReportCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = GaryReportCommand, 
+            response = None,
+            actions = self.doSomething, 
+            triggers = ['gary'],
+            description =\
+                """
+                    This is the GaryReport command.
+                    It will return a report of ...
+                """
+            )
+
+    def doSomething(self, payLoad):
+        text = payLoad['text']
+        try:
+            dateBlock = utils.dateExtractor(utils.DATE_RANGE, text)
+            if dateBlock is None:
+                return
+
+            date1, date2 = utils.dateSplitter(dateBlock)
+            totalReports = adapter.reportCount(date1, date2)
+            if totalReports > utils.MAX_RETURN:
+                directResponse(payLoad, utils.textTooMuchInfo)
+                return
+            
+            sqlResults = adapter.garyReport(date1, date2)
+            
+            response = utils.parseMultiDayReport(sqlResults, date1, date2, totalReports) # parse the payload
+        except Exception as e:
+            print(e)
+            return
+
+        directResponse(payLoad, response)
+        return
+
+publishedCommands.append(GaryReportCommand())
+
+#############################################################

@@ -58,6 +58,8 @@ textBoop = "Boop Snek snoot. Doot doot."
 
 textKiss = "You lean in close and kiss Snek. Snek blushes!"
 
+textTooMuchInfo = "The report you have requested is too large."
+
 textMultiEat = "You have fed Snek {} times."
 
 textThousandFlags = ":rsi: " * 11 # 11 flags

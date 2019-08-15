@@ -2,6 +2,7 @@ import slackutils as utils
 import snekResponse as words
 import snekAdapter as adapter
 from snekUtils import Command
+import random
 
 publishedCommands = []
 
@@ -295,5 +296,36 @@ class KissCommand(Command):
         return
 
 publishedCommands.append(KissCommand())
+
+#############################################################
+
+#########################
+###   Dumpster Fire   ###
+#########################
+
+class DumpsterCommand(Command):
+    def __init__(self):
+        super().__init__(
+            name = DumpsterCommand, 
+            response = None,
+            actions = self.doSomething, 
+            triggers = None,
+            description =\
+                """
+                    This is the Dumpster
+                """
+            )
+
+    def doSomething(self, payLoad):
+        sqlResults = adapter.imSorry()
+        allLinks = []
+        for aLink in sqlResults:
+            allLinks.append(aLink)
+            
+        song = random.choice(allLinks)
+        directResponse(payLoad['user'], song)
+        return
+
+# publishedCommands.append(PetCommand())
 
 #############################################################

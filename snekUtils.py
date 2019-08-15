@@ -14,6 +14,7 @@ DATABASE_PATH = "snekTest/data/"
 KEY_PATH = "snekTest/data/snekTest"
 VM_CHANNEL = "CC568PC3X" # #ppl_vm channel
 MAX_REPORTS = 3
+MAX_RETURN = 100
 
 #################
 ###   ReGeX   ###
@@ -113,61 +114,40 @@ def parseMultiDayReport(sqlPayload, aDate1, aDate2, totalReports):
 
 	return report
 
-# mike report
+def parseMikeReport(sqlPayload, aDate1, aDate2, totalReports):
+	report = "MikeReport for: {} to {}\n".format(aDate1, aDate2)
+	for tupple in sqlPayload:
+		tTimeStamp = tupple[0]
+		tServer = tupple[1]
+		tStatus = tupple[2]
 
-# newStr = "Report for: " + date1 + " to " + date2 + "\n"
-# 	for row in results:
-# 		i = 1
-# 		for item in row:
-# 			if i == 1:
-# 				newStr += "TimeStamp: " + str(item) + " - "
-# 			if i == 2:
-# 				newStr += "VM: " + str(item) + " - "
-# 			if i == 3:
-# 				newStr += "Status: " + str(item)
-# 			i += 1
-# 		newStr += "\n"
+		report += "TimeStamp: {} - VM: {} - Status: {}\n".format(tTimeStamp, tServer, tStatus)
 
-# 	newStr += ("\nTotal reports: {0}").format(getReports(date1, date2))
+	report += "Total reports: {}".format(totalReports)
 
+	return report
 
-# gary report
+def parseGaryReport(sqlPayload, aDate1, aDate2, totalReports):
+	report = "GaryReport for: {} to {}\n".format(aDate1, aDate2)
+	for tupple in sqlPayload:
+		tWeek = tupple[0]
+		tStatus = tupple[1]
+		tAmount = tupple[2]
+		amt = "time" if int(tAmount) == 1 else "times"
 
-# newStr = "Report for: " + date1 + " to " + date2 + "\n"
-# 	for row in results:
-# 		i = 1
-# 		for item in row:
-# 			if i == 1:
-# 				newStr += "Week Start: " + str(item) + " - "
-# 			if i == 2:
-# 				newStr += "Status: " + str(item)
-# 			if i == 3:
-# 				if int(item) > 1:
-# 					newStr += " - " + str(item) + " times"
-# 				else:
-# 					newStr += " - " + str(item) + " time"
-# 			i += 1
-# 		newStr += "\n"
-#   return newStr
+		report += "Week start: {} - Status: {} - {} {}\n".format(tWeek, tStatus, tAmount, amt)
 
-# get pets
+	report += "Total reports: {}".format(totalReports)
 
-# newStr = "People do lots of things to me! I love pets most of all, though!\nI have been:\n"
-# 	for row in rawResults:
-# 		i = 1
-# 		for item in row:
-# 			if i == 1:
-# 				newStr += str(item) + ": "
-# 			if i == 2:
-# 				newStr += str(item) + " times"
-# 			i += 1
-# 		newStr += "\n"
-        # return newStr
+	return report
 
+def parsePets(sqlPayload):
+	report = "People do lots of things to me! I love pets most of all, though!\nI have been:\n"
+	for tupple in sqlPayload:
+		tAct = tupple[0]
+		tAmount = tupple[1]
+		amt = "time" if int(tAmount) == 1 else "times"
 
-#I'm sorry
+		report += "{}: {}{}\n".format(tAct, tAmount, amt)
 
-# allLinks = []
-# for aLink in results:
-# 		allLinks.append(aLink)
-# return (random.choice(allLinks))
+	return report

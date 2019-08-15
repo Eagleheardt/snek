@@ -37,7 +37,7 @@ def EVAL(data):
     userID = data['user']
 
     if dumpsterFire(text):
-        # TODO send I'm sorry
+        action.DumpsterCommand.doSomething(data)
         pass
 
     if isVM(text):
