@@ -67,13 +67,12 @@ class SnekpetsCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        # sql.get snek pets
-        # utils. parse snek pets
-        # response = parsed pets
+        sqlResults = adapter.getPets()
+        response = utils.parsePets(sqlResults)
         directResponse(payLoad, response)
         return
 
-# publishedCommands.append(SnekpetsCommand())
+publishedCommands.append(SnekpetsCommand())
 
 #############################################################
 
@@ -211,12 +210,12 @@ class MikeReportCommand(Command):
             date1, date2 = utils.dateSplitter(dateBlock)
             totalReports = adapter.reportCount(date1, date2)
             if totalReports > utils.MAX_RETURN:
-                directResponse(payLoad, utils.textTooMuchInfo)
+                directResponse(payLoad, words.textTooMuchInfo)
                 return
             
             sqlResults = adapter.mikeReport(date1, date2)
             
-            response = utils.parseMultiDayReport(sqlResults, date1, date2, totalReports) # parse the payload
+            response = utils.parseMikeReport(sqlResults, date1, date2, totalReports) # parse the payload
         except Exception as e:
             print(e)
             return
@@ -256,12 +255,12 @@ class GaryReportCommand(Command):
             date1, date2 = utils.dateSplitter(dateBlock)
             totalReports = adapter.reportCount(date1, date2)
             if totalReports > utils.MAX_RETURN:
-                directResponse(payLoad, utils.textTooMuchInfo)
+                directResponse(payLoad, words.textTooMuchInfo)
                 return
             
             sqlResults = adapter.garyReport(date1, date2)
             
-            response = utils.parseMultiDayReport(sqlResults, date1, date2, totalReports) # parse the payload
+            response = utils.parseGaryReport(sqlResults, date1, date2, totalReports) # parse the payload
         except Exception as e:
             print(e)
             return
