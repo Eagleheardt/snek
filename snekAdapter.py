@@ -104,7 +104,6 @@ def mikeReport (date1, date2): # Gets the time, VM number, and status reported a
 	return results
 
 def garyReport (date1, date2): # Gets the time, VM number, and status reported across a date range
-
 	cmd = (("""
 		SELECT 
 			date(Week)
@@ -123,6 +122,8 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 			Week, ServerStatus;
 	""").format(date1, date2))
 	results = sql.GET(cmd)
+	print(cmd)
+	print(results)
 
 	return results
 

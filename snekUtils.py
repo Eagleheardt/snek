@@ -154,6 +154,6 @@ def parsePets(sqlPayload):
 		tAmount = tupple[1]
 		amt = "time" if int(tAmount) == 1 else "times"
 
-		report += "{}: {}{}\n".format(tAct, tAmount, amt)
+		report += "{}: {} {}\n".format(tAct, tAmount, amt)
 
 	return report
