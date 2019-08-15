@@ -118,19 +118,23 @@ def insertStatus(data, limit=1):
 	if emoji is None or len(emoji) is 0:
 		return # if no emojis, do nothing
 
-	reports = 0
 	for i, j in enumerate(emoji, 1):
 		if len(j) > len("skull_and_crossbones"):
 			j -= 1
 			continue # longer messages that are caught are ignored
 
 		adapter.insertIssue(VMServer, convertStatus(j), user)
-		#eval how many reports total for 1k explosion
-		reports = i
+		
+		total = adapter.getTotalReports()
+		if (total % 1000) == 0: # every 1k issues
+			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
+			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandGif.format(total))
+			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
+			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandInfo.format(total))
+
 		if i >= limit:
+			utils.directResponse(user, words.textMultiEat.format(i))
 			break
 	
-	utils.inChannelResponse(data['channel'], words.textEat)
-	if reports > 1:
-		utils.directResponse(user, words.textMultiEat.format(reports))
+	utils.inChannelResponse(data['channel'], words.textEat)		
 	return

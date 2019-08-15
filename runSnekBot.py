@@ -3,6 +3,7 @@ import snekUtils as utils
 import decode as de
 import slackutils
 from slack import RTMClient
+import connectionHandler as ch
 
 
 #################
@@ -57,10 +58,18 @@ if __name__ == '__main__':
 
             except KeyError:
                 return
+            except Exception as e:
+                print(e)
+                return
 
             if text:
                 slackutils.CLIENT = kwargs['web_client']
                 cmd.EVAL(kwargs['data'])
+
+        # @RTMClient.run_on(event='presence_change')
+        # def handle(**kwargs):
+        #     print(kwargs)
+        #     ch.restart_snek()
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()

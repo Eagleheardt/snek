@@ -37,8 +37,9 @@ def EVAL(data):
     userID = data['user']
 
     if dumpsterFire(text):
-        # TODO send I'm sorry
-        pass
+        fire = action.DumpsterCommand()
+        fire.actions(data)
+        return
 
     if isVM(text):
         vmh.insertStatus(data, utils.MAX_REPORTS)
