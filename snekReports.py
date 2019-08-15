@@ -262,11 +262,7 @@ class GaryReportCommand(Command):
                 return
 
             date1, date2 = utils.dateSplitter(dateBlock)
-            totalReports = adapter.reportCount(date1, date2)
-            if totalReports > utils.MAX_RETURN:
-                directResponse(payLoad, words.textTooMuchInfo)
-                return
-            
+            totalReports = adapter.reportCount(date1, date2)            
             sqlResults = adapter.garyReport(date1, date2)
             if not utils.validPayload(payLoad):
                 directResponse(payLoad, words.textBadReport)

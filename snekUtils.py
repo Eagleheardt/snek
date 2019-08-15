@@ -15,7 +15,7 @@ KEY_PATH = "snekTest/data/snekTest"
 VM_CHANNEL = "CC568PC3X" # #ppl_vm channel
 TEST_CHANNEL = "GDJEY6HJN" # #testing channel
 MAX_REPORTS = 3
-MAX_RETURN = 100
+MAX_RETURN = 250
 
 #################
 ###   ReGeX   ###
