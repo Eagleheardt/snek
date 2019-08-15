@@ -153,6 +153,8 @@ def getPets(): # returns the amount of love Snek gets
 		ORDER BY
 			Amount DESC;
 	"""
+	results = sql.GET(cmd)
+	return results
 
 # CREATE TABLE IF NOT EXISTS "Music" (
 # 'ID' INTEGER PRIMARY KEY AUTOINCREMENT, 
