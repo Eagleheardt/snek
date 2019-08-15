@@ -69,7 +69,7 @@ class SnekpetsCommand(Command):
     def doSomething(self, payLoad):
         adapter.addPet(payLoad['user'], 'snekpets')
         sqlResults = adapter.getPets()
-        if utils.validPayload(payLoad):
+        if not utils.validPayload(payLoad):
             directResponse(payLoad, words.textBadReport)
             return 
         response = utils.parsePets(sqlResults)
