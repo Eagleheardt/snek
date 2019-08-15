@@ -4,7 +4,7 @@ import sqlite3
 import datetime
 import random
 
-DATABASE = utils.WORKING_PATH + utils.DATABASE_PATH
+DATABASE = utils.WORKING_PATH + utils.DATABASE_PATH + utils.DATABASE_NAME
 sql.__MAIN_CONNECTION = (sqlite3.connect(DATABASE, check_same_thread=False)) # prod location
 
 ####
@@ -29,9 +29,9 @@ def insertIssue (server, stat, userID): # adds am Issue as a server number and s
 def singleDayReport(aDate): # Gets a daily summary of the VM number and status reported
 	cmd = (("""
 			SELECT
-				ServerNumber as [Server]
-				, ServerStatus as [Status]
-				, count(ServerStatus) as [Amount] 
+				ServerNumber
+				, ServerStatus
+				, count(ServerStatus)
 			FROM 
 				Issues 
 			WHERE 
@@ -82,7 +82,7 @@ def reportCount(date1, date2):
 			) src;
 	""").format(date1, date2))
 	results = sql.GET(cmd)
-	return results
+	return results[0][0]
 
 def getTotalReports():
 	return (reportCount('1999-12-31', '9999-12-31'))
@@ -99,7 +99,7 @@ def mikeReport (date1, date2): # Gets the time, VM number, and status reported a
 			date(TimeStamp) BETWEEN '{0}' AND '{1}' 
 			AND ServerNumber IN(1, 2, 3, 4, 17);
 	""").format(date1, date2))
-	results = SQLReturn(conn,cmd)
+	results = sql.GET(cmd)
 	
 	return results
 
@@ -122,6 +122,7 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 		ORDER BY 
 			Week, ServerStatus;
 	""").format(date1, date2))
+	results = sql.GET(cmd)
 
 	return results
 
@@ -159,7 +160,7 @@ def getPets(): # returns the amount of love Snek gets
 # 'Description' TEXT NOT NULL DEFAULT 'NOT SET'
 # );
 
-def imSorry(aConn): # an appology for the environment in which we live
+def imSorry(): # an appology for the environment in which we live
 	sqlCmd = "SELECT Link FROM Music;"
 	results = sql.GET(sqlCmd)
 	return results

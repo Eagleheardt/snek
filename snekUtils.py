@@ -9,7 +9,8 @@ import re
 # Snek's birthday is October 25, 2018
 SNEK_BIRTHDAY = datetime.datetime(2018, 10, 25)
 WORKING_PATH = "/home/ubuntu/"
-DATABASE_PATH = "snekTest/data/newSnek.db"
+DATABASE_NAME = "newSnek.db"
+DATABASE_PATH = "snekTest/data/"
 KEY_PATH = "snekTest/data/snekTest"
 VM_CHANNEL = "CC568PC3X" # #ppl_vm channel
 MAX_REPORTS = 3
@@ -101,14 +102,14 @@ def parseStandardReport(sqlPayload):
 def parseSingleDayReport(sqlPayload, aDate, totalReports):
 	report = "Report for: {}\n".format(aDate)
 	report += parseStandardReport(sqlPayload)	
-	report += "Total reports: {}".format(totalReports[0][0])
+	report += "Total reports: {}".format(totalReports)
 
 	return report
 
 def parseMultiDayReport(sqlPayload, aDate1, aDate2, totalReports):
 	report = "Report for: {} to {}\n".format(aDate1, aDate2)
 	report += parseStandardReport(sqlPayload)	
-	report += "Total reports: {}".format(totalReports[0][0])
+	report += "Total reports: {}".format(totalReports)
 
 	return report
 

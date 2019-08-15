@@ -175,8 +175,7 @@ class HowmanyCommand(Command):
             )
 
     def doSomething(self, payLoad):
-
-        totalReports = adapter.getTotalReports()[0][0]
+        totalReports = adapter.getTotalReports()
         inChannelResponse(payLoad, self.response.format(totalReports))
         return
 
