@@ -320,6 +320,7 @@ class DumpsterCommand(Command):
         sqlResults = adapter.imSorry()
         allLinks = []
         for aLink in sqlResults:
+            print(aLink)
             allLinks.append(aLink)
             
         song = random.choice(allLinks)
