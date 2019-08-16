@@ -22,8 +22,8 @@ def directResponse(payLoad, response):
     utils.directResponse(payLoad['user'], response)
     return
 
-def ephemeralResponse(payLoad, response):
-    utils.ephemeralResponse(payLoad['channel'], response, payLoad['user'])
+def ephemeralResponse(payLoad, response, attachment):
+    utils.ephemeralResponse(payLoad['channel'], response, payLoad['user'], attachment)
 
 ###########################
 ###   Example Command   ###
