@@ -50,9 +50,10 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 if __name__ == '__main__':
 
     def main():
-
+ 
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
+
             try:
                 text = kwargs['data']['text']
 
@@ -65,7 +66,12 @@ if __name__ == '__main__':
             if text:
                 slackutils.CLIENT = kwargs['web_client']
                 cmd.EVAL(kwargs['data'])
- 
+
+        # @RTMClient.run_on(event='presence_change')
+        # def handle(**kwargs):
+        #     print(kwargs)
+        #     ch.restart_snek()
+
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()
         
