@@ -71,8 +71,8 @@ if __name__ == '__main__':
         slackutils.subscribe()
 
         @RTMClient.run_on(event='presence_change')
-        def handleSub(**kwargs):
-            print(kwargs)
+        def handleSub(**kwargs2):
+            print(kwargs2)
             return
         
     main()
