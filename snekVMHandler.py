@@ -135,23 +135,6 @@ def insertStatus(data, limit=1):
 		if i >= limit:
 			utils.directResponse(user, words.textMultiEat.format(i))
 			break
-
-	attach_json = [
-		{
-			"fallback": "Upgrade your Slack client to use messages like these.",
-			"color": "#CC0000",
-			"actions": [
-				{
-					"type": "button",
-					"text": ":red_circle:"
-				},
-				{
-					"type": "button",
-					"text": ":angry_skeletor:"
-				}
-			]
-		}
-	]
 	
-	utils.ephemeralResponse(data['channel'], words.textEat, data['user'], attach_json)		
+	utils.ephemeralResponse(data['channel'], words.textEat, data['user'])		
 	return
