@@ -34,6 +34,11 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 ###   End the slack token   ###
 ###############################
 
+@RTMClient.run_on(event='presence_change')
+def handleSub(**kwargs2):
+    print(kwargs2)
+    return
+
 @RTMClient.run_on(event='message')
 def handle(**kwargs):
 
@@ -68,6 +73,7 @@ if __name__ == '__main__':
  
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()
+        slackutils.subscribe()
         
     main()
 
