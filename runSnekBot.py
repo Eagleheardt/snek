@@ -35,7 +35,6 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 ###############################
 
 
-
 # .----------------.  .----------------.  .----------------.  .-----------------.  
 # | .--------------. || .--------------. || .--------------. || .--------------. | 
 # | | ____    ____ | || |      __      | || |     _____    | || | ____  _____  | | 
@@ -50,26 +49,27 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 
 if __name__ == '__main__':
 
-    @RTMClient.run_on(event='message')
-    def handle(**kwargs):
+    def main():
 
-        try:
-            text = kwargs['data']['text']
+        @RTMClient.run_on(event='message')
+        def handle(**kwargs):
+            try:
+                text = kwargs['data']['text']
 
-        except KeyError:
-            return
-        except Exception as e:
-            print(e)
-            return
+            except KeyError:
+                return
+            except Exception as e:
+                print(e)
+                return
 
-        if text:
-            slackutils.CLIENT = kwargs['web_client']
-            cmd.EVAL(kwargs['data'])
-
-    rtm_client = RTMClient(token=SLACK_TOKEN)
-    rtm_client.start()
-    print("OI!")
-    
+            if text:
+                slackutils.CLIENT = kwargs['web_client']
+                cmd.EVAL(kwargs['data'])
+ 
+        rtm_client = RTMClient(token=SLACK_TOKEN)
+        rtm_client.start()
+        
+    main()
 
 # .----------------.  .----------------.  .----------------.  .----------------.  .----------------.  .----------------. 
 # | .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
