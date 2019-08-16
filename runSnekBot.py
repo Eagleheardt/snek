@@ -3,7 +3,7 @@ import snekUtils as utils
 import decode as de
 import slackutils
 from slack import RTMClient
-import connectionHandler as ch
+import presenceHandler as ch
 
 
 #################

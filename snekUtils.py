@@ -19,6 +19,9 @@ TEST_CHANNEL = "GDJEY6HJN" # #testing channel
 MAX_REPORTS = 3
 MAX_RETURN = 250
 
+SNEK_TEST_ID = "UM4CZP7TP"
+SNEK_ID = "UDKKZD7DG"
+
 #################
 ###   ReGeX   ###
 #################
