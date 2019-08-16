@@ -37,9 +37,9 @@ def directResponse(aUser, response):
         )
     return
 
-def ephemeralResponse(channel, response, aUser):
+def ephemeralResponse(channel, response, aUser, attachments):
     CLIENT.chat_postEphemeral(
-        attachments='',
+        attachments=attachments,
         channel=channel,
         text=response,
         user=aUser,
