@@ -69,14 +69,11 @@ def handle(**kwargs):
 
 if __name__ == '__main__':
 
-    def main():
- 
-        rtm_client = RTMClient(token=SLACK_TOKEN)
-        rtm_client.start()
-        slackutils.subscribe()
-        print("OI!")
-        
-    main()
+    rtm_client = RTMClient(token=SLACK_TOKEN)
+    rtm_client.start()
+    slackutils.subscribe()
+    print("OI!")
+    
 
 # .----------------.  .----------------.  .----------------.  .----------------.  .----------------.  .----------------. 
 # | .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
