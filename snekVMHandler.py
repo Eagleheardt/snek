@@ -136,5 +136,5 @@ def insertStatus(data, limit=1):
 			utils.directResponse(user, words.textMultiEat.format(i))
 			break
 	
-	utils.inChannelResponse(data['channel'], words.textEat)		
+	utils.ephemeralResponse(data['channel'], words.textEat, data['user'])		
 	return
