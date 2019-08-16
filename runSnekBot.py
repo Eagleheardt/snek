@@ -34,6 +34,11 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 ###   End the slack token   ###
 ###############################
 
+@RTMClient.run_on(event='presence_change')
+def handleSub(**kwargs2):
+    print(kwargs2)
+    return
+
 @RTMClient.run_on(event='message')
 def handle(**kwargs):
 
@@ -50,10 +55,7 @@ def handle(**kwargs):
         slackutils.CLIENT = kwargs['web_client']
         cmd.EVAL(kwargs['data'])
 
-@RTMClient.run_on(event='presence_change')
-def handleSub(**kwargs2):
-    print(kwargs2)
-    return
+
 
 # .----------------.  .----------------.  .----------------.  .-----------------.  
 # | .--------------. || .--------------. || .--------------. || .--------------. | 
