@@ -68,6 +68,7 @@ if __name__ == '__main__':
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()
+        slackutils.subscribe()
 
         @RTMClient.run_on(event='presence_change')
         def handle(**kwargs):
