@@ -22,6 +22,9 @@ def directResponse(payLoad, response):
     utils.directResponse(payLoad['user'], response)
     return
 
+def ephemeralResponse(payLoad, response):
+    utils.ephemeralResponse(payLoad['channel'], response, payLoad['user'])
+
 ###########################
 ###   Example Command   ###
 ###########################
@@ -40,7 +43,7 @@ class ExampleCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        inChannelResponse(payLoad, self.response)
+        ephemeralResponse(payLoad, self.response)
         return
 
 publishedCommands.append(ExampleCommand())

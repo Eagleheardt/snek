@@ -63,6 +63,9 @@ def directResponse(aUser, response):
     utils.directResponse(aUser, response)
     return
 
+def ephemeralResponse(channel, response, aUser):
+	utils.ephemeralResponse(channel, response, aUser)
+
 def sanitizeID(slackID=''):
 	utils.sanitizeID(slackID)
 	return
