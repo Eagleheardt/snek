@@ -47,6 +47,14 @@ def ephemeralResponse(channel, response, aUser):
         )
     return
 
+def subscribe():
+    try:
+        CLIENT.presence_sub(
+            ids=['UDKKZD7DG', 'UM4CZP7TP']
+        )
+    except Exception as e:
+        print("ERROR: {}".format(e))
+
 ###########################
 ###   General parsers   ###
 ###########################

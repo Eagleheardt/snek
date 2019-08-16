@@ -68,6 +68,11 @@ if __name__ == '__main__':
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()
+
+        @RTMClient.run_on(event='presence_change')
+        def handle(**kwargs):
+            print(kwargs)
+            return
         
     main()
 
