@@ -69,7 +69,6 @@ if __name__ == '__main__':
                 cmd.EVAL(kwargs['data'])
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
-        schedule.every(1).minutes.do(ph.checkStatus(rtm_client))
         rtm_client.start()
         print("ASDTER")
         
