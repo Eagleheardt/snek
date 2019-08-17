@@ -4,7 +4,7 @@ import decode as de
 import slackutils
 from slack import RTMClient, WebClient
 import presenceHandler as ph
-import schedule
+import threading
 import time
 
 
@@ -43,8 +43,8 @@ def checker():
     ph.checkStatus(wc)
     return
 
-schedule.every(1).minute.do(checker).run()
-schedule.run_continuously()
+aTimer = threading.Timer(60,checker)
+aTimer.start()
 
 # .----------------.  .----------------.  .----------------.  .-----------------.  
 # | .--------------. || .--------------. || .--------------. || .--------------. | 
