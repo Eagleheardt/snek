@@ -61,6 +61,7 @@ print("RUN")
 if __name__ == '__main__':
 
     def main():
+        s.run()
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
