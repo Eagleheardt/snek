@@ -5,6 +5,6 @@ def restart_snek():
     subprocess.run('sudo systemctl restart snekTest.service', shell=True)
 
 def checkStatus():
-    result = utils.CLIENT.presence_query(ids="UDKKZD7DG")
+    result = utils.CLIENT.users_getPresence(user="UDKKZD7DG")
     print(result)
     return
