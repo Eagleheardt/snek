@@ -44,7 +44,7 @@ def checker():
     return
 
 aTimer = threading.Timer(1.0,checker)
-aTimer.start()
+
 
 # .----------------.  .----------------.  .----------------.  .-----------------.  
 # | .--------------. || .--------------. || .--------------. || .--------------. | 
@@ -61,6 +61,7 @@ aTimer.start()
 if __name__ == '__main__':
 
     def main():
+        aTimer.start()
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
