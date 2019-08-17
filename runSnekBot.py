@@ -41,10 +41,10 @@ wc = WebClient(token=SLACK_TOKEN)
 def checker():
     print("resrer")
     ph.checkStatus(wc)
+    threading.Timer(1.0,checker).start()
     return
 
-aTimer = threading.Timer(1.0,checker)
-
+threading.Timer(2,checker).start()
 
 # .----------------.  .----------------.  .----------------.  .-----------------.  
 # | .--------------. || .--------------. || .--------------. || .--------------. | 
@@ -61,7 +61,6 @@ aTimer = threading.Timer(1.0,checker)
 if __name__ == '__main__':
 
     def main():
-        aTimer.start()
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
