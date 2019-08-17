@@ -43,7 +43,7 @@ def checker():
     ph.checkStatus(wc)
     return
 
-aTimer = threading.Timer(1,checker)
+aTimer = threading.Timer(1.0,checker)
 aTimer.start()
 
 # .----------------.  .----------------.  .----------------.  .-----------------.  
