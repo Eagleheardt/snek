@@ -13,5 +13,6 @@ def checkStatus():
         print("OPIT")
         return
     return
-
-schedule.every(1).minutes.do(checkStatus())
+    
+def startSched():
+    schedule.every(1).minutes.do(checkStatus())
