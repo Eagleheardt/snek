@@ -45,7 +45,7 @@ wc = WebClient(token=SLACK_TOKEN)
 def checker():
     print("resrer")
     ph.checkStatus(wc)
-    threading.Timer(1.0,checker).start()
+    threading.Timer(30.0,checker).start()
     return
 
 threading.Timer(2,checker).start()
