@@ -2,6 +2,7 @@ import slackutils as utils
 import snekResponse as words
 import snekAdapter as adapter
 from snekUtils import Command
+import presenceHandler as ph
 import random
 
 publishedCommands = []
@@ -43,6 +44,7 @@ class ExampleCommand(Command):
             )
 
     def doSomething(self, payLoad):
+        ph.checkStatus()
         ephemeralResponse(payLoad, self.response)
         return
 
