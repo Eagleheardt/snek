@@ -4,7 +4,8 @@ import decode as de
 import slackutils
 from slack import RTMClient, WebClient
 import presenceHandler as ph
-import schedule
+import sched
+import time
 
 
 #################
@@ -35,6 +36,9 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 ###   End the slack token   ###
 ###############################
 
+s = sched.scheduler(time.time, time.sleep)
+wc = WebClient(token=SLACK_TOKEN)
+s.enter(2,1,ph.checkStatus(wc))
 
 # .----------------.  .----------------.  .----------------.  .-----------------.  
 # | .--------------. || .--------------. || .--------------. || .--------------. | 
@@ -66,8 +70,6 @@ if __name__ == '__main__':
             if text:
                 slackutils.CLIENT = kwargs['web_client']
                 cmd.EVAL(kwargs['data'])
-        
-        ph.startSched(WebClient(token=SLACK_TOKEN))
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()
