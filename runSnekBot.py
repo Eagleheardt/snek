@@ -38,7 +38,8 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 
 s = sched.scheduler(time.time, time.sleep)
 wc = WebClient(token=SLACK_TOKEN)
-s.enter(2,1,ph.checkStatus(wc))
+s.enter(1,1,ph.checkStatus(wc))
+s.run()
 
 # .----------------.  .----------------.  .----------------.  .-----------------.  
 # | .--------------. || .--------------. || .--------------. || .--------------. | 
