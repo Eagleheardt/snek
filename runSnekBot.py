@@ -60,9 +60,10 @@ if __name__ == '__main__':
         print("after s")
         s.enter(1,1,ph.checkStatus(wc))
         print("after enter")
+        print(s)
 
         print("RUN")
-        sched.scheduler.run()
+        s.run()
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
