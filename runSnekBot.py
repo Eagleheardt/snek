@@ -43,7 +43,6 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 wc = WebClient(token=SLACK_TOKEN)
 
 def checker():
-    print("resrer")
     ph.checkStatus(wc)
     threading.Timer(30.0,checker).start()
     return

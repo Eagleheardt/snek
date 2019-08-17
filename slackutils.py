@@ -26,7 +26,6 @@ def threadedResponse(channel, response, stamp):
         thread_ts=stamp,
         as_user=True
         )
-    print(stamp)
     return
 
 def directResponse(aUser, response):
