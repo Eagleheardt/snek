@@ -2,7 +2,7 @@ import snekCommands as cmd
 import snekUtils as utils
 import decode as de
 import slackutils
-from slack import RTMClient
+from slack import RTMClient, WebClient
 import presenceHandler as ph
 import schedule
 
@@ -54,7 +54,6 @@ if __name__ == '__main__':
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
-
             try:
                 text = kwargs['data']['text']
 
@@ -66,13 +65,12 @@ if __name__ == '__main__':
 
             if text:
                 slackutils.CLIENT = kwargs['web_client']
-                #ph.startSched()
                 cmd.EVAL(kwargs['data'])
+        
+        ph.startSched(WebClient(token=SLACK_TOKEN))
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()
-        print("ASDTER")
-        
         
     main()
 
