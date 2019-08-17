@@ -3,7 +3,8 @@ import snekUtils as utils
 import decode as de
 import slackutils
 from slack import RTMClient
-import presenceHandler as ch
+import presenceHandler as ph
+import schedule
 
 
 #################
@@ -69,6 +70,7 @@ if __name__ == '__main__':
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()
+        schedule.every(1).minutes.do(ph.checkStatus())
         
     main()
 
