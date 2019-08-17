@@ -100,6 +100,14 @@ def validPayload(sqlPayload):
 		return True
 	return False
 
+def snekLogger(someText=''):
+	curDate = datetime.today().strftime('%Y-%m-%d')
+	curTime = datetime.now().strftime('%H:%M:%S')
+	logFile = open((("/home/ubuntu/logs/snekErr-{0}.log").format(curDate)),"a")
+	logFile.write("{} - {}".format(curTime, someText))
+	logFile.close()
+	return
+
 # SQL formatters for reports
 
 def parseStandardReport(sqlPayload):
