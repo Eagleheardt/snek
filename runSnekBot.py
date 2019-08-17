@@ -59,6 +59,7 @@ def setUpper():
 if __name__ == '__main__':
 
     def main():
+        setUpper()
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
