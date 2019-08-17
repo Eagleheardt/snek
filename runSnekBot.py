@@ -43,7 +43,7 @@ s = sched.scheduler(time.time, time.sleep)
 print("after s")
 s.enter(1,1,ph.checkStatus(wc))
 print("after enter")
-s.run()
+
 print("RUN")
 
 # .----------------.  .----------------.  .----------------.  .-----------------.  
