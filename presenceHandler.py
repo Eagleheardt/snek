@@ -13,6 +13,3 @@ def checkStatus(aClient):
         print("OPIT")
         return
     return
-    
-def startSched(aClient):
-    schedule.every(1).minutes.do(checkStatus(aClient))

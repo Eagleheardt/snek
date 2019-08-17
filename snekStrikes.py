@@ -44,7 +44,6 @@ class ExampleCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        ph.checkStatus()
         ephemeralResponse(payLoad, self.response)
         return
 
