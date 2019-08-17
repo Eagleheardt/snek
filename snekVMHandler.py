@@ -132,7 +132,7 @@ def insertStatus(data, limit=1):
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandInfo.format(total))
 
-		if i >= limit:
+		if i >= limit and i != 1:
 			utils.directResponse(user, words.textMultiEat.format(i))
 			break
 	
