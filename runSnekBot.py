@@ -58,8 +58,7 @@ def checker():
 if __name__ == '__main__':
 
     def main():
-        schedule.every(1).minutes.do(checker)
-        schedule.run_pending()
+        schedule.every(1).minutes.do(checker).run()
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
