@@ -43,6 +43,9 @@ def checker():
     ph.checkStatus(wc)
     return
 
+schedule.every(1).minute.do(checker).run()
+schedule.run_continuously()
+
 # .----------------.  .----------------.  .----------------.  .-----------------.  
 # | .--------------. || .--------------. || .--------------. || .--------------. | 
 # | | ____    ____ | || |      __      | || |     _____    | || | ____  _____  | | 
@@ -58,7 +61,6 @@ def checker():
 if __name__ == '__main__':
 
     def main():
-        schedule.every(1).minutes.do(checker).run()
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
