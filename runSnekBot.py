@@ -4,7 +4,7 @@ import decode as de
 import slackutils
 from slack import RTMClient, WebClient
 import presenceHandler as ph
-import sched
+import schedule
 import time
 
 
@@ -35,13 +35,12 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 ###############################
 ###   End the slack token   ###
 ###############################
-s=sched.scheduler(time.time, time.sleep)
+
 wc = WebClient(token=SLACK_TOKEN)
 
-def setUpper():
-    print("stat")
-    s.enter(1,1,ph.checkStatus(wc))
-    s.run()
+def checker():
+    print("resrer")
+    ph.checkStatus(wc)
     return
 
 # .----------------.  .----------------.  .----------------.  .-----------------.  
@@ -59,7 +58,8 @@ def setUpper():
 if __name__ == '__main__':
 
     def main():
-        setUpper()
+        schedule.every(1).minutes.do(checker)
+        schedule.run_pending()
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
