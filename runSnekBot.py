@@ -35,16 +35,7 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 ###############################
 ###   End the slack token   ###
 ###############################
-print("before WC")
-wc = WebClient(token=SLACK_TOKEN)
-print("after WC")
-print(wc)
-s = sched.scheduler(time.time, time.sleep)
-print("after s")
-s.enter(1,1,ph.checkStatus(wc))
-print("after enter")
 
-print("RUN")
 
 # .----------------.  .----------------.  .----------------.  .-----------------.  
 # | .--------------. || .--------------. || .--------------. || .--------------. | 
@@ -61,6 +52,16 @@ print("RUN")
 if __name__ == '__main__':
 
     def main():
+        print("before WC")
+        wc = WebClient(token=SLACK_TOKEN)
+        print("after WC")
+        print(wc)
+        s = sched.scheduler(time.time, time.sleep)
+        print("after s")
+        s.enter(1,1,ph.checkStatus(wc))
+        print("after enter")
+
+        print("RUN")
         s.run()
  
         @RTMClient.run_on(event='message')
