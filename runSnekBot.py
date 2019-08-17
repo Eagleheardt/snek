@@ -66,10 +66,10 @@ if __name__ == '__main__':
 
             if text:
                 slackutils.CLIENT = kwargs['web_client']
-                schedule.every(1).minutes.do(ph.checkStatus())
                 cmd.EVAL(kwargs['data'])
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
+        schedule.every(1).minutes.do(ph.checkStatus(rtm_client))
         rtm_client.start()
         print("ASDTER")
         
