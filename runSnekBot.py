@@ -51,6 +51,7 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 if __name__ == '__main__':
 
     def main():
+        schedule.every(1).minutes.do(ph.checkStatus())
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
@@ -70,7 +71,8 @@ if __name__ == '__main__':
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()
-        schedule.every(1).minutes.do(ph.checkStatus())
+        print("ASDTER")
+        
         
     main()
 
