@@ -47,7 +47,7 @@ def checker():
     threading.Timer(30.0,checker).start()
     return
 
-threading.Timer(10,checker).start()
+threading.Timer(60,checker).start()
 
 ###############################
 ###   End Checker Threads   ###
