@@ -7,7 +7,7 @@ def restart_snek():
 
 def checkStatus(aClient):
     result = aClient.users_getPresence(user=utils.SNEK_ID)
-    if str(result['presence']) != 'active':
+    if str(result['presence']) == 'away':
         utils.snekLogger("Snek offline unexpectedly.")
         restart_snek()
         return
