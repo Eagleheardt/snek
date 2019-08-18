@@ -44,10 +44,10 @@ wc = WebClient(token=SLACK_TOKEN)
 
 def checker():
     ph.checkStatus(wc)
-    threading.Timer(30.0,checker).start()
+    threading.Timer(utils. MONITOR_RUN_DELAY_IN_SECONDS,checker).start()
     return
 
-threading.Timer(7500,checker).start()
+threading.Timer(utils.MONITOR_START_DELAY_IN_SECONDS,checker).start()
 
 ###############################
 ###   End Checker Threads   ###
