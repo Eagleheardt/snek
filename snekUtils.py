@@ -101,7 +101,7 @@ def validPayload(sqlPayload):
 	return False
 
 def snekLogger(someText=''):
-	curDate = datetime.today().strftime('%Y-%m-%d')
+	curDate = datetime.datetime.today().strftime('%Y-%m-%d')
 	curTime = datetime.now().strftime('%H:%M:%S')
 	logFile = open((("/home/ubuntu/logs/snekErr-{0}.log").format(curDate)),"a")
 	logFile.write("{} - {}".format(curTime, someText))
