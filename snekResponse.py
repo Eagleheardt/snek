@@ -20,6 +20,7 @@ Don't bother editing your response, just say it again, if I don't eat it.
 	
 !help - display this message.
 !pet - I love the pets!
+F5 :dumpster_fire: - Feeling frustrated?
 
 !report DATE
 	Gives a breakdown of all the server statuses reported for that day.
