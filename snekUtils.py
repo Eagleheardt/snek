@@ -10,12 +10,20 @@ import re
 SNEK_BIRTHDAY = datetime.datetime(2018, 10, 25)
 WORKING_PATH = "/home/ubuntu/"
 DATABASE_NAME = "newSnek.db"
-DATABASE_PATH = "snekbot/data/"
-KEY_PATH = "snekbot/data/snek_token"
+DATABASE_PATH = "snekbot/data/" # prod
+# DATABASE_PATH = "snekTest/data/" # test
+KEY_PATH = "snekbot/data/snek_token" # prod
+# KEY_PATH = "snekTest/data/snekTest" # test
 VM_CHANNEL = "CC568PC3X" # #ppl_vm channel
 TEST_CHANNEL = "GDJEY6HJN" # #testing channel
 MAX_REPORTS = 3
 MAX_RETURN = 250
+
+SNEK_TEST_ID = "UM4CZP7TP"
+SNEK_ID = "UDKKZD7DG"
+
+MONITOR_START_DELAY_IN_SECONDS = 7500.0 # 125 minutes
+MONITOR_RUN_DELAY_IN_SECONDS = 30.0
 
 #################
 ###   ReGeX   ###
@@ -58,6 +66,9 @@ def directResponse(aUser, response):
     utils.directResponse(aUser, response)
     return
 
+def ephemeralResponse(channel, response, aUser):
+	utils.ephemeralResponse(channel, response, aUser)
+
 def sanitizeID(slackID=''):
 	utils.sanitizeID(slackID)
 	return
@@ -91,6 +102,14 @@ def validPayload(sqlPayload):
 	if sqlPayload:
 		return True
 	return False
+
+def snekLogger(someText=''):
+	curDate = datetime.datetime.today().strftime('%Y-%m-%d')
+	curTime = datetime.datetime.now().strftime('%H:%M:%S')
+	logFile = open((("/home/ubuntu/logs/snekErr-{0}.log").format(curDate)),"a")
+	logFile.write("{} - {}".format(curTime, someText))
+	logFile.close()
+	return
 
 # SQL formatters for reports
 

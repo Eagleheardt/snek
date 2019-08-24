@@ -2,8 +2,10 @@ import snekCommands as cmd
 import snekUtils as utils
 import decode as de
 import slackutils
-from slack import RTMClient
-import connectionHandler as ch
+from slack import RTMClient, WebClient
+import presenceHandler as ph
+import threading
+import time
 
 
 #################
@@ -34,6 +36,23 @@ SLACK_TOKEN = de.getToken() # Bot's Slack token
 ###   End the slack token   ###
 ###############################
 
+#############################
+###   WebClient Checker   ###
+#############################
+
+wc = WebClient(token=SLACK_TOKEN)
+
+def checker():
+    ph.checkStatus(wc)
+    threading.Timer(utils.MONITOR_RUN_DELAY_IN_SECONDS,checker).start()
+    return
+
+threading.Timer(utils.MONITOR_START_DELAY_IN_SECONDS,checker).start()
+
+###############################
+###   End Checker Threads   ###
+###############################
+
 # .----------------.  .----------------.  .----------------.  .-----------------.  
 # | .--------------. || .--------------. || .--------------. || .--------------. | 
 # | | ____    ____ | || |      __      | || |     _____    | || | ____  _____  | | 
@@ -52,7 +71,6 @@ if __name__ == '__main__':
  
         @RTMClient.run_on(event='message')
         def handle(**kwargs):
-
             try:
                 text = kwargs['data']['text']
 
@@ -65,11 +83,6 @@ if __name__ == '__main__':
             if text:
                 slackutils.CLIENT = kwargs['web_client']
                 cmd.EVAL(kwargs['data'])
-
-        # @RTMClient.run_on(event='presence_change')
-        # def handle(**kwargs):
-        #     print(kwargs)
-        #     ch.restart_snek()
 
         rtm_client = RTMClient(token=SLACK_TOKEN)
         rtm_client.start()

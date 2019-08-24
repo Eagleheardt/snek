@@ -100,7 +100,10 @@ def parseStatus(text=''):
 	emojiList = text.split(":") # splits it apart by emoji/colons
 	emojiList = list(map(str.strip, emojiList)) # removes the whitespace from all objects
 
-	VMServerPart = emojiList.pop(0) # removes and returns the first item in the list 
+	VMServerPart = emojiList.pop(0) # removes and returns the first item in the list
+	if VMServerPart == "" or VMServerPart is None: # if there's no VMServerPart to interpret, just exit
+		return 99, None
+		
 	VMServer = checkInt(VMServerPart) # makes sure it's a number, else it's 99
 
 	if not emojiList:
@@ -132,9 +135,9 @@ def insertStatus(data, limit=1):
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandInfo.format(total))
 
-		if i >= limit:
+		if i >= limit and i != 1:
 			utils.directResponse(user, words.textMultiEat.format(i))
 			break
 	
-	utils.inChannelResponse(data['channel'], words.textEat)		
+	utils.ephemeralResponse(data['channel'], words.textEat, data['user'])		
 	return

@@ -36,6 +36,16 @@ def directResponse(aUser, response):
         )
     return
 
+def ephemeralResponse(channel, response, aUser):
+    CLIENT.chat_postEphemeral(
+        attachments='',
+        channel=channel,
+        text=response,
+        user=aUser,
+        as_user=True
+        )
+    return
+
 ###########################
 ###   General parsers   ###
 ###########################
@@ -47,13 +57,14 @@ def sanitizeID(slackID=''):
     return slackID.replace('<', '').replace('>','').replace('@','').upper()
 
 # adds the decoration back to an ID
-# use when calling out a person by name in a channel
+# use when calling out a person by name in a message
 
 def reconstitueID(slackID=''):
     return '<@{}>'.format(slackID)
 
 # renames a link to something more readable
 # use when you want to hide ugly URLs
+# first arg is the link, second arg is the text
 
 def linkFormatter(someURL='',someText=''):
     return "<{}|{}>".format(someURL, someText)

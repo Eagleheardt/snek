@@ -2,6 +2,7 @@ import slackutils as utils
 import snekResponse as words
 import snekAdapter as adapter
 from snekUtils import Command
+import presenceHandler as ph
 import random
 
 publishedCommands = []
@@ -22,6 +23,9 @@ def directResponse(payLoad, response):
     utils.directResponse(payLoad['user'], response)
     return
 
+def ephemeralResponse(payLoad, response):
+    utils.ephemeralResponse(payLoad['channel'], response, payLoad['user'])
+
 ###########################
 ###   Example Command   ###
 ###########################
@@ -40,7 +44,7 @@ class ExampleCommand(Command):
             )
 
     def doSomething(self, payLoad):
-        inChannelResponse(payLoad, self.response)
+        ephemeralResponse(payLoad, self.response)
         return
 
 publishedCommands.append(ExampleCommand())
