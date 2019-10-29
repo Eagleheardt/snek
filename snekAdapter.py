@@ -36,7 +36,7 @@ def singleDayReport(aDate): # Gets a daily summary of the VM number and status r
 				Issues 
 			WHERE 
 				date(TimeStamp) IN ('{0}') 
-				AND ServerNumber IN (1, 2, 3, 4, 17) 
+				AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48 ,49) 
 			GROUP BY 
 				ServerNumber
 				, ServerStatus;
@@ -54,7 +54,7 @@ def multiDayReport (date1, date2): # Gets a range summary of the VM number and s
 			Issues
 		WHERE 
 			date(TimeStamp) BETWEEN '{0}' AND '{1}'
-			AND ServerNumber IN (1, 2, 3, 4, 17)
+			AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48 ,49) 
 		GROUP BY 
 			ServerNumber
 			,ServerStatus
@@ -75,7 +75,7 @@ def reportCount(date1, date2):
 				Issues
 			WHERE 
 				date(TimeStamp) BETWEEN '{0}' AND '{1}'
-				AND ServerNumber IN (1, 2, 3, 4, 17)
+				AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48 ,49)
 			GROUP BY 
 				ServerNumber
 				,ServerStatus
@@ -97,7 +97,7 @@ def mikeReport (date1, date2): # Gets the time, VM number, and status reported a
 			Issues 
 		WHERE
 			date(TimeStamp) BETWEEN '{0}' AND '{1}' 
-			AND ServerNumber IN(1, 2, 3, 4, 17);
+			AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48 ,49) ;
 	""").format(date1, date2))
 	results = sql.GET(cmd)
 	
