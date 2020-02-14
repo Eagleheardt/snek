@@ -16,14 +16,13 @@ KEY_PATH = "snekbot/data/snek_token" # prod
 # KEY_PATH = "snekTest/data/snekTest" # test
 VM_CHANNEL = "CC568PC3X" # #ppl_vm channel
 TEST_CHANNEL = "GDJEY6HJN" # #testing channel
-MAX_REPORTS = 3
 MAX_RETURN = 250
 
 SNEK_TEST_ID = "UM4CZP7TP"
 SNEK_ID = "UDKKZD7DG"
 
 MONITOR_START_DELAY_IN_SECONDS = 7500.0 # 125 minutes
-MONITOR_RUN_DELAY_IN_SECONDS = 30.0
+MONITOR_RUN_DELAY_IN_SECONDS = 5.0
 
 #################
 ###   ReGeX   ###
