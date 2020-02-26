@@ -36,6 +36,7 @@ __STATUS_DICTIONARY = {
 	"skull_and_crossbones":__RESTART,
 	"angry_skeletor":__RESTART,
     "dumpster_fire":__RESTART,
+    "cute_dumpster_fire":__RESTART,
 	"sad_panda":__RESTART
     
 	}
@@ -129,11 +130,13 @@ def insertStatus(data, limit=1):
 		adapter.insertIssue(VMServer, convertStatus(j), user)
 		
 		total = adapter.getTotalReports()
-		if (total % 1000) == 0: # every 1k issues
+		if (total % 1000) == 0 and total != 9000 : # every 1k issues
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandGif.format(total))
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandInfo.format(total))
+		if total == 9001:
+			pass
 
 		if i >= limit and i != 1:
 			utils.directResponse(user, words.textMultiEat.format(i))
