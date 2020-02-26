@@ -83,3 +83,15 @@ I'm {} years old, today!
 With your help, I've recorded a LOT different incidents with the VM environments!
 Please keep up the good work!
 """
+
+text9001Gif = "<https://gfycat.com/wellgroomedgrossamericanwirehair|Over 9000!!>"
+text9001Info =\
+"""
+That's right, we've gotten an excess of 9000 issues recorded across all servers since records started being kept.
+I never expected Snek to take off like he has, and I'm extremely glad that he is useful and is being used!
+There is now a new set of VMs for ya'll to use, and I'd like to think that Snek's reports helped with that.
+
+Remember to !pet, !hug, and !kiss Snek whenever you can!
+I will most likely continue to include little extras in Snek as time goes on... but I won't tell you about them.
+Enjoy!
+"""

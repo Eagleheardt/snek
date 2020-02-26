@@ -136,7 +136,10 @@ def insertStatus(data, limit=1):
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandInfo.format(total))
 		if total == 9001:
-			pass
+			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
+			utils.inChannelResponse(utils.VM_CHANNEL, words.text9001Gif)
+			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
+			utils.inChannelResponse(utils.VM_CHANNEL, words.text9001Info)
 
 		if i >= limit and i != 1:
 			utils.directResponse(user, words.textMultiEat.format(i))
