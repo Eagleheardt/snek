@@ -135,7 +135,9 @@ def insertStatus(data, limit=1):
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandGif.format(total))
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandInfo.format(total))
-		if total == 9001:
+		elif total == 9000:
+			utils.inChannelResponse(utils.VM_CHANNEL, ":tumbleweed::tumbleweed::tumbleweed:")
+		elif total == 9001:
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
 			utils.inChannelResponse(utils.VM_CHANNEL, words.text9001Gif)
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
