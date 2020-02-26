@@ -6,7 +6,7 @@ import snekVMHandler as vmh
 __commandList = action.publishedCommands + reporting.publishedCommands
 
 def dumpsterFire(someText=''):
-    if someText == "f5 :dumpster_fire:":
+    if someText == "f5 :dumpster_fire:" or someText == "f5 :cute_dumpster_fire:":
         return True
     return False
 
