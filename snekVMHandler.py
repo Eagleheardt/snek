@@ -130,7 +130,7 @@ def insertStatus(data, limit=1):
 		adapter.insertIssue(VMServer, convertStatus(j), user)
 		
 		total = adapter.getTotalReports()
-		if (total % 1000) == 0 and total != 9000 : # every 1k issues
+		if (total % 1000) == 0 and total != 9000: # every 1k issues
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandGif.format(total))
 			utils.inChannelResponse(utils.VM_CHANNEL, words.textThousandFlags)
