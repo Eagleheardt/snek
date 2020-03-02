@@ -17,6 +17,7 @@ KEY_PATH = "snekbot/data/snek_token" # prod
 VM_CHANNEL = "CC568PC3X" # #ppl_vm channel
 TEST_CHANNEL = "GDJEY6HJN" # #testing channel
 MAX_RETURN = 250
+MAX_REPORTS = 3
 
 SNEK_TEST_ID = "UM4CZP7TP"
 SNEK_ID = "UDKKZD7DG"
