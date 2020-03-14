@@ -56,10 +56,10 @@ threading.Timer(utils.MONITOR_START_DELAY_IN_SECONDS,WebClientChecker).start()
 ##################################
 
 def BethanyHealthChecker():
-    d = datetime.datetime.now()
-    if ((d.isoweekday() in range(1, 6)) and (d.hour in range(8, 18))):
-        utils.directResponse("BethanySlackID", random.choice(words.textTreySays))
-        threading.Timer(random.randint(900, 1500),BethanyHealthChecker).start()
+    #d = datetime.datetime.now()
+    #if ((d.isoweekday() in range(1, 6)) and (d.hour in range(8, 18))):
+    utils.directResponse("BethanySlackID", random.choice(words.textTreySays))
+    threading.Timer(random.randint(900, 1500),BethanyHealthChecker).start()
     return
 
 threading.Timer(utils.MONITOR_START_DELAY_IN_SECONDS,BethanyHealthChecker).start()
