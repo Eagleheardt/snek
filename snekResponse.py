@@ -95,3 +95,16 @@ Remember to !pet, !hug, and !kiss Snek whenever you can!
 I will most likely continue to include little extras in Snek as time goes on... but I won't tell you about them.
 Enjoy!
 """
+textTreySays = [
+	"Trey says: Bethany, do you feel thirsty? Get some water! Thirst is the first sign of dehydration.", 
+	"Trey says: Bethany, when is the last time you went to get water? Maybe it should be now.", 
+	"Trey says: Yeah, Bethany, if you could go get some water, that'd be great.", 
+	"Trey says: Hey Bethany, you know what a 5 letter word meaning 'to shread' starting with 'g' is? Yeah, that's 'grate.' Drink :potable_water:.", 
+	"Trey says: " + ((":potable_water: ") * 10), 
+	"Trey says: Have you been drinking water? Go get some!", 
+	"Trey says: Water, water, everywhere: so why not have a drink?", 
+	"Trey says: Water you doing? You should be drinking water!", 
+	"Trey says: It's a fact that if you have 20 glasses of water a day you'll spend so much time in the bathroom you won't have time for other people's problems.", 
+	"Trey says: Did you know that your body is 70 percent water? You should drink more water.", 
+	"Trey says: Water is so addictive that if you go 3 days without it, you will literally die. True story. Feed the addiction, drink water."
+]
