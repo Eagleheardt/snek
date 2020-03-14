@@ -8,6 +8,7 @@ import threading
 import time
 import datetime
 import snekResponse as words
+import random
 
 
 #################
@@ -59,10 +60,23 @@ def BethanyHealthChecker():
     #d = datetime.datetime.now()
     #if ((d.isoweekday() in range(1, 6)) and (d.hour in range(8, 18))):
     utils.directResponse("BethanySlackID", random.choice(words.textTreySays))
-    threading.Timer(random.randint(900, 1500),BethanyHealthChecker).start()
+    threading.Timer(random.randint(900, 1500), BethanyHealthChecker).start()
     return
 
-threading.Timer(utils.MONITOR_START_DELAY_IN_SECONDS,BethanyHealthChecker).start()
+threading.Timer(1500, BethanyHealthChecker).start()
+
+#######################
+###   Report Test   ###
+#######################
+
+def ReportTest():
+    #d = datetime.datetime.now()
+    #if (d.day == 1):
+    utils.directResponse("AndreSlackID", random.choice(words.textTreySays))
+    threading.Timer(1500, ReportTest).start()
+    return
+
+threading.Timer(1500, BethanyHealthChecker).start()
 
 ###############################
 ###   End Checker Threads   ###
