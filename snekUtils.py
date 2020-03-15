@@ -176,3 +176,71 @@ def parsePets(sqlPayload):
 		report += "{}: {} {}\n".format(tAct, tAmount, amt)
 
 	return report
+
+def parseTreyReport(sqlPayload):
+	snekBorder = (":snek:" * 15)
+	snekOverallDecor =\
+	"""
+	******************************
+	***   Overall Statistics   ***
+	******************************
+	"""
+	report = ""
+
+	report += snekBorder
+	report += "\n\nHere is your monthly Snek status report:\n\n"
+	for tupple in sqlPayload:
+		tFavePersonMonth = tupple[0]
+		tFavePersonMonthReports = tupple[1]
+
+		report += "My favorite person last month was {} who fed me {} times\n".format(tFavePersonMonth, tFavePersonMonthReports)
+
+		tErrantServerMonth = tupple[2]
+		tErrantServerMonthReports = tupple[3]
+
+		report += "The most server with the most issues last month was {} who gave me {} problems\n".format(tErrantServerMonth, tErrantServerMonthReports)
+
+		tDayOfMostIssues = tupple[4]
+		tDayOfMostIssuesAmount = tupple[5]
+
+		tDayEnding = "th"
+		if tDayOfMostIssues.endswith('1'):
+			tDayEnding = "st"
+			if tDayOfMostIssues.endswith('11'):
+				tDayEnding = "th"
+		elif tDayOfMostIssues.endswith('2'):
+			tDayEnding = "nd"
+			if tDayOfMostIssues.endswith('12'):
+				tDayEnding = "th"
+		elif tDayOfMostIssues.endswith('3'):
+			tDayEnding = "rd"
+			if tDayOfMostIssues.endswith('13'):
+				tDayEnding = "th"
+		else:
+			tDayEnding = "th"
+
+		report += "The most difficult day last month was the {}{} when I had to eat {} problems\n".format(tDayOfMostIssues, tDayEnding, tDayOfMostIssuesAmount)
+
+		tAverageErrorsPerDayLastMonth = tupple[6]
+
+		report += "Last month I ate an average of {} problems each day\n".format(tDayOfMostIssues, tDayOfMostIssuesAmount)
+
+		tOverallPerson = tupple[7]
+		tOverallPersonReports = tupple[8]
+
+		report += snekOverallDecor
+
+		report += "Overall, I've eaten the most from {} who sent me {} problems\n".format(tOverallPerson, tOverallPersonReports)
+		
+		tOverallErrantServer = tupple[9]
+		tOverallErrantServerReports = tupple[10]
+
+		report += "Overall, I've been fed the most from server number {} which has had {} problems\n".format(tOverallErrantServer, tOverallErrantServerReports)
+
+		tAverageErrorsPerDayOverall = tupple[11]
+
+		report += "On average, I eat {} problems per day. Every day.\n\n".format(tAverageErrorsPerDayOverall)
+
+	report += snekBorder
+	
+	return report

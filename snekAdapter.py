@@ -125,6 +125,39 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 
 	return results
 
+def treyReport (): # Gets a range summary of the VM number and status reported
+	cmd = ("""
+		SELECT 
+			ServerNumber
+			, ServerStatus
+			, count(ServerStatus) as AMT
+		FROM 
+			Issues
+		WHERE 
+			date(TimeStamp) BETWEEN '2020-01-01' AND '2020-03-01'
+			AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48 ,49) 
+		GROUP BY 
+			ServerNumber
+			,ServerStatus
+	""")
+	results = sql.GET(cmd)
+	return results
+
+#################
+#   TODO LIST   #
+#################
+
+# Monthly formatted report: 
+# Person who reported the most - number of reports 
+#   (Snek's favorite person of the month)
+# Most errant server - server number - number of issues
+# Overall highest reporter - number of reports
+# overall most errant server - number of reports
+# Daily highest number of issues.
+# Highest issues on a day in that month
+# Daily average overall
+# daily average on the month
+
 # CREATE TABLE IF NOT EXISTS "Interactions" (
 # 'ID' INTEGER PRIMARY KEY AUTOINCREMENT, 
 # 'TimeStamp' DATE DEFAULT (datetime('now','localtime')),

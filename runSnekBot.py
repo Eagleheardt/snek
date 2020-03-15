@@ -5,11 +5,7 @@ import slackutils
 from slack import RTMClient, WebClient
 import presenceHandler as ph
 import threading
-import time
-import datetime
-import snekResponse as words
-import random
-
+import snekScheduler
 
 #################
 #   TODO LIST   #
@@ -52,39 +48,9 @@ def WebClientChecker():
 
 threading.Timer(utils.MONITOR_START_DELAY_IN_SECONDS,WebClientChecker).start()
 
-##################################
-###   Bethany Health Checker   ###
-##################################
-
-def BethanyHealthChecker():
-    d = datetime.datetime.now()
-    if (d.isoweekday() in range(1, 6)):
-        if (d.hour in range(8, 17)):
-            #utils.directResponse("UBW657ERF", random.choice(words.textTreySays))
-            utils.directResponse("UC176R92M", random.choice(words.textTreySays))
-        if (d.hour > 16):
-            return
-        threading.Timer(random.randint(900, 1500), BethanyHealthChecker).start()
-    return
-
-threading.Timer(1500, BethanyHealthChecker).start()
-
-#######################
-###   Report Test   ###
-#######################
-
-def ReportTest():
-    #d = datetime.datetime.now()
-    #if (d.day == 1):
-    utils.directResponse("UC176R92M", random.choice(words.textTreySays))
-    threading.Timer(600, ReportTest).start()
-    return
-
-# threading.Timer(600, ReportTest).start()
-
-###############################
-###   End Checker Threads   ###
-###############################
+#################################
+###   End WebClient Checker   ###
+#################################
 
 # .----------------.  .----------------.  .----------------.  .-----------------.  
 # | .--------------. || .--------------. || .--------------. || .--------------. | 
