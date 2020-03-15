@@ -63,7 +63,7 @@ def BethanyHealthChecker():
     threading.Timer(random.randint(900, 1500), BethanyHealthChecker).start()
     return
 
-threading.Timer(1500, BethanyHealthChecker).start()
+#threading.Timer(1500, BethanyHealthChecker).start()
 
 #######################
 ###   Report Test   ###
@@ -76,7 +76,7 @@ def ReportTest():
     threading.Timer(1500, ReportTest).start()
     return
 
-threading.Timer(1500, BethanyHealthChecker).start()
+#threading.Timer(1500, BethanyHealthChecker).start()
 
 ###############################
 ###   End Checker Threads   ###
