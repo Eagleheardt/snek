@@ -36,7 +36,7 @@ def singleDayReport(aDate): # Gets a daily summary of the VM number and status r
 				Issues 
 			WHERE 
 				date(TimeStamp) IN ('{0}') 
-				AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48 ,49) 
+				AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48 , 49) 
 			GROUP BY 
 				ServerNumber
 				, ServerStatus;
@@ -54,7 +54,7 @@ def multiDayReport (date1, date2): # Gets a range summary of the VM number and s
 			Issues
 		WHERE 
 			date(TimeStamp) BETWEEN '{0}' AND '{1}'
-			AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48 ,49) 
+			AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49) 
 		GROUP BY 
 			ServerNumber
 			,ServerStatus
@@ -75,7 +75,7 @@ def reportCount(date1, date2):
 				Issues
 			WHERE 
 				date(TimeStamp) BETWEEN '{0}' AND '{1}'
-				AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48 ,49)
+				AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49)
 			GROUP BY 
 				ServerNumber
 				,ServerStatus
@@ -97,7 +97,7 @@ def mikeReport (date1, date2): # Gets the time, VM number, and status reported a
 			Issues 
 		WHERE
 			date(TimeStamp) BETWEEN '{0}' AND '{1}' 
-			AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48 ,49) ;
+			AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49) ;
 	""").format(date1, date2))
 	results = sql.GET(cmd)
 	
@@ -125,22 +125,42 @@ def garyReport (date1, date2): # Gets the time, VM number, and status reported a
 
 	return results
 
-def treyReport (): # Gets a range summary of the VM number and status reported
-	cmd = ("""
+def treyReport (): # Gets the monthly report. Should run on the 28th every month. I hope.
+	results = []
+	DAY_ZERO = "2018-11-12"
+	lIssuesThisMonth = ("""
 		SELECT 
-			ServerNumber
-			, ServerStatus
-			, count(ServerStatus) as AMT
+			count(0) as sTotalIssues
+		FROM 
+			Issues 
+		WHERE 
+			TimeStamp BETWEEN 
+				datetime('now', 'start of month') 
+				AND datetime('now', 'localtime')
+		AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49);
+	""")
+	lSQLResultsIssuesThisMonth = sql.GET(lIssuesThisMonth) # Total number of issues in the current month
+
+	results.append(lSQLResultsIssuesThisMonth)
+
+	lIssuesAllTime = ("""
+		SELECT 
+			count(0) as sTotalIssues
 		FROM 
 			Issues
-		WHERE 
-			date(TimeStamp) BETWEEN '2020-01-01' AND '2020-03-01'
-			AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48 ,49) 
-		GROUP BY 
-			ServerNumber
-			,ServerStatus
+		WHERE
+			ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49);
 	""")
-	results = sql.GET(cmd)
+	lSQLResultsIssuesAllTime = sql.GET(lIssuesAllTime) # Total number of issues
+
+	results.append(lSQLResultsIssuesAllTime)
+
+	lDaysSinceInception = datetime.date(datetime.datetime.now()) - utls.DAY_ZERO
+
+	results.append(lDaysSinceInception)
+
+
+
 	return results
 
 #################
@@ -164,6 +184,16 @@ def treyReport (): # Gets a range summary of the VM number and status reported
 # 'User' TEXT NOT NULL DEFAULT 'NONE',
 # 'aStatus' TEXT NOT NULL DEFAULT 'NONE'
 # );
+
+def testTimerReport (): # Gets a range summary of the VM number and status reported
+	cmd = ("""
+		SELECT TOP 5 
+			ID, TimeStamp, User, aStatus
+		FROM 
+			Interactions;
+	""")
+	results = sql.GET(cmd)
+	return results
 
 def addPet(aUser,aStat):  # adds a 'pet' to the database
 	sql.EXEC(("""

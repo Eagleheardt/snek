@@ -7,7 +7,9 @@ import re
 ###################
 
 # Snek's birthday is October 25, 2018
-SNEK_BIRTHDAY = datetime.datetime(2018, 10, 25)
+SNEK_BIRTHDAY = datetime.date(2018, 10, 25)
+# First day of record keeping is November 11, 2018
+DAY_ZERO = datetime.date(2018, 11, 12)
 WORKING_PATH = "/home/ubuntu/"
 DATABASE_NAME = "newSnek.db"
 DATABASE_PATH = "snekbot/data/" # prod
@@ -177,13 +179,11 @@ def parsePets(sqlPayload):
 
 	return report
 
-def parseTreyReport(sqlPayload):
+def parseTreyReport(listOfInformation):
 	snekBorder = (":snek:" * 15)
 	snekOverallDecor =\
 	"""
-	******************************
 	***   Overall Statistics   ***
-	******************************
 	"""
 	report = ""
 
@@ -193,12 +193,12 @@ def parseTreyReport(sqlPayload):
 		tFavePersonMonth = tupple[0]
 		tFavePersonMonthReports = tupple[1]
 
-		report += "My favorite person last month was {} who fed me {} times\n".format(tFavePersonMonth, tFavePersonMonthReports)
+		report += "My favorite person this month was {} who fed me {} times\n".format(tFavePersonMonth, tFavePersonMonthReports)
 
 		tErrantServerMonth = tupple[2]
 		tErrantServerMonthReports = tupple[3]
 
-		report += "The most server with the most issues last month was {} who gave me {} problems\n".format(tErrantServerMonth, tErrantServerMonthReports)
+		report += "The most server with the most issues this month was {} who gave me {} problems\n".format(tErrantServerMonth, tErrantServerMonthReports)
 
 		tDayOfMostIssues = tupple[4]
 		tDayOfMostIssuesAmount = tupple[5]
@@ -219,11 +219,11 @@ def parseTreyReport(sqlPayload):
 		else:
 			tDayEnding = "th"
 
-		report += "The most difficult day last month was the {}{} when I had to eat {} problems\n".format(tDayOfMostIssues, tDayEnding, tDayOfMostIssuesAmount)
+		report += "The most difficult day this month was the {}{} when I had to eat {} problems\n".format(tDayOfMostIssues, tDayEnding, tDayOfMostIssuesAmount)
 
 		tAverageErrorsPerDayLastMonth = tupple[6]
 
-		report += "Last month I ate an average of {} problems each day\n".format(tDayOfMostIssues, tDayOfMostIssuesAmount)
+		report += "This month I ate an average of {} problems each day".format(tDayOfMostIssues, tDayOfMostIssuesAmount)
 
 		tOverallPerson = tupple[7]
 		tOverallPersonReports = tupple[8]
@@ -243,4 +243,15 @@ def parseTreyReport(sqlPayload):
 
 	report += snekBorder
 	
+	return report
+
+def parseTestTimerReport(sqlPayload):
+	report = ""
+	for tupple in sqlPayload:
+		tAct = tupple[0]
+		tAmount = tupple[1]
+		amt = "time" if int(tAmount) == 1 else "times"
+
+		report += "{}: {} {}\n".format(tAct, tAmount, amt)
+
 	return report
