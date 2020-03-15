@@ -59,10 +59,10 @@ threading.Timer(utils.MONITOR_START_DELAY_IN_SECONDS,WebClientChecker).start()
 def BethanyHealthChecker():
     d = datetime.datetime.now()
     if (d.isoweekday() in range(1, 6)):
-        if (d.hour in range(8, 18)):
+        if (d.hour in range(8, 17)):
             #utils.directResponse("UBW657ERF", random.choice(words.textTreySays))
             utils.directResponse("UC176R92M", random.choice(words.textTreySays))
-        if (d.hour > 18):
+        if (d.hour > 16):
             return
         threading.Timer(random.randint(900, 1500), BethanyHealthChecker).start()
     return
