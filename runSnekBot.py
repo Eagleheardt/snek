@@ -57,13 +57,17 @@ threading.Timer(utils.MONITOR_START_DELAY_IN_SECONDS,WebClientChecker).start()
 ##################################
 
 def BethanyHealthChecker():
-    #d = datetime.datetime.now()
-    #if ((d.isoweekday() in range(1, 6)) and (d.hour in range(8, 18))):
-    utils.directResponse("UBW657ERF", random.choice(words.textTreySays))
-    threading.Timer(random.randint(900, 1500), BethanyHealthChecker).start()
+    d = datetime.datetime.now()
+    if (d.isoweekday() in range(1, 6)):
+        if (d.hour in range(8, 18)):
+            #utils.directResponse("UBW657ERF", random.choice(words.textTreySays))
+            utils.directResponse("UC176R92M", random.choice(words.textTreySays))
+        if (d.hour > 18):
+            return
+        threading.Timer(random.randint(900, 1500), BethanyHealthChecker).start()
     return
 
-#threading.Timer(1500, BethanyHealthChecker).start()
+threading.Timer(1500, BethanyHealthChecker).start()
 
 #######################
 ###   Report Test   ###
@@ -76,7 +80,7 @@ def ReportTest():
     threading.Timer(600, ReportTest).start()
     return
 
-threading.Timer(600, ReportTest).start()
+# threading.Timer(600, ReportTest).start()
 
 ###############################
 ###   End Checker Threads   ###
