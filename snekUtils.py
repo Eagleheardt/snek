@@ -199,7 +199,6 @@ def placeEnder(someNumber):
 
 	return tDayEnding
 
-
 def parseTreyReport(listOfInformation):
 	reportBorder = (":snek:" * 15)
 	reportDecorO =\
@@ -234,7 +233,7 @@ def parseTreyReport(listOfInformation):
 
 	report += "Overall, I've eaten the most from {} who sent me {} problems\n".format(tPersonWithMostIssuesAndNumberAllTime)
 	report += "Overall, I've been fed the most from server number {} which has had {} problems\n".format(tServerWithMostIssuesAndNumberAllTime)
-	report += "On average, I eat {} problems per day. Every day.\n\n".format(tAverageErrorsPerDayOverall)
+	report += "On average, I eat {} problems per day. Every day.\n\n".format(TOTALISSUES/tDaysSinceInception)
 
 	report += reportBorder
 	
