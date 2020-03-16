@@ -159,24 +159,124 @@ def treyReport (): # Gets the monthly report. Should run on the 28th every month
 
 	results.append(lDaysSinceInception)
 
+	lPersonMostIssuesAllTime = ("""
+		SELECT 
+			u.UserName
+			, count(iss.SlackID) 
+		FROM 
+			Issues as iss 
+		JOIN 
+			Users as u 
+		ON 
+			u.SlackID = iss.SlackID 
+		WHERE 
+			iss.ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49)
+		GROUP BY 
+			iss.SlackID 
+		ORDER BY count(iss.SlackID) DESC 
+		LIMIT 1;
+	""")
+	lSQLResultsPersonMostIssuesAllTime = sql.GET(lPersonMostIssuesAllTime) # Total number of issues
 
+	results.append(lSQLResultsPersonMostIssuesAllTime)
+
+	lPersonMostIssuesThisMonth = ("""
+		SELECT 
+			u.UserName
+			, count(iss.SlackID) 
+		FROM 
+			Issues as iss 
+		JOIN 
+			Users as u 
+		ON 
+			u.SlackID = iss.SlackID 
+		WHERE
+			iss.TimeStamp BETWEEN 
+				datetime('now', 'start of month') 
+				AND datetime('now', 'localtime')
+			AND iss.ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49)
+		GROUP BY 
+			iss.SlackID 
+		ORDER BY count(iss.SlackID) DESC 
+		LIMIT 1;
+	""")
+	lSQLResultsPersonMostIssuesThisMonth = sql.GET(lPersonMostIssuesThisMonth) # Total number of issues
+
+	results.append(lSQLResultsPersonMostIssuesThisMonth)
+
+	lErrantServerAllTime = ("""
+		SELECT 
+			ServerNumber
+			, count(ServerNumber) as sTotalIssues
+		FROM 
+			Issues
+		WHERE
+			ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49)
+		GROUP BY
+			ServerNumber
+		ORDER BY
+			count(ServerNumber) DESC
+		LIMIT 1;
+	""")
+	lSQLResultsErrantServerAllTime = sql.GET(lErrantServerAllTime) # Total number of issues
+
+	results.append(lSQLResultsErrantServerAllTime)
+
+	lErrantServerThisMonth = ("""
+		SELECT 
+			ServerNumber
+			, count(ServerNumber) as sTotalIssues
+		FROM 
+			Issues
+		WHERE
+			TimeStamp BETWEEN 
+				datetime('now', 'start of month') 
+				AND datetime('now', 'localtime')
+			AND ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49)
+		GROUP BY
+			ServerNumber
+		ORDER BY
+			count(ServerNumber) DESC
+		LIMIT 1;
+	""")
+	lSQLResultsErrantServerThisMonth = sql.GET(lErrantServerThisMonth) # Total number of issues
+
+	results.append(lSQLResultsErrantServerThisMonth)
+
+	lMostIssuesPerDayAllTime = ("""
+		SELECT
+			date(TimeStamp) as sTheDay 
+			, count(ServerStatus) as sTotalIssues
+		FROM 
+			Issues
+		WHERE
+			ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49)
+		GROUP BY
+			date(TimeStamp);
+	""")
+	lSQLResultsMostIssuesPerDayAllTime = sql.GET(lMostIssuesPerDayAllTime) # Total number of issues
+
+	results.append(lSQLResultsMostIssuesPerDayAllTime)
+
+	lMostIssuesPerDayThisMonth = ("""
+		SELECT
+			date(TimeStamp) as sTheDay 
+			, count(ServerStatus) as sTotalIssues
+		FROM 
+			Issues
+		WHERE
+			TimeStamp BETWEEN 
+				datetime('now', 'start of month') 
+				AND datetime('now', 'localtime')
+			ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49)
+		GROUP BY
+			date(TimeStamp);
+	""")
+	lSQLResultsMostIssuesPerDayThisMonth = sql.GET(lMostIssuesPerDayThisMonth) # Total number of issues
+
+	results.append(lSQLResultsMostIssuesPerDayThisMonth)
 
 	return results
-
-#################
-#   TODO LIST   #
-#################
-
-# Monthly formatted report: 
-# Person who reported the most - number of reports 
-#   (Snek's favorite person of the month)
-# Most errant server - server number - number of issues
-# Overall highest reporter - number of reports
-# overall most errant server - number of reports
-# Daily highest number of issues.
-# Highest issues on a day in that month
-# Daily average overall
-# daily average on the month
 
 # CREATE TABLE IF NOT EXISTS "Interactions" (
 # 'ID' INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -184,16 +284,6 @@ def treyReport (): # Gets the monthly report. Should run on the 28th every month
 # 'User' TEXT NOT NULL DEFAULT 'NONE',
 # 'aStatus' TEXT NOT NULL DEFAULT 'NONE'
 # );
-
-def testTimerReport (): # Gets a range summary of the VM number and status reported
-	cmd = ("""
-		SELECT TOP 5 
-			ID, TimeStamp, User, aStatus
-		FROM 
-			Interactions;
-	""")
-	results = sql.GET(cmd)
-	return results
 
 def addPet(aUser,aStat):  # adds a 'pet' to the database
 	sql.EXEC(("""
