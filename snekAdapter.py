@@ -171,6 +171,7 @@ def treyReport (): # Gets the monthly report. Should run on the 28th every month
 			u.SlackID = iss.SlackID 
 		WHERE 
 			iss.ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49)
+			AND u.SlackID NOT IN ('NOID')
 		GROUP BY 
 			iss.SlackID 
 		ORDER BY count(iss.SlackID) DESC 
@@ -194,6 +195,7 @@ def treyReport (): # Gets the monthly report. Should run on the 28th every month
 			iss.TimeStamp BETWEEN 
 				datetime('now', 'start of month') 
 				AND datetime('now', 'localtime')
+			AND u.SlackID NOT IN ('NOID')
 			AND iss.ServerNumber IN (1, 2, 3, 4, 17, 40, 46, 47, 48, 49)
 		GROUP BY 
 			iss.SlackID 
