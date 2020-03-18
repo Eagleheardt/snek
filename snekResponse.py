@@ -100,7 +100,7 @@ textTreySays = [
 	"Trey says: Bethany, when is the last time you went to get water? Maybe it should be now.", 
 	"Trey says: Yeah, Bethany, if you could go get some water, that'd be great.", 
 	"Trey says: Hey Bethany, you know what a 5 letter word meaning 'to shread' starting with 'g' is? Yeah, that's 'grate.' Drink :potable_water:.", 
-	"Trey says: " + ((":potable_water: ") * 10), 
+	"Trey says: " + (":potable_water: " * 10), 
 	"Trey says: Have you been drinking water? Go get some!", 
 	"Trey says: Water, water, everywhere: so why not have a drink?", 
 	"Trey says: Water you doing? You should be drinking water!", 

@@ -2,6 +2,8 @@ import threading
 import time
 import datetime
 import snekResponse as words
+import snekAdapter as adapter
+import snekUtils as utils
 import random
 
 def BethanyHealthChecker():
@@ -15,7 +17,7 @@ def BethanyHealthChecker():
         threading.Timer(random.randint(900, 1500), BethanyHealthChecker).start() # Starts BethanyHealthChecker() after a random time between 15 and 25 minutes
     return
 
-threading.Timer(1500, BethanyHealthChecker).start() # Starts BethanyHealthChecker() after a 25 minute break
+#threading.Timer(1500, BethanyHealthChecker).start() # Starts BethanyHealthChecker() after a 25 minute break
 
 #######################
 ###   Report Test   ###
@@ -23,9 +25,11 @@ threading.Timer(1500, BethanyHealthChecker).start() # Starts BethanyHealthChecke
 
 def ReportTest():
     d = datetime.datetime.now()
-    if (d.day == 16):
-        if (d.hour in range(6, 9)):
-            utils.directResponse("UC176R92M", "This is how you're going to do timed reports.\n\n\n" + )
+    if (d.day == 18):
+        if (d.hour in range(6, 10)):
+            rawTreyReport = adapter.treyReport()
+            parsedTreyReport = utils.parseTreyReport(rawTreyReport)
+            utils.directResponse("UC176R92M", "This is how you're going to do timed reports.\n\n\n" + rawTreyReport + "\n\n\n" + parsedTreyReport)
             return
         threading.Timer(600, ReportTest).start()
     return
